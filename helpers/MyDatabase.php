@@ -6,13 +6,7 @@ class MyDatabase
 
     public function __construct($hostname, $username, $password, $database)
     {
-        $this->conexion = new mysqli(
-            $hostname,
-            $username,
-            $password,
-            $database,
-            3400
-        );
+        $this->conexion = new mysqli($hostname, $username, $password, $database);
     }
 
     public function query($sql, $params = [])
