@@ -1,0 +1,63 @@
+.password-requirements {
+    background: var(--surface);
+    padding: calc(var(--unit) * 1.5);
+    border-radius: var(--radius);
+    margin-top: calc(var(--unit) * 1);
+    border: 1px solid var(--outline-variant);
+}
+
+.requirements-title {
+    font-size: 0.85em;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 var(--unit) 0;
+}
+
+.requirements-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--unit) * 0.5);
+}
+
+.requirement {
+    display: flex;
+    align-items: center;
+    gap: var(--unit);
+    font-size: 0.9em;
+    color: var(--on-surface-variant);
+    transition: all var(--transition);
+}
+
+.requirement-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    color: #999;
+    font-size: 0.75em;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.requirement-unchecked .requirement-icon {
+    background: #e0e0e0;
+    color: #999;
+}
+
+.requirement.requirement-checked {
+    color: #22863a;
+    font-weight: 500;
+}
+
+.requirement.requirement-checked .requirement-icon {
+    background: #22863a;
+    color: white;
+}
