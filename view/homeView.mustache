@@ -1,5 +1,7 @@
 {{>header}}
 
+<link rel="stylesheet" href="/PW2-TP2/public/styles/home.css">
+
     <h2>Bienvenido</h2>
 
     <p class="welcome-text">
@@ -14,29 +16,5 @@
             Iniciar Sesión
         </a>
     </div>
-
-    <style>
-        .welcome-text {
-            text-align: center;
-            color: var(--on-surface-variant);
-            line-height: 1.8;
-            margin-bottom: calc(var(--unit) * 5);
-            font-size: 1.05em;
-            letter-spacing: 0.02em;
-        }
-
-        .button-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: calc(var(--unit) * 1.5);
-        }
-
-        @media (max-width: 480px) {
-            .welcome-text {
-                margin-bottom: calc(var(--unit) * 3.75);
-                font-size: 1em;
-            }
-        }
-    </style>
 
 {{>footer}}
