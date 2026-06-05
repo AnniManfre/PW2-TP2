@@ -1,10 +1,14 @@
+Options -Indexes
+
+<FilesMatch ".*\.(log|ini|htaccess)$">
+    deny from all
+</FilesMatch>
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    
-    # Si la solicitud es para un archivo o carpeta real, no aplicar rewrite
+    RewriteBase /PW2-TP2/
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    
-    # Reescribir las solicitudes a index.php
-    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+    RewriteRule ^([^/]+)/([^/]+)$ index.php?controller=$1&method=$2 [L,QSA]
+    RewriteRule ^([^/]+)$         index.php?controller=$1           [L,QSA]
 </IfModule>
