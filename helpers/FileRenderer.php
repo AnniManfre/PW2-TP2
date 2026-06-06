@@ -1,10 +1,7 @@
 <?php
 
-// Lo dejamos con fin didáctico. No se utiliza.
-class FileRenderer
-{
-    public function __construct()
-    {
+class FileRenderer { // Lo dejamos con fin didáctico, (no se utiliza).
+    public function __construct() {
     }
 
     public function render($viewName,$resultado = array()){
@@ -13,3 +10,5 @@ class FileRenderer
         include_once("view/footer.mustache");
     }
 }
+
+?>
