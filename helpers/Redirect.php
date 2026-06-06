@@ -1,15 +1,15 @@
 <?php
 
-class Redirect
-{
-    public static function to($url)
-    {
+class Redirect {
+
+    public static function to($url) {
         header("Location: $url");
         exit();
     }
 
-    public static function toIndex()
-    {
+    public static function toIndex() {
         self::to('/');
     }
 }
+
+?>
