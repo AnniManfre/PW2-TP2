@@ -44,7 +44,6 @@
     gap: var(--gutter);
 }
 
-/* Profile Card */
 .profile-card {
     background: white;
     border-radius: var(--radius-md);
@@ -152,7 +151,6 @@
     transform: scale(0.98);
 }
 
-/* Location Card */
 .location-card {
     background: white;
     border-radius: var(--radius-md);
@@ -204,7 +202,6 @@
     margin: 0;
 }
 
-/* Stats Grid */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -273,7 +270,6 @@
     color: var(--on-surface);
 }
 
-/* Info Card */
 .info-card {
     background: white;
     border-radius: var(--radius-md);
@@ -339,7 +335,7 @@
     color: #22863a;
 }
 
-/* Action Buttons */
+/* Action buttons. */
 .action-buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -383,16 +379,13 @@
     box-shadow: 0 6px 20px rgba(180, 19, 109, 0.25);
 }
 
-/* Card Shadow */
+/* Card shadow. */
 .card-shadow {
     box-shadow: 0 4px 12px rgba(53, 37, 205, 0.05);
 }
 
-/* ============================================
-       RESPONSIVE DESIGN
-       ============================================ */
-
-/* DESKTOP (1440px+) */
+/* Responsive design. */
+/* Desktop (1440px+) */
 @media (min-width: 1440px) {
     .profile-main {
         padding: calc(var(--unit) * 4) var(--gutter);
@@ -408,7 +401,7 @@
     }
 }
 
-/* LAPTOP (1024px - 1439px) */
+/* Laptop (1024px - 1439px) */
 @media (min-width: 1024px) and (max-width: 1439px) {
     .profile-main {
         padding: calc(var(--unit) * 3) var(--gutter);
@@ -508,7 +501,7 @@
     }
 }
 
-/* MOBILE LANDSCAPE (481px - 767px) */
+/* Mobile landscape (481px - 767px) */
 @media (min-width: 481px) and (max-width: 767px) {
     .profile-main {
         padding: calc(var(--unit) * 2) calc(var(--unit) * 1.5);
@@ -584,7 +577,7 @@
     }
 }
 
-/* MOBILE PORTRAIT (<480px) */
+/* Mobile portrait (<480px) */
 @media (max-width: 480px) {
     .profile-main {
         padding: calc(var(--unit) * 1.5) var(--unit);

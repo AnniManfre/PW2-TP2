@@ -20,7 +20,7 @@
     padding: calc(var(--unit) * 3) var(--gutter);
 }
 
-/* Hero Section */
+/* Hero selection. */
 .hero-section {
     background: linear-gradient(135deg, var(--primary) 0%, #2817a3 100%);
     border-radius: var(--radius-md);
@@ -59,7 +59,6 @@
     opacity: 0.15;
 }
 
-/* Action Cards */
 .actions-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -152,7 +151,6 @@
     transform: scale(1.1);
 }
 
-/* Recent Games Section */
 .recent-section {
     background: white;
     border-radius: var(--radius-md);
@@ -195,7 +193,6 @@
     text-decoration: underline;
 }
 
-/* Games Table */
 .games-table {
     overflow-x: auto;
 }
@@ -284,7 +281,6 @@
     font-weight: 700;
 }
 
-/* Stats Card */
 .stats-card-section {
     background: white;
     border-radius: var(--radius-md);
@@ -350,7 +346,6 @@
     box-shadow: 0 6px 20px rgba(53, 37, 205, 0.25);
 }
 
-/* Logout Button */
 .logout-container {
     text-align: center;
 }
@@ -378,11 +373,9 @@
     box-shadow: 0 6px 20px rgba(180, 19, 109, 0.25);
 }
 
-/* ============================================
-       RESPONSIVE DESIGN
-       ============================================ */
+/* Responsive design.  */
 
-/* DESKTOP (1440px+) */
+/* Desktop (1440px+) */
 @media (min-width: 1440px) {
     .lobby-main {
         padding: calc(var(--unit) * 4) var(--gutter);
@@ -429,7 +422,7 @@
     }
 }
 
-/* LAPTOP (1024px - 1439px) */
+/* Laptop (1024px - 1439px) */
 @media (min-width: 1024px) and (max-width: 1439px) {
     .lobby-main {
         padding: calc(var(--unit) * 3) var(--gutter);
@@ -480,7 +473,7 @@
     }
 }
 
-/* TABLET (768px - 1023px) */
+/* Tablet (768px - 1023px) */
 @media (min-width: 768px) and (max-width: 1023px) {
     .lobby-main {
         padding: calc(var(--unit) * 2.5) calc(var(--unit) * 2);
@@ -591,7 +584,7 @@
     }
 }
 
-/* MOBILE LANDSCAPE (481px - 767px) */
+/* Mobile landscape (481px - 767px) */
 @media (min-width: 481px) and (max-width: 767px) {
     .lobby-main {
         padding: calc(var(--unit) * 2) calc(var(--unit) * 1.5);
@@ -699,7 +692,7 @@
     }
 }
 
-/* MOBILE PORTRAIT (<480px) */
+/* Mobile portrait. (<480px) */
 @media (max-width: 480px) {
     .lobby-main {
         padding: calc(var(--unit) * 1.5) var(--unit);

@@ -1,9 +1,5 @@
-/* ============================================
-   TRIVIA CLASH - Main Styles
-   ============================================ */
-
 :root {
-    /* Colors */
+    /* Colores. */
     --primary: #3525cd;
     --primary-container: #4f46e5;
     --secondary: #b4136d;
@@ -18,7 +14,7 @@
     --outline: #777587;
     --outline-variant: #c7c4d8;
 
-    /* Transitions */
+    /* Transiciones. */
     --transition: 200ms ease-in-out;
 }
 
@@ -58,10 +54,7 @@ body {
     padding: 0 24px;
 }
 
-/* ============================================
-   Typography
-   ============================================ */
-
+/* Tipografías. */
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.3;
     letter-spacing: -0.01em;
@@ -99,10 +92,7 @@ a:hover {
     text-decoration: underline;
 }
 
-/* ============================================
-   Buttons
-   ============================================ */
-
+/* Botones. */
 .btn {
     padding: 14px 24px;
     background: linear-gradient(135deg, var(--primary) 0%, #2817a3 100%);
@@ -138,10 +128,7 @@ a:hover {
     box-shadow: 0 4px 12px rgba(180, 19, 109, 0.25);
 }
 
-/* ============================================
-   Forms
-   ============================================ */
-
+/* Formularios. */
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -186,10 +173,7 @@ label {
     text-transform: uppercase;
 }
 
-/* ============================================
-   Alerts
-   ============================================ */
-
+/* Alertas. */
 .error {
     background: #fed7d7;
     color: #742a2a;
@@ -212,10 +196,7 @@ label {
     font-size: 0.95em;
 }
 
-/* ============================================
-   Utilities
-   ============================================ */
-
+/* Utilidades. */
 .text-center {
     text-align: center;
 }

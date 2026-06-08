@@ -3,7 +3,6 @@
 <link rel="stylesheet" href="/PW2-TP2/public/styles/lobby.css">
 
 <main class="lobby-main">
-    <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-content">
             <h1 class="hero-title">¡Bienvenido de nuevo, {{user.nombre_completo}}!</h1>
@@ -12,24 +11,23 @@
         <span class="material-symbols-outlined hero-icon">quiz</span>
     </section>
 
-    <!-- Quick Actions Grid -->
     <div class="actions-grid">
-        <!-- Create Game -->
         <button class="action-card action-primary" onclick="alert('Funcionalidad disponible en próximas entregas')">
             <div class="card-icon-box">
                 <span class="material-symbols-outlined">add_circle</span>
             </div>
+
             <h3 class="action-title">Crear Partida</h3>
             <p class="action-description">Desafía a tus amigos o entra en un duelo aleatorio.</p>
             <span class="material-symbols-outlined action-arrow">arrow_forward</span>
             <span class="action-bg-icon">rocket_launch</span>
         </button>
 
-        <!-- View Ranking -->
         <button class="action-card action-secondary" onclick="alert('Funcionalidad disponible en próximas entregas')">
             <div class="card-icon-box">
                 <span class="material-symbols-outlined">leaderboard</span>
             </div>
+
             <h3 class="action-title">Ver Ranking</h3>
             <p class="action-description">Revisa tu posición en la tabla global.</p>
             <span class="material-symbols-outlined action-arrow">arrow_forward</span>
@@ -37,7 +35,6 @@
         </button>
     </div>
 
-    <!-- Recent Games Section -->
     <section class="recent-section">
         <div class="section-header">
             <h2 class="section-title">
@@ -57,13 +54,12 @@
                         <th class="text-right">Resultado</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     {{#ranking}}
                     <tr class="game-row">
                         <td class="date-cell">Hoy, {{@index}}:00</td>
-                        <td>
-                            <span class="category-badge">Categoría</span>
-                        </td>
+                        <td><span class="category-badge">Categoría</span></td>
                         <td class="opponent-cell">@{{usuario}}</td>
                         <td class="result-cell">
                             <span class="result-points">+{{puntaje}} Tkn</span>
@@ -83,7 +79,6 @@
         </div>
     </section>
 
-    <!-- User Stats Card -->
     <section class="stats-card-section">
         <div class="stats-card">
             <div class="stats-header">
@@ -99,7 +94,6 @@
         </div>
     </section>
 
-    <!-- Logout Button -->
     <div class="logout-container">
         <a href="/PW2-TP2/user/logout" class="btn-logout">
             <span class="material-symbols-outlined">logout</span>

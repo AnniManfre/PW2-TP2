@@ -1,7 +1,3 @@
-/* ============================================
-   NAVBAR - Header Navigation
-   ============================================ */
-
 nav {
     background: white;
     padding: 12px 20px;
@@ -128,7 +124,7 @@ nav a.logo:hover {
     justify-content: center;
 }
 
-/* Header Section */
+/* Header section. */
 header {
     background: linear-gradient(135deg, var(--primary) 0%, #2817a3 100%);
     padding: 48px 20px;
@@ -153,10 +149,7 @@ header p {
     letter-spacing: 0.02em;
 }
 
-/* ============================================
-   Responsive Navbar
-   ============================================ */
-
+/* Responsive navbar. */
 @media (max-width: 1024px) {
     nav {
         padding: 10px 16px;

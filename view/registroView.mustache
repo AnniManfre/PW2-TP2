@@ -90,12 +90,11 @@
         ¿Ya tienes cuenta? <a href="/PW2-TP2/user/login">INICIAR SESIÓN</a>
     </div>
 
-
     <script>
         function validarContraseña() {
             const password = document.getElementById('password').value;
 
-            // Requisito 1: Mínimo 8 caracteres
+            // Requisito 1: Mínimo 8 caracteres.
             const reqLength = document.getElementById('req-length');
             if (password.length >= 8) {
                 reqLength.classList.add('requirement-checked');
@@ -105,7 +104,7 @@
                 reqLength.classList.add('requirement-unchecked');
             }
 
-            // Requisito 2: Al menos 1 mayúscula
+            // Requisito 2: Al menos 1 mayúscula.
             const reqUppercase = document.getElementById('req-uppercase');
             if (/[A-Z]/.test(password)) {
                 reqUppercase.classList.add('requirement-checked');
@@ -115,7 +114,7 @@
                 reqUppercase.classList.add('requirement-unchecked');
             }
 
-            // Requisito 3: Al menos 1 número
+            // Requisito 3: Al menos 1 número.
             const reqNumber = document.getElementById('req-number');
             if (/[0-9]/.test(password)) {
                 reqNumber.classList.add('requirement-checked');
@@ -126,7 +125,6 @@
             }
         }
 
-        // Ejecutar validación al cargar la página (en caso de que haya un error)
         document.addEventListener('DOMContentLoaded', validarContraseña);
     </script>
 

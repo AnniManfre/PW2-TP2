@@ -1,9 +1,5 @@
-/* ============================================
-           DESIGN SYSTEM - Vivid Quest
-           ============================================ */
-
 :root {
-    /* Colors */
+    /* Colores. */
     --primary: #3525cd;
     --primary-container: #4f46e5;
     --secondary: #b4136d;
@@ -18,19 +14,19 @@
     --outline: #777587;
     --outline-variant: #c7c4d8;
 
-    /* Spacing unit (8px) */
+    /* Unidad espaciado (8px). */
     --unit: 8px;
     --gutter: 1.5rem;
     --container-max: 1140px;
 
-    /* Border radius */
+    /* Border radius. */
     --radius-sm: 0.5rem;
     --radius: 1rem;
     --radius-md: 1.5rem;
     --radius-lg: 2rem;
     --radius-full: 9999px;
 
-    /* Transitions */
+    /* Transitions. */
     --transition: 200ms ease-in-out;
 }
 
@@ -47,9 +43,7 @@ body {
     min-height: 100vh;
 }
 
-/* ============================================
-           NAVBAR
-           ============================================ */
+/* Navbar. */
 nav {
     background: white;
     padding: calc(var(--unit) * 1.5) calc(var(--unit) * 2.5);
@@ -174,9 +168,7 @@ nav a.logo:hover {
     justify-content: center;
 }
 
-/* ============================================
-           HEADER
-           ============================================ */
+/* Header. */
 header {
     background: linear-gradient(135deg, var(--primary) 0%, #2817a3 100%);
     padding: calc(var(--unit) * 6) calc(var(--unit) * 2.5);
@@ -202,9 +194,7 @@ header p {
     letter-spacing: 0.02em;
 }
 
-/* ============================================
-           CONTAINER & LAYOUT
-           ============================================ */
+/* Contenedor y diseño. */
 .container {
     width: 100%;
     margin: calc(var(--unit) * 7.5) auto;
@@ -225,9 +215,7 @@ h2 {
     letter-spacing: -0.01em;
 }
 
-/* ============================================
-           FORM ELEMENTS
-           ============================================ */
+/* Elementos formulario. */
 .form-group {
     margin-bottom: calc(var(--unit) * 3);
 }
@@ -270,9 +258,7 @@ h2 {
     box-shadow: 0 0 0 3px rgba(53, 37, 205, 0.1);
 }
 
-/* ============================================
-           BUTTONS
-           ============================================ */
+/* Botones. */
 .btn {
     width: 100%;
     padding: calc(var(--unit) * 1.75) calc(var(--unit) * 3);
@@ -310,9 +296,7 @@ h2 {
     box-shadow: 0 4px 12px rgba(180, 19, 109, 0.25);
 }
 
-/* ============================================
-           ALERTS
-           ============================================ */
+/* Alerts. */
 .error {
     background: #fed7d7;
     color: #742a2a;
@@ -335,9 +319,7 @@ h2 {
     font-size: 0.95em;
 }
 
-/* ============================================
-           UTILITIES
-           ============================================ */
+/* Utilidades. */
 .text-center {
     text-align: center;
 }
@@ -372,11 +354,8 @@ h2 {
     text-transform: uppercase;
 }
 
-/* ============================================
-           RESPONSIVE DESIGN
-           ============================================ */
-
-/* TABLET (768px - 1024px) */
+/* Responsive design. */
+/* Tablet (768px - 1024px) */
 @media (max-width: 1024px) {
     .container {
         margin: calc(var(--unit) * 5) auto;
@@ -400,7 +379,7 @@ h2 {
     }
 }
 
-/* MOBILE (menos de 768px) */
+/* Mobile (menos de 768px) */
 @media (max-width: 768px) {
     nav {
         padding: calc(var(--unit) * 1.25) calc(var(--unit) * 2);
@@ -475,7 +454,7 @@ h2 {
     }
 }
 
-/* MOBILE PEQUEÑO (menos de 480px) */
+/* Mobile pequeño (menos de 480px) */
 @media (max-width: 480px) {
     nav a.logo {
         font-size: 1em;
