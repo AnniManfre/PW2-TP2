@@ -1,0 +1,105 @@
+{{>header}}
+
+<link rel="stylesheet" href="/public/styles/lobby.css">
+
+<main class="lobby-main">
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">¡Bienvenido de nuevo, {{user.nombre_completo}}!</h1>
+            <p class="hero-subtitle">¿Listo para demostrar quién sabe más hoy? Hay usuarios activos esperándote.</p>
+        </div>
+        <span class="material-symbols-outlined hero-icon">quiz</span>
+    </section>
+
+    <div class="actions-grid">
+        <button class="action-card action-primary" onclick="alert('Funcionalidad disponible en próximas entregas')">
+            <div class="card-icon-box">
+                <span class="material-symbols-outlined">add_circle</span>
+            </div>
+
+            <h3 class="action-title">Crear Partida</h3>
+            <p class="action-description">Desafía a tus amigos o entra en un duelo aleatorio.</p>
+            <span class="material-symbols-outlined action-arrow">arrow_forward</span>
+            <span class="action-bg-icon">rocket_launch</span>
+        </button>
+
+        <button class="action-card action-secondary" onclick="alert('Funcionalidad disponible en próximas entregas')">
+            <div class="card-icon-box">
+                <span class="material-symbols-outlined">leaderboard</span>
+            </div>
+
+            <h3 class="action-title">Ver Ranking</h3>
+            <p class="action-description">Revisa tu posición en la tabla global.</p>
+            <span class="material-symbols-outlined action-arrow">arrow_forward</span>
+            <span class="action-bg-icon">emoji_events</span>
+        </button>
+    </div>
+
+    <section class="recent-section">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="material-symbols-outlined">history</span>
+                Partidas Recientes
+            </h2>
+            <a href="/user/lobby" class="view-all">Ver todo</a>
+        </div>
+
+        <div class="games-table">
+            <table class="games-list">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Categoría</th>
+                        <th>Oponente</th>
+                        <th class="text-right">Resultado</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{#ranking}}
+                    <tr class="game-row">
+                        <td class="date-cell">Hoy, {{@index}}:00</td>
+                        <td><span class="category-badge">Categoría</span></td>
+                        <td class="opponent-cell">@{{usuario}}</td>
+                        <td class="result-cell">
+                            <span class="result-points">+{{puntaje}} Tkn</span>
+                            <span class="result-icon">✓</span>
+                        </td>
+                    </tr>
+                    {{/ranking}}
+                    {{^ranking}}
+                    <tr>
+                        <td colspan="4" style="text-align: center; padding: calc(var(--unit) * 3); color: var(--on-surface-variant);">
+                            Aún no has jugado ninguna partida. ¡Crea una y comienza!
+                        </td>
+                    </tr>
+                    {{/ranking}}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="stats-card-section">
+        <div class="stats-card">
+            <div class="stats-header">
+                <div>
+                    <h3 class="stats-title">{{user.nombre_completo}}</h3>
+                    <p class="stats-level">Puntuación: <strong>{{user.puntaje}} Tkn</strong></p>
+                </div>
+                <a href="/user/perfil" class="btn-profile">
+                    <span class="material-symbols-outlined">person</span>
+                    Ver Perfil
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="logout-container">
+        <a href="/user/logout" class="btn-logout">
+            <span class="material-symbols-outlined">logout</span>
+            Cerrar Sesión
+        </a>
+    </div>
+</main>
+
+{{>footer}}

@@ -1,0 +1,132 @@
+{{>header}}
+
+<link rel="stylesheet" href="/public/styles/perfil.css">
+
+<main class="profile-main">
+    <div class="profile-grid">
+        <div class="profile-left">
+            <div class="profile-card card-shadow">
+                <div class="profile-avatar-container">
+                    {{#foto_perfil}}
+                    <img src="{{foto_perfil}}" alt="Foto de perfil" class="profile-avatar">
+                    {{/foto_perfil}}
+                    {{^foto_perfil}}
+                    <div class="profile-avatar-placeholder">
+                        <span class="material-symbols-outlined avatar-placeholder-icon">person</span>
+                    </div>
+                    {{/foto_perfil}}
+                    <div class="profile-badge">
+                        <span class="material-symbols-outlined badge-icon">star</span>
+                    </div>
+                </div>
+
+                <h1 class="profile-name">{{nombre_completo}}</h1>
+                <p class="profile-subtitle">Nivel 1 · Principiante</p>
+
+                <button class="btn-edit">
+                    <span class="material-symbols-outlined">edit</span>
+                    Editar Perfil
+                </button>
+            </div>
+
+            <div class="location-card card-shadow">
+                <div class="location-header">
+                    <span class="material-symbols-outlined location-icon">location_on</span>
+                    <span class="location-label">Ubicación</span>
+                </div>
+                <div class="location-map">
+                    <span class="material-symbols-outlined location-placeholder">public</span>
+                    {{#pais}}
+                    <p class="location-text">{{pais}}{{#ciudad}}, {{ciudad}}{{/ciudad}}</p>
+                    {{/pais}}
+                    {{^pais}}
+                    <p class="location-text">Ubicación no especificada</p>
+                    {{/pais}}
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-right">
+            <div class="stats-grid">
+                <div class="stat-card stat-card-primary card-shadow">
+                    <span class="material-symbols-outlined stat-icon">emoji_events</span>
+                    <span class="stat-label">Partidas Ganadas</span>
+                    <span class="stat-value">0</span>
+                </div>
+                <div class="stat-card stat-card-secondary card-shadow">
+                    <span class="material-symbols-outlined stat-icon">target</span>
+                    <span class="stat-label">Efectividad</span>
+                    <span class="stat-value">0%</span>
+                </div>
+                <div class="stat-card stat-card-tertiary card-shadow">
+                    <span class="material-symbols-outlined stat-icon">local_fire_department</span>
+                    <span class="stat-label">Racha Actual</span>
+                    <span class="stat-value">0</span>
+                </div>
+            </div>
+
+            <div class="info-card card-shadow">
+                <h2 class="info-card-title">Información Personal</h2>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="material-symbols-outlined info-icon">person</span>
+                        <div class="info-content">
+                            <span class="info-label">Nombre de Usuario</span>
+                            <p class="info-value">@{{usuario}}</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="material-symbols-outlined info-icon">email</span>
+                        <div class="info-content">
+                            <span class="info-label">Correo Electrónico</span>
+                            <p class="info-value">{{email}}</p>
+                        </div>
+                    </div>
+
+                    {{#anio_nacimiento}}
+                    <div class="info-item">
+                        <span class="material-symbols-outlined info-icon">cake</span>
+                        <div class="info-content">
+                            <span class="info-label">Anio de Nacimiento</span>
+                            <p class="info-value">{{anio_nacimiento}}</p>
+                        </div>
+                    </div>
+                    {{/anio_nacimiento}}
+
+                    {{#sexo}}
+                    <div class="info-item">
+                        <span class="material-symbols-outlined info-icon">wc</span>
+                        <div class="info-content">
+                            <span class="info-label">Sexo</span>
+                            <p class="info-value">{{sexo}}</p>
+                        </div>
+                    </div>
+                    {{/sexo}}
+
+                    <div class="info-item">
+                        <span class="material-symbols-outlined info-icon">verified</span>
+                        <div class="info-content">
+                            <span class="info-label">Estado</span>
+                            <p class="info-value status-valid">✓ Cuenta Validada</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a href="/user/lobby" class="btn-action btn-primary">
+                    <span class="material-symbols-outlined">home</span>
+                    Ir al Lobby
+                </a>
+                <a href="/user/logout" class="btn-action btn-secondary">
+                    <span class="material-symbols-outlined">logout</span>
+                    Cerrar Sesión
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+
+{{>footer}}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Clash</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/public/styles/main.css">
+    <link rel="stylesheet" href="/public/styles/navbar.css">
+    <link rel="stylesheet" href="/public/styles/header.css">
+</head>
+
+<body>
+<nav>
+    {{#usuario}}
+    <a href="/user/lobby" class="logo">Trivia Clash</a>
+    {{/usuario}}
+    {{^usuario}}
+    <a href="/user/home" class="logo">Trivia Clash</a>
+    {{/usuario}}
+    
+    <div class="nav-center">
+        <div class="search-box">
+            <input type="text" placeholder="Buscar...">
+        </div>
+    </div>
+    
+    <div class="nav-right">
+        {{#usuario}}
+        <a href="/user/perfil" class="profile-link" title="Mi Perfil">
+            {{#foto_perfil}}
+            <img src="{{foto_perfil}}" alt="Perfil">
+            {{/foto_perfil}}
+            {{^foto_perfil}}
+            <div class="profile-icon">👤</div>
+            {{/foto_perfil}}
+        </a>
+        {{/usuario}}
+    </div>
+</nav>
+
+<header>
+    <h1>Trivia Clash</h1>
+    <p>Desafía tu conocimiento</p>
+</header>
+
+<div class="container">
