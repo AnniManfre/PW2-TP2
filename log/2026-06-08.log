@@ -1,0 +1,37 @@
+[21:26:56] [INFO] UserController::home
+[21:27:09] [INFO] UserController::login (form)
+[21:27:10] [INFO] UserController::procesarLogin
+[21:27:10] [INFO] SQL: SELECT * FROM users WHERE usuario = ? AND validado = TRUE [marron]
+[21:27:10] [INFO] UserController::procesarLogin - Login exitoso: marron
+[21:27:10] [INFO] UserController::perfil
+[21:27:10] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:27:16] [INFO] UserController::lobby
+[21:27:16] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:27:16] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:27:22] [INFO] UserController::perfil
+[21:27:22] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:27:25] [INFO] UserController::lobby
+[21:27:25] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:27:25] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:27:32] [INFO] UserController::perfil
+[21:27:32] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:27:37] [INFO] UserController::lobby
+[21:27:37] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:27:37] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:27:41] [INFO] UserController::logout
+[21:27:41] [INFO] UserController::home
+[21:34:33] [INFO] UserController::home
+[21:34:34] [INFO] UserController::home
+[21:34:34] [INFO] UserController::home
+[21:34:34] [INFO] UserController::home
+[21:34:35] [INFO] UserController::home
+[21:34:36] [INFO] UserController::home
+[21:35:47] [INFO] UserController::home
+[21:35:57] [INFO] UserController::registro (form)
+[21:36:08] [INFO] UserController::login (form)
+[22:15:14] [INFO] UserController::home
+[22:19:27] [INFO] UserController::home
+[22:39:49] [INFO] UserController::home
+[22:39:50] [INFO] UserController::login (form)
+[23:10:43] [INFO] UserController::home
+[23:19:36] [INFO] UserController::login (form)

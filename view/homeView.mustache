@@ -1,0 +1,42 @@
+{{>header}}
+
+    <h2>Bienvenido</h2>
+
+    <p class="welcome-text">
+        Responde preguntas, acumula puntos y domina el ranking. Demuestra que eres el mejor.
+    </p>
+
+    <div class="button-grid">
+        <a href="/user/registro" class="btn" style="text-decoration: none; display: inline-block;">
+            Crear Cuenta
+        </a>
+        <a href="/user/login" class="btn btn-secondary" style="text-decoration: none; display: inline-block;">
+            Iniciar Sesión
+        </a>
+    </div>
+
+    <style>
+        .welcome-text {
+            text-align: center;
+            color: var(--on-surface-variant);
+            line-height: 1.8;
+            margin-bottom: calc(var(--unit) * 5);
+            font-size: 1.05em;
+            letter-spacing: 0.02em;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: calc(var(--unit) * 1.5);
+        }
+
+        @media (max-width: 480px) {
+            .welcome-text {
+                margin-bottom: calc(var(--unit) * 3.75);
+                font-size: 1em;
+            }
+        }
+    </style>
+
+{{>footer}}
