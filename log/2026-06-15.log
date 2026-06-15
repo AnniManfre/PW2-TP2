@@ -234,3 +234,70 @@
 [22:36:10] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
 [22:36:18] [INFO] UserController::logout
 [22:36:18] [INFO] UserController::home
+[22:43:27] [INFO] UserController::login (form)
+[22:43:28] [INFO] UserController::procesarLogin
+[22:43:28] [INFO] SQL: SELECT * FROM users WHERE usuario = ? AND validado = TRUE [marron]
+[22:43:28] [INFO] UserController::procesarLogin - Login exitoso: marron
+[22:43:28] [INFO] UserController::perfil
+[22:43:28] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:43:33] [INFO] UserController::editarPerfil
+[22:43:33] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:43:35] [INFO] UserController::perfil
+[22:43:35] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:43:36] [INFO] UserController::lobby
+[22:43:36] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:43:36] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:43:40] [INFO] UserController::home
+[22:43:40] [INFO] UserController::lobby
+[22:43:40] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:43:40] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:43:41] [INFO] UserController::home
+[22:43:41] [INFO] UserController::lobby
+[22:43:41] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:43:41] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:43:42] [INFO] UserController::logout
+[22:43:42] [INFO] UserController::home
+[22:44:27] [INFO] UserController::login (form)
+[22:44:28] [INFO] UserController::procesarLogin
+[22:44:28] [INFO] SQL: SELECT * FROM users WHERE usuario = ? AND validado = TRUE [marron]
+[22:44:28] [INFO] UserController::procesarLogin - Login exitoso: marron
+[22:44:28] [INFO] UserController::perfil
+[22:44:28] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:44:31] [INFO] UserController::lobby
+[22:44:31] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:44:31] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:44:33] [INFO] UserController::logout
+[22:44:33] [INFO] UserController::home
+[22:44:34] [INFO] UserController::login (form)
+[22:44:36] [INFO] UserController::procesarLogin
+[22:44:36] [INFO] SQL: SELECT * FROM users WHERE usuario = ? AND validado = TRUE [marron]
+[22:44:36] [INFO] UserController::procesarLogin - Login exitoso: marron
+[22:44:36] [INFO] UserController::perfil
+[22:44:36] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:44:38] [INFO] UserController::home
+[22:44:39] [INFO] UserController::lobby
+[22:44:39] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:44:39] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:44:53] [INFO] UserController::home
+[22:44:53] [INFO] UserController::lobby
+[22:44:53] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:44:53] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:45:19] [INFO] UserController::home
+[22:45:19] [INFO] UserController::lobby
+[22:45:19] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:45:19] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:45:22] [INFO] UserController::logout
+[22:45:22] [INFO] UserController::home
+[22:45:23] [INFO] UserController::login (form)
+[22:45:23] [INFO] UserController::procesarLogin
+[22:45:23] [INFO] SQL: SELECT * FROM users WHERE usuario = ? AND validado = TRUE [marron]
+[22:45:24] [INFO] UserController::procesarLogin - Login exitoso: marron
+[22:45:24] [INFO] UserController::perfil
+[22:45:24] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:45:26] [INFO] UserController::lobby
+[22:45:26] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:45:26] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:49:02] [INFO] UserController::home
+[22:49:02] [INFO] UserController::lobby
+[22:49:02] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:49:02] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC

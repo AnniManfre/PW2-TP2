@@ -12,6 +12,12 @@ class PartidaController {
     }
 
     public function jugar() {
+
+        if (!isset($_SESSION['user_id'])) {
+            Redirect::to('/PW2-TP2/user/login');
+            return;
+        }
+
         if (!isset($_SESSION['contador'])) {
             $_SESSION['contador'] = 0;
         }
@@ -44,6 +50,7 @@ class PartidaController {
         $_SESSION["pregunta_actual"] = $pregunta;
 
         $data = [
+            "usuario" => $_SESSION['usuario'],
             "pregunta" => $pregunta["pregunta"],
             "a" => $pregunta["opcion_a"],
             "b" => $pregunta["opcion_b"],
