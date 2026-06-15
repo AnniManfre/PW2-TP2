@@ -61,3 +61,7 @@
     background: #22863a;
     color: white;
 }
+
+li {
+    list-style: none;
+}
