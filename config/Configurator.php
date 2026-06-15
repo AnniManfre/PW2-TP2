@@ -20,6 +20,14 @@ class Configurator {
         return new UserController($this->getUserModel(), $this->getRenderer(), new Request());
     }
 
+    private function getPartidaModel() {
+        return new PartidaModel($this->getDatabase());
+    }
+
+    public function getPartidaController() {
+        return new PartidaController($this->getPartidaModel(), $this->getRenderer(), new Request());
+    }
+
     private function getDatabase() {
         return new MyDatabase($this->config['hostname'],
                               $this->config['username'],
