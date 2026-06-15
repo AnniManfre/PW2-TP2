@@ -16,6 +16,11 @@ class UserController
     public function home()
     {
         Log::info("UserController::home");
+        //si el usuario ya tiene la sesión iniciada
+        if (isset($_SESSION['user_id'])) {
+            Redirect::to('/PW2-TP2/user/lobby');
+            return;
+        }
         $this->renderer->render("homeView");
     }
 
@@ -91,16 +96,6 @@ class UserController
         Redirect::to('/PW2-TP2/user/login');
     }
 
-    /**
-     * Valida la complejidad de la contraseña
-     * Requisitos:
-     * - Mínimo 8 caracteres
-     * - Al menos 1 letra mayúscula
-     * - Al menos 1 número
-     *
-     * @param string $password
-     * @return string|null Mensaje de error si falla, null si es válida
-     */
     private function validarContraseña($password)
     {
         // Verificar longitud mínima
@@ -166,6 +161,64 @@ class UserController
         $user = $this->model->obtenerPorId($_SESSION['user_id']);
         $this->renderer->render("perfilView", $user);
     }
+    public function editarPerfil()
+    {
+        Log::info("UserController::editarPerfil");
+        
+        // Verificamos que esté logueado
+        if (!isset($_SESSION['user_id'])) {
+            Redirect::to('/PW2-TP2/user/login');
+            return;
+        }
+
+        // Buscamos los datos actuales para rellenar el formulario
+        $user = $this->model->obtenerPorId($_SESSION['user_id']);
+        $this->renderer->render("editarPerfilView", $user);
+    }
+
+    public function procesarEdicion()
+    {
+        Log::info("UserController::procesarEdicion");
+        
+        if (!isset($_SESSION['user_id'])) {
+            Redirect::to('/PW2-TP2/user/login');
+            return;
+        }
+
+        $id = $_SESSION['user_id'];
+        
+        // Agarramos los datos nuevos del formulario
+        $nombre_completo = $this->request->post('nombre_completo');
+        $año_nacimiento = $this->request->post('año_nacimiento');
+        $sexo = $this->request->post('sexo');
+        $pais = $this->request->post('pais');
+        $ciudad = $this->request->post('ciudad');
+
+        // Convertir campos opcionales vacíos a NULL (igual que en tu registro)
+        $año_nacimiento = !empty($año_nacimiento) ? (int)$año_nacimiento : null;
+        $pais = !empty($pais) ? $pais : null;
+        $ciudad = !empty($ciudad) ? $ciudad : null;
+
+        // Validación básica
+        if (empty($nombre_completo)) {
+            Log::warning("UserController::procesarEdicion - Nombre vacío");
+            $user = $this->model->obtenerPorId($id);
+            $user['error'] = 'El nombre completo es obligatorio';
+            $this->renderer->render("editarPerfilView", $user);
+            return;
+        }
+
+    
+        $this->model->actualizarPerfil($id, $nombre_completo, $año_nacimiento, $sexo, $pais, $ciudad);
+
+        // Actualizamos el nombre en la sesión 
+        $_SESSION['nombre_completo'] = $nombre_completo;
+
+        Log::info("UserController::procesarEdicion - Perfil actualizado para ID: $id");
+
+        // Volvemos al perfil
+        Redirect::to('/PW2-TP2/user/perfil');
+    }
 
     public function logout()
     {
@@ -183,9 +236,11 @@ class UserController
             return;
         }
 
-        $user = $this->model->obtenerPorId($_SESSION['user_id']);
-        $ranking = $this->model->obtenerTodos();
-        $this->renderer->render("lobbyView", ['user' => $user, 'ranking' => $ranking]);
+        $datosVista = $this->model->obtenerPorId($_SESSION['user_id']);
+
+        $datosVista['ranking'] = $this->model->obtenerTodos();
+        
+        $this->renderer->render("lobbyView", $datosVista);
     }
 }
 

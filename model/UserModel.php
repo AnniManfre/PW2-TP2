@@ -77,5 +77,53 @@ class UserModel
         Log::info("SQL: $sql");
         return $this->database->execute($sql, [$nombre_completo, $año_nacimiento, $sexo, $pais, $ciudad, $foto_perfil, $id]);
     }
+
+    public function procesarEdicion()
+    {
+        Log::info("UserController::procesarEdicion");
+        
+        if (!isset($_SESSION['user_id'])) {
+            Redirect::to('/PW2-TP2/user/login');
+            return;
+        }
+
+        $id = $_SESSION['user_id'];
+        
+        // 1. Buscamos el usuario actual en la base de datos para recuperar su foto
+        $usuarioActual = $this->model->obtenerPorId($id);
+        $foto_perfil = $usuarioActual['foto_perfil']; // Guardamos la ruta de la foto que ya tiene
+
+        // 2. Agarramos los datos nuevos del formulario
+        $nombre_completo = $this->request->post('nombre_completo');
+        $año_nacimiento = $this->request->post('año_nacimiento');
+        $sexo = $this->request->post('sexo');
+        $pais = $this->request->post('pais');
+        $ciudad = $this->request->post('ciudad');
+
+        // Convertir campos opcionales vacíos a NULL
+        $año_nacimiento = !empty($año_nacimiento) ? (int)$año_nacimiento : null;
+        $pais = !empty($pais) ? $pais : null;
+        $ciudad = !empty($ciudad) ? $ciudad : null;
+
+        // Validación básica
+        if (empty($nombre_completo)) {
+            Log::warning("UserController::procesarEdicion - Nombre vacío");
+            $user = $this->model->obtenerPorId($id);
+            $user['error'] = 'El nombre completo es obligatorio';
+            $this->renderer->render("editarPerfilView", $user);
+            return;
+        }
+
+        // 3. LLAMAMOS A TU MÉTODO pasando exactamente todos los argumentos que pide
+        $this->model->actualizarPerfil($id, $nombre_completo, $año_nacimiento, $sexo, $pais, $ciudad, $foto_perfil);
+
+        // Actualizamos la sesión por las dudas
+        $_SESSION['nombre_completo'] = $nombre_completo;
+
+        Log::info("UserController::procesarEdicion - Perfil actualizado con éxito para ID: $id");
+
+        // Volvemos a la vista del perfil
+        Redirect::to('/PW2-TP2/user/perfil');
+    }
 }
 
