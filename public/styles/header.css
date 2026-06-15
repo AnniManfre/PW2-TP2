@@ -22,8 +22,8 @@
     /* Border radius. */
     --radius-sm: 0.5rem;
     --radius: 1rem;
-    --radius-md: 1.5rem;
-    --radius-lg: 2rem;
+    --radius-md: 1.3rem;
+    --radius-lg: 1.3rem;
     --radius-full: 9999px;
 
     /* Transitions. */
@@ -227,7 +227,6 @@ h2 {
     font-weight: 600;
     font-size: 0.9em;
     letter-spacing: 0.05em;
-    text-transform: uppercase;
 }
 
 .form-group input,
@@ -273,7 +272,6 @@ h2 {
     font-family: 'Inter', sans-serif;
     letter-spacing: 0.05em;
     box-shadow: 0 4px 12px rgba(53, 37, 205, 0.15);
-    text-transform: uppercase;
     line-height: 1;
 }
 
@@ -351,7 +349,6 @@ h2 {
     font-weight: 600;
     font-size: 0.85em;
     letter-spacing: 0.05em;
-    text-transform: uppercase;
 }
 
 /* Responsive design. */
