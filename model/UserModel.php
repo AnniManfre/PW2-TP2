@@ -20,7 +20,7 @@ class UserModel
 
     public function loginPorCredenciales($usuario, $password)
     {
-        $sql = "SELECT * FROM users WHERE usuario = ? AND validado = TRUE";
+        $sql = "SELECT * FROM users WHERE usuario = ?";
         Log::info("SQL: $sql [$usuario]");
         $filas = $this->database->query($sql, [$usuario]);
         
@@ -124,6 +124,26 @@ class UserModel
 
         // Volvemos a la vista del perfil
         Redirect::to('/PW2-TP2/user/perfil');
+    }
+
+    public function guardarTokenValidacion($email, $token)
+    {
+        $sql = "UPDATE users SET token = ?, cuenta_validada = 0 WHERE email = ?";
+        return $this->database->execute($sql, [$token, $email]);
+    }
+
+    public function verificarToken($email, $token)
+    {
+        $sql = "SELECT id FROM users WHERE email = ? AND token = ?";
+        $resultado = $this->database->query($sql, [$email, $token]);
+        return !empty($resultado);
+    }
+
+    public function activarCuenta($email)
+    {
+        // Validamos la cuenta y removemos el token por seguridad
+        $sql = "UPDATE users SET cuenta_validada = 1, token = NULL WHERE email = ?";
+        return $this->database->execute($sql, [$email]);
     }
 }
 

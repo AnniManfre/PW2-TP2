@@ -86,10 +86,17 @@ class UserController
         // Registrar usuario (sin foto)
         $this->model->registrar($nombre_completo, $año_nacimiento, $sexo, $pais, $ciudad, $email, $password, $usuario, null);
 
-        // Simular validación de email
-        $this->model->validarCuenta($email);
+        // GENERAMOS EL TOKEN REAL DE 6 DÍGITOS
+        $token = rand(100000, 999999);
+        
+        // Guardamos el token en la base de datos y seteamos cuenta_validada en 0
+        $this->model->guardarTokenValidacion($email, $token);
 
-        Log::info("UserController::procesarRegistro - Usuario registrado: $usuario");
+        Log::info("UserController::procesarRegistro - Usuario registrado: $usuario. Token generado: $token");
+
+        // Guardamos los datos temporalmente en la sesión para la pantalla de validación
+        $_SESSION['email_en_validacion'] = $email;
+        $_SESSION['token_creado'] = $token; // Guardado para mostrarlo "chiquito" en la vista
 
         // Redirigir a login con mensaje
         $_SESSION['success'] = "¡Cuenta creada exitosamente! Por favor, inicia sesión.";
@@ -116,6 +123,64 @@ class UserController
         return null; // Contraseña válida
     }
 
+    public function validarCuenta()
+    {
+        Log::info("UserController::validarCuenta (form)");
+
+        if (!isset($_SESSION['email_en_validacion'])) {
+            Redirect::to('/PW2-TP2/user/registro');
+            return;
+        }
+
+        // Le pasamos el correo y el token de ayuda a la vista
+        $data = [
+            'email' => $_SESSION['email_en_validacion'],
+            'token_ayuda' => $_SESSION['token_creado'] ?? null
+        ];
+
+        $this->renderer->render("validarCuentaView", $data);
+    }
+
+    public function procesarValidacion()
+    {
+        Log::info("UserController::procesarValidacion");
+
+        $token_ingresado = $this->request->post('token');
+        $email = $_SESSION['email_en_validacion'] ?? null;
+
+        if (empty($token_ingresado) || empty($email)) {
+            $this->renderer->render("validarCuentaView", [
+                'error' => 'El código es requerido', 
+                'token_ayuda' => $_SESSION['token_creado'] ?? null
+            ]);
+            return;
+        }
+
+        // Consultamos al modelo si coincide el correo con el token
+        $esValido = $this->model->verificarToken($email, $token_ingresado);
+
+        if ($esValido) {
+            Log::info("UserController::procesarValidacion - Token correcto para: $email");
+            
+            // Activamos la cuenta cambiando el estado a 1
+            $this->model->activarCuenta($email);
+
+            // Limpiamos las variables temporales de la sesión
+            unset($_SESSION['email_en_validacion']);
+            unset($_SESSION['token_creado']);
+
+            $_SESSION['success'] = "¡Cuenta validada exitosamente! Ya podés iniciar sesión.";
+            Redirect::to('/PW2-TP2/user/login');
+        } else {
+            Log::warning("UserController::procesarValidacion - Token incorrecto para: $email");
+            $this->renderer->render("validarCuentaView", [
+                'error' => 'El código ingresado es incorrecto',
+                'email' => $email,
+                'token_ayuda' => $_SESSION['token_creado'] ?? null
+            ]);
+        }
+    }
+
     public function login()
     {
         Log::info("UserController::login (form)");
@@ -138,6 +203,18 @@ class UserController
         $user = $this->model->loginPorCredenciales($usuario, $password);
 
         if ($user) {
+
+            if (isset($user['cuenta_validada']) && $user['cuenta_validada'] == 0) {
+                Log::warning("UserController::procesarLogin - Intento de ingreso sin validar: $usuario");
+                // Guardamos los datos en la sesión temporal para la vista de validación
+                $_SESSION['email_en_validacion'] = $user['email'];
+                $_SESSION['token_creado'] = $user['token']; 
+                Redirect::to('/PW2-TP2/user/validarCuenta');
+                // vuelta al login mostrando el mensaje de error
+                $this->renderer->render("loginView", ['error' => 'Tu cuenta aún no está validada. Por favor, ingresá el código de verificación.']);
+                return; // Corta la ejecución acá para que no cree la sesión de juego
+            }
+
             Log::info("UserController::procesarLogin - Login exitoso: $usuario");
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['usuario'] = $user['usuario'];
