@@ -175,3 +175,62 @@
 [22:28:09] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
 [22:28:11] [INFO] UserController::editarPerfil
 [22:28:11] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:29:07] [INFO] UserController::home
+[22:29:07] [INFO] UserController::lobby
+[22:29:07] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:29:07] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:29:09] [INFO] UserController::logout
+[22:29:09] [INFO] UserController::home
+[22:29:11] [INFO] UserController::login (form)
+[22:29:11] [INFO] UserController::procesarLogin
+[22:29:11] [INFO] SQL: SELECT * FROM users WHERE usuario = ? AND validado = TRUE [marron]
+[22:29:11] [INFO] UserController::procesarLogin - Login exitoso: marron
+[22:29:11] [INFO] UserController::perfil
+[22:29:11] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:29:15] [INFO] UserController::lobby
+[22:29:15] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:29:15] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:29:21] [INFO] UserController::home
+[22:29:21] [INFO] UserController::lobby
+[22:29:21] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:29:21] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:29:23] [INFO] UserController::logout
+[22:29:23] [INFO] UserController::home
+[22:29:25] [INFO] UserController::login (form)
+[22:29:26] [INFO] UserController::procesarLogin
+[22:29:26] [INFO] SQL: SELECT * FROM users WHERE usuario = ? AND validado = TRUE [marron]
+[22:29:26] [INFO] UserController::procesarLogin - Login exitoso: marron
+[22:29:26] [INFO] UserController::perfil
+[22:29:26] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:29:33] [INFO] UserController::perfil
+[22:29:33] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:29:34] [INFO] UserController::perfil
+[22:29:34] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:29:38] [INFO] UserController::perfil
+[22:29:38] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:29:39] [INFO] UserController::lobby
+[22:29:39] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:29:39] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:29:49] [INFO] UserController::perfil
+[22:29:49] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:30:56] [INFO] UserController::perfil
+[22:30:56] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:30:57] [INFO] UserController::lobby
+[22:30:57] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:30:57] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:31:00] [INFO] UserController::logout
+[22:31:00] [INFO] UserController::home
+[22:31:02] [INFO] UserController::login (form)
+[22:31:03] [INFO] UserController::procesarLogin
+[22:31:03] [INFO] SQL: SELECT * FROM users WHERE usuario = ? AND validado = TRUE [marron]
+[22:31:03] [INFO] UserController::procesarLogin - Login exitoso: marron
+[22:31:03] [INFO] UserController::perfil
+[22:31:03] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:31:07] [INFO] UserController::lobby
+[22:31:07] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:31:07] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:36:10] [INFO] UserController::lobby
+[22:36:10] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:36:10] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:36:18] [INFO] UserController::logout
+[22:36:18] [INFO] UserController::home

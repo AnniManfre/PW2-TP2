@@ -236,9 +236,11 @@ class UserController
             return;
         }
 
-        $user = $this->model->obtenerPorId($_SESSION['user_id']);
-        $ranking = $this->model->obtenerTodos();
-        $this->renderer->render("lobbyView", ['user' => $user, 'ranking' => $ranking]);
+        $datosVista = $this->model->obtenerPorId($_SESSION['user_id']);
+
+        $datosVista['ranking'] = $this->model->obtenerTodos();
+        
+        $this->renderer->render("lobbyView", $datosVista);
     }
 }
 
