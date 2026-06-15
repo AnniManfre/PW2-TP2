@@ -84,3 +84,34 @@
 [22:13:57] [INFO] UserController::procesarLogin
 [22:13:57] [INFO] SQL: SELECT * FROM users WHERE usuario = ? AND validado = TRUE [marron]
 [22:13:57] [WARNING] UserController::procesarLogin - Credenciales inválidas: marron
+[22:15:07] [INFO] UserController::home
+[22:15:08] [INFO] UserController::login (form)
+[22:15:09] [INFO] UserController::procesarLogin
+[22:15:09] [INFO] SQL: SELECT * FROM users WHERE usuario = ? AND validado = TRUE [marron]
+[22:15:09] [INFO] UserController::procesarLogin - Login exitoso: marron
+[22:15:09] [INFO] UserController::perfil
+[22:15:09] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:15:10] [INFO] UserController::editarPerfil
+[22:15:10] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:15:12] [INFO] UserController::perfil
+[22:15:12] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:21:13] [INFO] UserController::editarPerfil
+[22:21:13] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:21:15] [INFO] UserController::perfil
+[22:21:15] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:21:17] [INFO] UserController::editarPerfil
+[22:21:17] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:21:25] [INFO] UserController::procesarEdicion
+[22:21:25] [INFO] SQL: UPDATE users SET nombre_completo = ?, año_nacimiento = ?, sexo = ?, pais = ?, ciudad = ?, foto_perfil = ? WHERE id = ?
+[22:21:25] [INFO] UserController::procesarEdicion - Perfil actualizado para ID: 1
+[22:21:25] [INFO] UserController::perfil
+[22:21:25] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:22:12] [INFO] UserController::perfil
+[22:22:12] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:22:22] [INFO] UserController::editarPerfil
+[22:22:22] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:22:30] [INFO] UserController::procesarEdicion
+[22:22:30] [INFO] SQL: UPDATE users SET nombre_completo = ?, año_nacimiento = ?, sexo = ?, pais = ?, ciudad = ?, foto_perfil = ? WHERE id = ?
+[22:22:30] [INFO] UserController::procesarEdicion - Perfil actualizado para ID: 1
+[22:22:30] [INFO] UserController::perfil
+[22:22:30] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]

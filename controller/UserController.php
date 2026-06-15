@@ -208,10 +208,10 @@ class UserController
             return;
         }
 
-        // Mandamos a actualizar al modelo
+    
         $this->model->actualizarPerfil($id, $nombre_completo, $año_nacimiento, $sexo, $pais, $ciudad);
 
-        // Actualizamos el nombre en la sesión por si lo usás en el header
+        // Actualizamos el nombre en la sesión 
         $_SESSION['nombre_completo'] = $nombre_completo;
 
         Log::info("UserController::procesarEdicion - Perfil actualizado para ID: $id");

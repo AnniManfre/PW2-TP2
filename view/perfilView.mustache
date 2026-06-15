@@ -34,13 +34,27 @@
                     <span class="material-symbols-outlined location-icon">location_on</span>
                     <span class="location-label">Ubicación</span>
                 </div>
-                <div class="location-map">
-                    <span class="material-symbols-outlined location-placeholder">public</span>
+                <div class="location-map" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
                     {{#pais}}
-                    <p class="location-text">{{pais}}{{#ciudad}}, {{ciudad}}{{/ciudad}}</p>
+                        <div style="width: 100%; height: 200px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                            <iframe 
+                                width="100%" 
+                                height="100%" 
+                                frameborder="0" 
+                                style="border:0;" 
+                                src="https://maps.google.com/maps?q={{ciudad}},{{pais}}&output=embed" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <p class="location-text" style="font-weight: 500; color: #555;">
+                            <span class="material-symbols-outlined" style="vertical-align: middle; font-size: 18px;">pin_drop</span>
+                            {{ciudad}}, {{pais}}
+                        </p>
                     {{/pais}}
+                    
                     {{^pais}}
-                    <p class="location-text">Ubicación no especificada</p>
+                        <span class="material-symbols-outlined location-placeholder" style="font-size: 48px; color: #ccc;">public</span>
+                        <p class="location-text">Ubicación no especificada</p>
                     {{/pais}}
                 </div>
             </div>
