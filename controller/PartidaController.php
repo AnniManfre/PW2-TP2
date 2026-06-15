@@ -77,7 +77,7 @@ class PartidaController {
                 $_SESSION["preguntas_usadas"] = [];
                 $_SESSION["mensaje"] = "Partida finalizada";
 
-                header("Location: /PW2-TP2/lobby");
+                header("Location: /PW2-TP2/user/lobby");
                 exit;
             }
         } else if ($respuesta != $pregunta["respuesta_correcta"]) {
