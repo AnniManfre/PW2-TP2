@@ -264,7 +264,11 @@ class UserController
         }
 
         $id = $_SESSION['user_id'];
-        
+
+        // Recuperamos la foto que ya tiene el usuario para no borrarla al editar.
+        $usuarioActual = $this->model->obtenerPorId($id);
+        $foto_perfil = $usuarioActual['foto_perfil'];
+
         // Agarramos los datos nuevos del formulario
         $nombre_completo = $this->request->post('nombre_completo');
         $año_nacimiento = $this->request->post('año_nacimiento');
@@ -287,7 +291,7 @@ class UserController
         }
 
     
-        $this->model->actualizarPerfil($id, $nombre_completo, $año_nacimiento, $sexo, $pais, $ciudad);
+        $this->model->actualizarPerfil($id, $nombre_completo, $año_nacimiento, $sexo, $pais, $ciudad, $foto_perfil);
 
         // Actualizamos el nombre en la sesión 
         $_SESSION['nombre_completo'] = $nombre_completo;
