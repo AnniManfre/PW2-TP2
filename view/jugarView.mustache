@@ -9,11 +9,16 @@
         </div>
 
         <div class="question-header">
-            <span>Puntaje: {{puntaje}}</span>
+            <span class="question-counter">Pregunta {{numero_pregunta}} de {{total_preguntas}}</span>
+            <span class="question-score">Puntaje: {{puntaje}}</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: {{progreso}}%"></div>
         </div>
 
         {{#mensaje}}
-            <div class="message">
+            <div class="message message-{{mensaje_tipo}}">
                 {{mensaje}}
             </div>
         {{/mensaje}}

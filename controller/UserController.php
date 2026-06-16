@@ -236,6 +236,7 @@ class UserController
         }
 
         $user = $this->model->obtenerPorId($_SESSION['user_id']);
+        $user['partidas_ganadas'] = $this->model->contarPartidasGanadas($_SESSION['user_id'], PartidaController::TOTAL_PREGUNTAS);
         $this->renderer->render("perfilView", $user);
     }
     public function editarPerfil()
@@ -263,7 +264,11 @@ class UserController
         }
 
         $id = $_SESSION['user_id'];
-        
+
+        // Recuperamos la foto que ya tiene el usuario para no borrarla al editar.
+        $usuarioActual = $this->model->obtenerPorId($id);
+        $foto_perfil = $usuarioActual['foto_perfil'];
+
         // Agarramos los datos nuevos del formulario
         $nombre_completo = $this->request->post('nombre_completo');
         $año_nacimiento = $this->request->post('año_nacimiento');
@@ -286,7 +291,7 @@ class UserController
         }
 
     
-        $this->model->actualizarPerfil($id, $nombre_completo, $año_nacimiento, $sexo, $pais, $ciudad);
+        $this->model->actualizarPerfil($id, $nombre_completo, $año_nacimiento, $sexo, $pais, $ciudad, $foto_perfil);
 
         // Actualizamos el nombre en la sesión 
         $_SESSION['nombre_completo'] = $nombre_completo;
@@ -315,8 +320,16 @@ class UserController
 
         $datosVista = $this->model->obtenerPorId($_SESSION['user_id']);
 
+        $datosVista['user'] = $datosVista;
+
         $datosVista['ranking'] = $this->model->obtenerTodos();
-        
+
+        if (isset($_SESSION["mensaje"])) {
+            $datosVista['mensaje'] = $_SESSION["mensaje"];
+            $datosVista['mensaje_clase'] = (($_SESSION["mensaje_tipo"] ?? "info") === "error") ? "error" : "success";
+            unset($_SESSION["mensaje"], $_SESSION["mensaje_tipo"]);
+        }
+
         $this->renderer->render("lobbyView", $datosVista);
     }
 }
