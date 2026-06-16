@@ -28,7 +28,16 @@ class PartidaModel {
     }
 
     public function guardarPartida($usuario_id, $puntaje) {
-        return $this->database->execute("INSERT INTO partidas (usuario_id, puntaje) VALUES ($usuario_id, $puntaje)");
+        $this->database->execute(
+            "INSERT INTO partidas (usuario_id, puntaje) VALUES (?, ?)",
+            [$usuario_id, $puntaje]
+        );
+
+        // Acumulamos el puntaje de la partida en el total del usuario (sus "Tkn").
+        return $this->database->execute(
+            "UPDATE users SET puntaje = puntaje + ? WHERE id = ?",
+            [$puntaje, $usuario_id]
+        );
     }
 }
 

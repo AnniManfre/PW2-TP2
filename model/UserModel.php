@@ -71,6 +71,14 @@ class UserModel
         return $this->database->query($sql);
     }
 
+    public function contarPartidasGanadas($id, $puntajePerfecto)
+    {
+        $sql = "SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ?";
+        Log::info("SQL: $sql [$id, $puntajePerfecto]");
+        $filas = $this->database->query($sql, [$id, $puntajePerfecto]);
+        return !empty($filas) ? (int)$filas[0]["ganadas"] : 0;
+    }
+
     public function actualizarPerfil($id, $nombre_completo, $año_nacimiento, $sexo, $pais, $ciudad, $foto_perfil = null)
     {
         $sql = "UPDATE users SET nombre_completo = ?, año_nacimiento = ?, sexo = ?, pais = ?, ciudad = ?, foto_perfil = ? WHERE id = ?";

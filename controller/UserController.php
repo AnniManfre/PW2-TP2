@@ -236,6 +236,7 @@ class UserController
         }
 
         $user = $this->model->obtenerPorId($_SESSION['user_id']);
+        $user['partidas_ganadas'] = $this->model->contarPartidasGanadas($_SESSION['user_id'], PartidaController::TOTAL_PREGUNTAS);
         $this->renderer->render("perfilView", $user);
     }
     public function editarPerfil()
@@ -315,8 +316,16 @@ class UserController
 
         $datosVista = $this->model->obtenerPorId($_SESSION['user_id']);
 
+        $datosVista['user'] = $datosVista;
+
         $datosVista['ranking'] = $this->model->obtenerTodos();
-        
+
+        if (isset($_SESSION["mensaje"])) {
+            $datosVista['mensaje'] = $_SESSION["mensaje"];
+            $datosVista['mensaje_clase'] = (($_SESSION["mensaje_tipo"] ?? "info") === "error") ? "error" : "success";
+            unset($_SESSION["mensaje"], $_SESSION["mensaje_tipo"]);
+        }
+
         $this->renderer->render("lobbyView", $datosVista);
     }
 }
