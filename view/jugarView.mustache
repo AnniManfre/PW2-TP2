@@ -23,21 +23,12 @@
         </h2>
 
         <form method="POST" action="/PW2-TP2/partida/responder">
-            <button type="submit" name="respuesta" value="a" class="option-btn">
-                A) {{a}}
+            {{#opciones}}
+            <button type="submit" name="respuesta" value="{{valor}}" class="option-btn">
+                <span class="option-letter">{{letra}}</span>
+                <span class="option-text">{{texto}}</span>
             </button>
-
-            <button type="submit" name="respuesta" value="b" class="option-btn">
-                B) {{b}}
-            </button>
-
-            <button type="submit" name="respuesta" value="c" class="option-btn">
-                C) {{c}}
-            </button>
-
-            <button type="submit" name="respuesta" value="d" class="option-btn">
-                D) {{d}}
-            </button>
+            {{/opciones}}
         </form>
     </div>
 </div>

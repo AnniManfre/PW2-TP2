@@ -49,13 +49,34 @@ class PartidaController {
         $_SESSION["preguntas_usadas"][] = $pregunta["id"];
         $_SESSION["pregunta_actual"] = $pregunta;
 
-        $data = [
-            "usuario" => $_SESSION['usuario'],
-            "pregunta" => $pregunta["pregunta"],
+        // Crear array de opciones y shufflearlo
+        $opciones = [
             "a" => $pregunta["opcion_a"],
             "b" => $pregunta["opcion_b"],
             "c" => $pregunta["opcion_c"],
-            "d" => $pregunta["opcion_d"],
+            "d" => $pregunta["opcion_d"]
+        ];
+        
+        $letras = array_keys($opciones);
+        shuffle($letras);
+        
+        // Guardar el mapeo para usar en responder()
+        $_SESSION["pregunta_actual"]["mapeo_opciones"] = $letras;
+        
+        // Crear datos para la vista con opciones shuffleadas
+        $opcionesShuffleadas = [];
+        foreach ($letras as $indice => $letra) {
+            $opcionesShuffleadas[] = [
+                "letra" => chr(65 + $indice), // A, B, C, D
+                "valor" => $letra, // a, b, c, d (valor original para validar)
+                "texto" => $opciones[$letra]
+            ];
+        }
+
+        $data = [
+            "usuario" => $_SESSION['usuario'],
+            "pregunta" => $pregunta["pregunta"],
+            "opciones" => $opcionesShuffleadas,
             "mensaje" => $mensaje,
             "puntaje" => $_SESSION['puntaje'],
 
@@ -68,13 +89,26 @@ class PartidaController {
 
     public function responder() {
         $pregunta = $_SESSION["pregunta_actual"];
-        $respuesta = $this->request->post("respuesta");
+        $respuestaEnviada = $this->request->post("respuesta");
+        
+        // Si la respuesta está en el mapeo, es una letra original (a, b, c, d)
+        // Si no, podría ser un índice del nuevo orden (1, 2, 3, 4)
+        $respuesta = $respuestaEnviada;
 
         $_SESSION["contador"]++;
 
+        // Obtener el texto de la respuesta correcta desde la base de datos
+        $respuestaCorrecta = strtolower($pregunta["respuesta_correcta"]);
+        $textoRespuestaCorrecta = $pregunta["opcion_" . $respuestaCorrecta];
+
         if ($respuesta == $pregunta["respuesta_correcta"]) {
             $_SESSION["puntaje"]++;
-            $_SESSION["mensaje"] = "Correcto";
+            $_SESSION["mensaje"] = "¡Correcto!";
+            $_SESSION["mensaje_tipo"] = "success";
+        } else {
+            $_SESSION["mensaje"] = "Incorrecto. La respuesta correcta es: " . $textoRespuestaCorrecta;
+            $_SESSION["mensaje_tipo"] = "error";
+        }
 
             if ($_SESSION["contador"] >= 10) {
                 $this->model->guardarPartida($_SESSION["user_id"], $_SESSION["puntaje"]);
