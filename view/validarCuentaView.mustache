@@ -1,0 +1,44 @@
+{{>header}}
+
+<link rel="stylesheet" href="/PW2-TP2/public/styles/home.css">
+
+<main class="profile-main">
+    <div class="profile-card card-shadow" style="max-width: 450px; margin: 40px auto; padding: 2.5rem; background: white; border-radius: 16px;">
+        <h2 style="text-align: center; color: #333; margin-bottom: 0.5rem;">Verifica tu Cuenta</h2>
+        <p style="text-align: center; color: #666; font-size: 0.95rem; margin-bottom: 2rem;">
+            Ingresá el código de 6 dígitos enviado a tu correo para activar tu usuario.
+        </p>
+
+        {{#error}}
+            <div style="background-color: #ffeef0; color: #d9383a; padding: 0.75rem; border-radius: 8px; text-align: center; margin-bottom: 1.5rem; font-size: 0.9rem; font-weight: 500;">
+                {{error}}
+            </div>
+        {{/error}}
+
+        <form action="/PW2-TP2/user/procesarValidacion" method="POST" style="display: flex; flex-direction: column; gap: 1.25rem;">
+            
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <label style="font-weight: 600; color: #444; font-size: 0.9rem;">Código de Verificación</label>
+                <input type="number" name="token" placeholder="Ej: 123456" required 
+                       style="width: 100%; padding: 0.75rem; border: 2px solid #e1e1e1; border-radius: 8px; font-size: 1.1rem; text-align: center; letter-spacing: 4px; font-weight: 600;">
+            </div>
+
+            <div class="button-grid" style="margin-top: 1rem;">
+                <button type="submit" class="btn" style="width: 100%; border: none; cursor: pointer; padding: 0.75rem; font-weight: 600;">
+                    ACTIVAR CUENTA
+                </button>
+            </div>
+        </form>
+
+        {{#token_ayuda}}
+            <div style="margin-top: 2.5rem; border-top: 1px dashed #e1e1e1; padding-top: 1rem; text-align: center;">
+                <small style="color: #999; font-size: 0.8rem; display: block; background: #f9f9f9; padding: 8px; border-radius: 6px;">
+                    🔧 <strong>Entorno de Desarrollo:</strong> Código generado en el Servidor: <span style="color: #5b21b6; font-weight: 700; font-size: 0.9rem;">{{token_ayuda}}</span>
+                </small>
+            </div>
+        {{/token_ayuda}}
+
+    </div>
+</main>
+
+{{>footer}}

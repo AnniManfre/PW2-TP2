@@ -20,7 +20,7 @@ class UserModel
 
     public function loginPorCredenciales($usuario, $password)
     {
-        $sql = "SELECT * FROM users WHERE usuario = ? AND validado = TRUE";
+        $sql = "SELECT * FROM users WHERE usuario = ?";
         Log::info("SQL: $sql [$usuario]");
         $filas = $this->database->query($sql, [$usuario]);
         
@@ -71,6 +71,14 @@ class UserModel
         return $this->database->query($sql);
     }
 
+    public function contarPartidasGanadas($id, $puntajePerfecto)
+    {
+        $sql = "SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ?";
+        Log::info("SQL: $sql [$id, $puntajePerfecto]");
+        $filas = $this->database->query($sql, [$id, $puntajePerfecto]);
+        return !empty($filas) ? (int)$filas[0]["ganadas"] : 0;
+    }
+
     public function actualizarPerfil($id, $nombre_completo, $año_nacimiento, $sexo, $pais, $ciudad, $foto_perfil = null)
     {
         $sql = "UPDATE users SET nombre_completo = ?, año_nacimiento = ?, sexo = ?, pais = ?, ciudad = ?, foto_perfil = ? WHERE id = ?";
@@ -78,52 +86,24 @@ class UserModel
         return $this->database->execute($sql, [$nombre_completo, $año_nacimiento, $sexo, $pais, $ciudad, $foto_perfil, $id]);
     }
 
-    public function procesarEdicion()
+    public function guardarTokenValidacion($email, $token)
     {
-        Log::info("UserController::procesarEdicion");
-        
-        if (!isset($_SESSION['user_id'])) {
-            Redirect::to('/PW2-TP2/user/login');
-            return;
-        }
+        $sql = "UPDATE users SET token = ?, cuenta_validada = 0 WHERE email = ?";
+        return $this->database->execute($sql, [$token, $email]);
+    }
 
-        $id = $_SESSION['user_id'];
-        
-        // 1. Buscamos el usuario actual en la base de datos para recuperar su foto
-        $usuarioActual = $this->model->obtenerPorId($id);
-        $foto_perfil = $usuarioActual['foto_perfil']; // Guardamos la ruta de la foto que ya tiene
+    public function verificarToken($email, $token)
+    {
+        $sql = "SELECT id FROM users WHERE email = ? AND token = ?";
+        $resultado = $this->database->query($sql, [$email, $token]);
+        return !empty($resultado);
+    }
 
-        // 2. Agarramos los datos nuevos del formulario
-        $nombre_completo = $this->request->post('nombre_completo');
-        $año_nacimiento = $this->request->post('año_nacimiento');
-        $sexo = $this->request->post('sexo');
-        $pais = $this->request->post('pais');
-        $ciudad = $this->request->post('ciudad');
-
-        // Convertir campos opcionales vacíos a NULL
-        $año_nacimiento = !empty($año_nacimiento) ? (int)$año_nacimiento : null;
-        $pais = !empty($pais) ? $pais : null;
-        $ciudad = !empty($ciudad) ? $ciudad : null;
-
-        // Validación básica
-        if (empty($nombre_completo)) {
-            Log::warning("UserController::procesarEdicion - Nombre vacío");
-            $user = $this->model->obtenerPorId($id);
-            $user['error'] = 'El nombre completo es obligatorio';
-            $this->renderer->render("editarPerfilView", $user);
-            return;
-        }
-
-        // 3. LLAMAMOS A TU MÉTODO pasando exactamente todos los argumentos que pide
-        $this->model->actualizarPerfil($id, $nombre_completo, $año_nacimiento, $sexo, $pais, $ciudad, $foto_perfil);
-
-        // Actualizamos la sesión por las dudas
-        $_SESSION['nombre_completo'] = $nombre_completo;
-
-        Log::info("UserController::procesarEdicion - Perfil actualizado con éxito para ID: $id");
-
-        // Volvemos a la vista del perfil
-        Redirect::to('/PW2-TP2/user/perfil');
+    public function activarCuenta($email)
+    {
+        // Validamos la cuenta y removemos el token por seguridad
+        $sql = "UPDATE users SET cuenta_validada = 1, token = NULL WHERE email = ?";
+        return $this->database->execute($sql, [$email]);
     }
 }
 

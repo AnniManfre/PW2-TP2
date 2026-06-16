@@ -9,11 +9,16 @@
         </div>
 
         <div class="question-header">
-            <span>Puntaje: {{puntaje}}</span>
+            <span class="question-counter">Pregunta {{numero_pregunta}} de {{total_preguntas}}</span>
+            <span class="question-score">Puntaje: {{puntaje}}</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: {{progreso}}%"></div>
         </div>
 
         {{#mensaje}}
-            <div class="message">
+            <div class="message message-{{mensaje_tipo}}">
                 {{mensaje}}
             </div>
         {{/mensaje}}
@@ -24,19 +29,23 @@
 
         <form method="POST" action="/PW2-TP2/partida/responder">
             <button type="submit" name="respuesta" value="a" class="option-btn">
-                A) {{a}}
+                <span class="option-letter">A</span>
+                <span class="option-text">{{a}}</span>
             </button>
 
             <button type="submit" name="respuesta" value="b" class="option-btn">
-                B) {{b}}
+                <span class="option-letter">B</span>
+                <span class="option-text">{{b}}</span>
             </button>
 
             <button type="submit" name="respuesta" value="c" class="option-btn">
-                C) {{c}}
+                <span class="option-letter">C</span>
+                <span class="option-text">{{c}}</span>
             </button>
 
             <button type="submit" name="respuesta" value="d" class="option-btn">
-                D) {{d}}
+                <span class="option-letter">D</span>
+                <span class="option-text">{{d}}</span>
             </button>
         </form>
     </div>
