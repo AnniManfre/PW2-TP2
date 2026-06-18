@@ -18,7 +18,7 @@ class UserController
         Log::info("UserController::home");
         //si el usuario ya tiene la sesión iniciada
         if (isset($_SESSION['user_id'])) {
-            Redirect::to('/PW2-TP2/user/lobby');
+            Redirect::to('/user/lobby');
             return;
         }
         $this->renderer->render("homeView");
@@ -100,7 +100,7 @@ class UserController
 
         // Redirigir a login con mensaje
         $_SESSION['success'] = "¡Cuenta creada exitosamente! Por favor, inicia sesión.";
-        Redirect::to('/PW2-TP2/user/login');
+        Redirect::to('/user/login');
     }
 
     private function validarContraseña($password)
@@ -128,7 +128,7 @@ class UserController
         Log::info("UserController::validarCuenta (form)");
 
         if (!isset($_SESSION['email_en_validacion'])) {
-            Redirect::to('/PW2-TP2/user/registro');
+            Redirect::to('/user/registro');
             return;
         }
 
@@ -170,7 +170,7 @@ class UserController
             unset($_SESSION['token_creado']);
 
             $_SESSION['success'] = "¡Cuenta validada exitosamente! Ya podés iniciar sesión.";
-            Redirect::to('/PW2-TP2/user/login');
+            Redirect::to('/user/login');
         } else {
             Log::warning("UserController::procesarValidacion - Token incorrecto para: $email");
             $this->renderer->render("validarCuentaView", [
@@ -209,7 +209,7 @@ class UserController
                 // Guardamos los datos en la sesión temporal para la vista de validación
                 $_SESSION['email_en_validacion'] = $user['email'];
                 $_SESSION['token_creado'] = $user['token']; 
-                Redirect::to('/PW2-TP2/user/validarCuenta');
+                Redirect::to('/user/validarCuenta');
                 // vuelta al login mostrando el mensaje de error
                 $this->renderer->render("loginView", ['error' => 'Tu cuenta aún no está validada. Por favor, ingresá el código de verificación.']);
                 return; // Corta la ejecución acá para que no cree la sesión de juego
@@ -219,7 +219,7 @@ class UserController
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['usuario'] = $user['usuario'];
             $_SESSION['nombre_completo'] = $user['nombre_completo'];
-            Redirect::to('/PW2-TP2/user/perfil');
+            Redirect::to('/user/perfil');
         } else {
             Log::warning("UserController::procesarLogin - Credenciales inválidas: $usuario");
             $this->renderer->render("loginView", ['error' => 'Usuario o contraseña inválidos']);
@@ -231,7 +231,7 @@ class UserController
         Log::info("UserController::perfil");
         
         if (!isset($_SESSION['user_id'])) {
-            Redirect::to('/PW2-TP2/user/login');
+            Redirect::to('/user/login');
             return;
         }
 
@@ -245,7 +245,7 @@ class UserController
         
         // Verificamos que esté logueado
         if (!isset($_SESSION['user_id'])) {
-            Redirect::to('/PW2-TP2/user/login');
+            Redirect::to('/user/login');
             return;
         }
 
@@ -259,7 +259,7 @@ class UserController
         Log::info("UserController::procesarEdicion");
         
         if (!isset($_SESSION['user_id'])) {
-            Redirect::to('/PW2-TP2/user/login');
+            Redirect::to('/user/login');
             return;
         }
 
@@ -299,14 +299,14 @@ class UserController
         Log::info("UserController::procesarEdicion - Perfil actualizado para ID: $id");
 
         // Volvemos al perfil
-        Redirect::to('/PW2-TP2/user/perfil');
+        Redirect::to('/user/perfil');
     }
 
     public function logout()
     {
         Log::info("UserController::logout");
         session_destroy();
-        Redirect::to('/PW2-TP2/user/home');
+        Redirect::to('/user/home');
     }
 
     public function lobby()
@@ -314,7 +314,7 @@ class UserController
         Log::info("UserController::lobby");
         
         if (!isset($_SESSION['user_id'])) {
-            Redirect::to('/PW2-TP2/user/login');
+            Redirect::to('/user/login');
             return;
         }
 

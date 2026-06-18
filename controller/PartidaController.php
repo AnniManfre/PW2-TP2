@@ -16,7 +16,7 @@ class PartidaController {
     public function jugar() {
 
         if (!isset($_SESSION['user_id'])) {
-            Redirect::to('/PW2-TP2/user/login');
+            Redirect::to('/user/login');
             return;
         }
 
@@ -55,7 +55,7 @@ class PartidaController {
             $_SESSION["contador"] = 0;
             $_SESSION["preguntas_usadas"] = [];
 
-            header("Location: /PW2-TP2/user/lobby");
+            header("Location: /user/lobby");
             exit;
         }
 
@@ -140,11 +140,11 @@ class PartidaController {
             $_SESSION["contador"] = 0;
             $_SESSION["preguntas_usadas"] = [];
 
-            header("Location: /PW2-TP2/user/lobby");
+            header("Location: /user/lobby");
             exit;
         }
 
-        header("Location: /PW2-TP2/partida/jugar");
+        header("Location: /partida/jugar");
         exit;
     }
 }

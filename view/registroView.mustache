@@ -1,6 +1,6 @@
 {{>header}}
 
-<link rel="stylesheet" href="/PW2-TP2/public/styles/registro.css">
+<link rel="stylesheet" href="/public/styles/registro.css">
 
     <h2>Crear Cuenta</h2>
 
@@ -8,7 +8,7 @@
     <div class="error">{{error}}</div>
     {{/error}}
 
-    <form method="POST" action="/PW2-TP2/user/procesarRegistro">
+    <form method="POST" action="/user/procesarRegistro">
         <div class="section-divider">INFORMACIÓN OBLIGATORIA</div>
 
         <div class="form-group">
@@ -87,7 +87,7 @@
     </form>
 
     <div class="text-center" style="margin-top: 25px;">
-        ¿Ya tienes cuenta? <a href="/PW2-TP2/user/login">INICIAR SESIÓN</a>
+        ¿Ya tienes cuenta? <a href="/user/login">INICIAR SESIÓN</a>
     </div>
 
     <script>
