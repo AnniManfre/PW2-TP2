@@ -94,6 +94,13 @@
     color: white;
 }
 
+.action-card,
+.action-card:hover,
+.action-card:visited {
+    color: white;
+    text-decoration: none;
+}
+
 .action-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 32px rgba(53, 37, 205, 0.2);
@@ -138,20 +145,7 @@
 
 .action-card:hover .action-arrow {
     opacity: 1;
-}
-
-.action-bg-icon {
-    position: absolute;
-    bottom: calc(var(--unit) * -2);
-    right: calc(var(--unit) * -2);
-    font-size: 120px;
-    opacity: 0.1;
-    transition: transform 500ms ease;
-    pointer-events: none;
-}
-
-.action-card:hover .action-bg-icon {
-    transform: scale(1.1);
+    
 }
 
 .recent-section {
@@ -760,10 +754,6 @@
 
     .action-arrow {
         font-size: 18px;
-    }
-
-    .action-bg-icon {
-        font-size: 80px;
     }
 
     .recent-section {

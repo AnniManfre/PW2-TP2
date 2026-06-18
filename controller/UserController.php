@@ -229,7 +229,7 @@ class UserController
     public function perfil()
     {
         Log::info("UserController::perfil");
-        
+
         if (!isset($_SESSION['user_id'])) {
             Redirect::to('/user/login');
             return;
@@ -237,6 +237,15 @@ class UserController
 
         $user = $this->model->obtenerPorId($_SESSION['user_id']);
         $user['partidas_ganadas'] = $this->model->contarPartidasGanadas($_SESSION['user_id'], PartidaController::TOTAL_PREGUNTAS);
+
+        $puntaje = $user['puntaje'] ?? 0;
+        if ($puntaje < 20)      $nivelNum = 1;
+        elseif ($puntaje < 40)  $nivelNum = 2;
+        else                    $nivelNum = 3;
+
+        $user['nivel']     = 'Nivel ' . $nivelNum;
+        $user['categoria'] = PartidaController::NIVELES[$nivelNum];
+
         $this->renderer->render("perfilView", $user);
     }
     public function editarPerfil()
