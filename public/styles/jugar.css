@@ -132,3 +132,18 @@
     color: #2817a3;
     border-left: 4px solid var(--primary);
 }
+
+.btn-abandonar {
+    display: block;
+    text-align: center;
+    margin-top: 60px;
+    color: var(--error);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.btn-abandonar:hover {
+    text-decoration: underline;
+    color: var(--error);
+}

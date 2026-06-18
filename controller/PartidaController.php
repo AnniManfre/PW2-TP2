@@ -1,19 +1,22 @@
 <?php
 
-class PartidaController {
+class PartidaController
+{
     const TOTAL_PREGUNTAS = 10;
 
     private $model;
     private $renderer;
     private $request;
 
-    public function __construct($model, $renderer, $request) {
+    public function __construct($model, $renderer, $request)
+    {
         $this->model = $model;
         $this->renderer = $renderer;
         $this->request = $request;
     }
 
-    public function jugar() {
+    public function jugar()
+    {
 
         if (!isset($_SESSION['user_id'])) {
             Redirect::to('/user/login');
@@ -71,13 +74,13 @@ class PartidaController {
             "c" => $pregunta["opcion_c"],
             "d" => $pregunta["opcion_d"]
         ];
-        
+
         $letras = array_keys($opciones);
         shuffle($letras);
-        
+
         // Guardar el mapeo para usar en responder()
         $_SESSION["pregunta_actual"]["mapeo_opciones"] = $letras;
-        
+
         // Crear datos para la vista con opciones shuffleadas
         $opcionesShuffleadas = [];
         foreach ($letras as $indice => $letra) {
@@ -107,10 +110,11 @@ class PartidaController {
         $this->renderer->render("jugarView", $data);
     }
 
-    public function responder() {
+    public function responder()
+    {
         $pregunta = $_SESSION["pregunta_actual"];
         $respuestaEnviada = $this->request->post("respuesta");
-        
+
         // Si la respuesta está en el mapeo, es una letra original (a, b, c, d)
         // Si no, podría ser un índice del nuevo orden (1, 2, 3, 4)
         $respuesta = $respuestaEnviada;
@@ -125,21 +129,24 @@ class PartidaController {
             $_SESSION["puntaje"]++;
             $_SESSION["mensaje"] = "¡Correcto!";
             $_SESSION["mensaje_tipo"] = "success";
+
+            if ($_SESSION["contador"] >= self::TOTAL_PREGUNTAS) {
+                $this->model->guardarPartida($_SESSION["user_id"], $_SESSION["puntaje"]);
+                $_SESSION["mensaje"] = "¡Partida finalizada! Puntaje: " . $_SESSION["puntaje"] . "/" . self::TOTAL_PREGUNTAS;
+                $_SESSION["mensaje_tipo"] = "info";
+                $_SESSION["puntaje"] = 0;
+                $_SESSION["contador"] = 0;
+                $_SESSION["preguntas_usadas"] = [];
+                header("Location: /user/lobby");
+                exit;
+            }
         } else {
-            $_SESSION["mensaje"] = "Incorrecto. La respuesta correcta es: " . $textoRespuestaCorrecta;
-            $_SESSION["mensaje_tipo"] = "error";
-        }
-
-        // La partida termina recién al completar las 10 preguntas (acierte o no).
-        if ($_SESSION["contador"] >= self::TOTAL_PREGUNTAS) {
             $this->model->guardarPartida($_SESSION["user_id"], $_SESSION["puntaje"]);
-
-            $_SESSION["mensaje"] = "Partida finalizada. Puntaje: " . $_SESSION["puntaje"] . "/" . self::TOTAL_PREGUNTAS;
-            $_SESSION["mensaje_tipo"] = "info";
+            $_SESSION["mensaje"] = "¡Juego terminado! Respuesta incorrecta. Tu puntaje fue: " . $_SESSION["puntaje"];
+            $_SESSION["mensaje_tipo"] = "error";
             $_SESSION["puntaje"] = 0;
             $_SESSION["contador"] = 0;
             $_SESSION["preguntas_usadas"] = [];
-
             header("Location: /user/lobby");
             exit;
         }
@@ -147,6 +154,18 @@ class PartidaController {
         header("Location: /partida/jugar");
         exit;
     }
+    public function abandonar()
+    {
+        if (isset($_SESSION['user_id']) && isset($_SESSION["contador"]) && $_SESSION["contador"] >= 0 && !empty($_SESSION["preguntas_usadas"])) {
+            $this->model->guardarPartida($_SESSION["user_id"], $_SESSION["puntaje"]);
+            $_SESSION["mensaje"] = "Juego abandonado. Tu puntaje fue: " . $_SESSION["puntaje"];
+            $_SESSION["puntaje"] = 0;
+            $_SESSION["contador"] = 0;
+            $_SESSION["preguntas_usadas"] = [];
+            header("Location: /user/lobby");
+        } else {
+            header("Location: /user/home");
+        }
+        exit;
+    }
 }
-
-?>
