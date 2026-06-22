@@ -98,6 +98,28 @@ class PartidaController
             $_SESSION["preguntas_usadas"] = [];
         }
 
+        if (isset($_SESSION["pregunta_activa"]) && $_SESSION["pregunta_activa"] === true) {
+
+            // perdió por refresh
+            $this->model->guardarPartida(
+                $_SESSION["user_id"],
+                $_SESSION["puntaje"]
+            );
+
+            $_SESSION["mensaje"] = "Perdiste la partida por recargar la página.";
+            $_SESSION["mensaje_tipo"] = "error";
+
+            $_SESSION["puntaje"] = 0;
+            $_SESSION["contador"] = 0;
+            $_SESSION["preguntas_usadas"] = [];
+
+            unset($_SESSION["nivel_partida"]);
+            unset($_SESSION["pregunta_activa"]);
+
+            header("Location: /user/lobby");
+            exit;
+        }
+
         // Calcular nivel al inicio de cada partida nueva y guardarlo en sesión
         if (!isset($_SESSION['nivel_partida'])) {
             $puntajeAcumulado = $this->model->obtenerPuntajeUsuario($_SESSION['user_id']);
@@ -138,6 +160,8 @@ class PartidaController
 
         $_SESSION["preguntas_usadas"][] = $pregunta["id"];
         $_SESSION["pregunta_actual"] = $pregunta;
+        $_SESSION["inicio_pregunta"] = time();
+        $_SESSION["pregunta_activa"] = true;
 
         // Crear array de opciones y shufflearlo
         $opciones = [
@@ -180,6 +204,7 @@ class PartidaController
 
             "nivel" => $nivel,
             "nivel_nombre" => self::NIVELES[$nivel],
+            "tiempo_restante" => 30,
         ];
 
         $this->renderer->render("jugarView", $data);
@@ -187,11 +212,38 @@ class PartidaController
 
     public function responder()
     {
+
+        unset($_SESSION["pregunta_activa"]);
+        $timeout = $this->request->post("timeout");
+        $tiempoTranscurrido = time() - $_SESSION["inicio_pregunta"];
+
         $pregunta = $_SESSION["pregunta_actual"];
         $respuestaEnviada = $this->request->post("respuesta");
         $respuesta = $respuestaEnviada;
 
         $_SESSION["contador"]++;
+
+        if ($timeout == "1" || $tiempoTranscurrido > 30) {
+            $this->model->guardarPartida(
+                $_SESSION["user_id"],
+                $_SESSION["puntaje"]
+            );
+
+            $_SESSION["mensaje"] =
+                "Tiempo agotado. Puntaje: " .
+                $_SESSION["puntaje"];
+
+            $_SESSION["mensaje_tipo"] = "error";
+
+            $_SESSION["puntaje"] = 0;
+            $_SESSION["contador"] = 0;
+            $_SESSION["preguntas_usadas"] = [];
+
+            unset($_SESSION["nivel_partida"]);
+
+            header("Location: /user/lobby");
+            exit;
+        }
 
         // Obtener el texto de la respuesta correcta desde la base de datos
         $respuestaCorrecta = strtolower($pregunta["respuesta_correcta"]);
