@@ -61,12 +61,14 @@
                     {{#ranking}}
                     <tr class="game-row">
                         <td class="date-cell">{{fecha_formateada}}</td>
+                        
                         <td>
                             <span class="category-badge" style="background-color: {{categoria_color}}; color: white;">
-                             {{#categoria_nombre}}{{categoria_nombre}}{{/categoria_nombre}}
-                             {{^categoria_nombre}}Mixta{{/categoria_nombre}}
+                                {{#categoria_nombre}}{{categoria_nombre}}{{/categoria_nombre}}
+                                {{^categoria_nombre}}Mixta{{/categoria_nombre}}
                             </span>
                         </td>
+                        
                         <td class="opponent-cell">@{{usuario}}</td>
                         <td class="result-cell">
                             <span class="result-points">+{{puntaje}} Tkn</span>
@@ -74,6 +76,7 @@
                         </td>
                     </tr>
                     {{/ranking}}
+                    
                     {{^ranking}}
                     <tr>
                         <td colspan="4" style="text-align: center; padding: calc(var(--unit) * 3); color: var(--on-surface-variant);">

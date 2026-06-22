@@ -5,11 +5,7 @@ class MyDatabase {
     private $conexion;
 
     public function __construct($hostname, $username, $password, $database) {
-<<<<<<< Updated upstream
         $this->conexion = new mysqli($hostname, $username, $password, $database);
-=======
-        $this->conexion = new mysqli($hostname, $username, $password, $database, 3306);
->>>>>>> Stashed changes
     }
 
     public function query($sql, $params = []) {

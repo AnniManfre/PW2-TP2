@@ -310,3 +310,15 @@
 [22:47:38] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
 [22:47:38] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
 >>>>>>> Stashed changes
+[22:54:20] [INFO] UserController::home
+[22:54:20] [INFO] UserController::lobby
+[22:54:20] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:54:22] [INFO] UserController::home
+[22:54:22] [INFO] UserController::lobby
+[22:54:22] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:54:22] [INFO] UserController::home
+[22:54:22] [INFO] UserController::lobby
+[22:54:22] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:54:25] [INFO] UserController::home
+[22:54:25] [INFO] UserController::lobby
+[22:54:25] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]

@@ -98,6 +98,27 @@ class PartidaController
             $_SESSION["preguntas_usadas"] = [];
         }
 
+        if (isset($_SESSION["pregunta_activa"]) && $_SESSION["pregunta_activa"] === true) {
+
+            // perdió por refresh - ARREGLADO CON CATEGORIA
+            $categoria_id = $_SESSION['categoria_partida'];
+            $this->model->guardarPartida($_SESSION["user_id"], $_SESSION["puntaje"], $categoria_id);
+
+            $_SESSION["mensaje"] = "Perdiste la partida por recargar la página.";
+            $_SESSION["mensaje_tipo"] = "error";
+
+            $_SESSION["puntaje"] = 0;
+            $_SESSION["contador"] = 0;
+            $_SESSION["preguntas_usadas"] = [];
+
+            unset($_SESSION["nivel_partida"]);
+            unset($_SESSION["pregunta_activa"]);
+            unset($_SESSION["categoria_partida"]);
+
+            header("Location: /user/lobby");
+            exit;
+        }
+
         // Calcular nivel al inicio de cada partida nueva y guardarlo en sesión
         if (!isset($_SESSION['nivel_partida'])) {
             $puntajeAcumulado = $this->model->obtenerPuntajeUsuario($_SESSION['user_id']);
@@ -116,7 +137,7 @@ class PartidaController
         $pregunta = $this->model->obtenerPreguntaRandom($_SESSION["preguntas_usadas"], $nivel, $categoria);
         if (empty($pregunta) == true) {
             if ($_SESSION["contador"] > 0) {
-                // ACÁ AGREGAMOS LA CATEGORÍA
+                // No hay más preguntas - ARREGLADO CON CATEGORIA
                 $categoria_id = $_SESSION['categoria_partida'];
                 $this->model->guardarPartida($_SESSION["user_id"], $_SESSION["puntaje"], $categoria_id);
                 
@@ -141,6 +162,8 @@ class PartidaController
 
         $_SESSION["preguntas_usadas"][] = $pregunta["id"];
         $_SESSION["pregunta_actual"] = $pregunta;
+        $_SESSION["inicio_pregunta"] = time();
+        $_SESSION["pregunta_activa"] = true;
 
         // Crear array de opciones y shufflearlo
         $opciones = [
@@ -183,6 +206,7 @@ class PartidaController
 
             "nivel" => $nivel,
             "nivel_nombre" => self::NIVELES[$nivel],
+            "tiempo_restante" => 30,
         ];
 
         $this->renderer->render("jugarView", $data);
@@ -190,25 +214,54 @@ class PartidaController
 
     public function responder()
     {
+
+        unset($_SESSION["pregunta_activa"]);
+        $timeout = $this->request->post("timeout");
+        $tiempoTranscurrido = time() - $_SESSION["inicio_pregunta"];
+
         $pregunta = $_SESSION["pregunta_actual"];
         $respuestaEnviada = $this->request->post("respuesta");
-
         $respuesta = $respuestaEnviada;
 
         $_SESSION["contador"]++;
+
+        if ($timeout == "1" || $tiempoTranscurrido > 30) {
+            
+            // Tiempo agotado - ARREGLADO CON CATEGORIA
+            $categoria_id = $_SESSION['categoria_partida'];
+            $this->model->guardarPartida($_SESSION["user_id"], $_SESSION["puntaje"], $categoria_id);
+
+            $_SESSION["mensaje"] =
+                "Tiempo agotado. Puntaje: " .
+                $_SESSION["puntaje"];
+
+            $_SESSION["mensaje_tipo"] = "error";
+
+            $_SESSION["puntaje"] = 0;
+            $_SESSION["contador"] = 0;
+            $_SESSION["preguntas_usadas"] = [];
+
+            unset($_SESSION["nivel_partida"]);
+            unset($_SESSION["categoria_partida"]);
+
+            header("Location: /user/lobby");
+            exit;
+        }
+
+        // Obtener el texto de la respuesta correcta desde la base de datos
+        $respuestaCorrecta = strtolower($pregunta["respuesta_correcta"]);
+        $textoRespuestaCorrecta = $pregunta["opcion_" . $respuestaCorrecta];
 
         if ($respuesta == $pregunta["respuesta_correcta"]) {
             $_SESSION["puntaje"]++;
             $_SESSION["mensaje"] = "¡Correcto!";
             $_SESSION["mensaje_tipo"] = "success";
 
-            // CASO 1: Ganó la partida (llegó al total de preguntas)
             if ($_SESSION["contador"] >= self::TOTAL_PREGUNTAS) {
                 
-           
+                // Ganó la partida - ARREGLADO CON CATEGORIA
                 $categoria_id = $_SESSION['categoria_partida'];
                 $this->model->guardarPartida($_SESSION["user_id"], $_SESSION["puntaje"], $categoria_id);
-                
                 
                 $_SESSION["mensaje"] = "¡Partida finalizada! Puntaje: " . $_SESSION["puntaje"] . "/" . self::TOTAL_PREGUNTAS;
                 $_SESSION["mensaje_tipo"] = "info";
@@ -221,12 +274,10 @@ class PartidaController
                 exit;
             }
         } else {
-            // CASO 2: Perdió la partida 
             
-         
+            // Perdió por error - ARREGLADO CON CATEGORIA
             $categoria_id = $_SESSION['categoria_partida'];
             $this->model->guardarPartida($_SESSION["user_id"], $_SESSION["puntaje"], $categoria_id);
-            
             
             $_SESSION["mensaje"] = "¡Juego terminado! Respuesta incorrecta. Tu puntaje fue: " . $_SESSION["puntaje"];
             $_SESSION["mensaje_tipo"] = "error";
@@ -247,9 +298,10 @@ class PartidaController
     {
         if (isset($_SESSION['user_id']) && isset($_SESSION["contador"]) && $_SESSION["contador"] >= 0 && !empty($_SESSION["preguntas_usadas"])) {
             
-        $categoria_id = $_SESSION['categoria_partida'];
-    
-        $this->model->guardarPartida($_SESSION["user_id"], $_SESSION["puntaje"], $categoria_id);
+            // Abandonó el juego - ARREGLADO CON CATEGORIA
+            $categoria_id = $_SESSION['categoria_partida'];
+            $this->model->guardarPartida($_SESSION["user_id"], $_SESSION["puntaje"], $categoria_id);
+            
             $_SESSION["mensaje"] = "Juego abandonado. Tu puntaje fue: " . $_SESSION["puntaje"];
             $_SESSION["puntaje"] = 0;
             $_SESSION["contador"] = 0;
