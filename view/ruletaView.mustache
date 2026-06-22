@@ -1,0 +1,78 @@
+{{>header}}
+
+<link rel="stylesheet" href="/public/styles/ruleta.css">
+
+<main class="ruleta-main">
+    <h1 class="ruleta-titulo">¡Gira la ruleta!</h1>
+    <p class="ruleta-subtitulo">La categoría que salga será la de tu partida.</p>
+
+    <ul id="categorias-data" hidden>
+        {{#categorias}}
+        <li data-id="{{id}}" data-nombre="{{nombre}}" data-color="{{color}}"></li>
+        {{/categorias}}
+    </ul>
+
+    <div class="ruleta-wrapper">
+        <span class="ruleta-puntero material-symbols-outlined">arrow_drop_down</span>
+        <div id="ruleta"></div>
+    </div>
+
+    <p id="resultado" class="ruleta-resultado" hidden></p>
+
+    <button id="girar" class="ruleta-btn">
+        <span class="material-symbols-outlined">casino</span>
+        Girar
+    </button>
+
+    <form id="form-comenzar" method="POST" action="/partida/empezar" hidden>
+        <input type="hidden" name="categoria" id="categoria-input">
+        <button type="submit" class="ruleta-btn ruleta-btn-comenzar">
+            <span class="material-symbols-outlined">play_arrow</span>
+            Comenzar
+        </button>
+    </form>
+</main>
+
+<script type="module">
+    import {Wheel} from 'https://cdn.jsdelivr.net/npm/spin-wheel@5.0.2/dist/spin-wheel-esm.js';
+
+    const cats = [...document.querySelectorAll('#categorias-data li')].map(li => ({
+        id: li.dataset.id,
+        nombre: li.dataset.nombre,
+        color: li.dataset.color,
+    }));
+
+    const items = cats.map(c => ({ label: c.nombre, backgroundColor: c.color, labelColor: '#ffffff' }));
+
+    const wheel = new Wheel(document.querySelector('#ruleta'), {
+        items,
+        isInteractive: false,
+        borderColor: '#ffffff',
+        borderWidth: 3,
+        lineColor: '#ffffff',
+        lineWidth: 2,
+    });
+
+    const btnGirar = document.querySelector('#girar');
+    const resultado = document.querySelector('#resultado');
+    const form = document.querySelector('#form-comenzar');
+    const input = document.querySelector('#categoria-input');
+
+    btnGirar.addEventListener('click', () => {
+        btnGirar.disabled = true;
+        const winner = Math.floor(Math.random() * items.length);
+        // spinToItem(itemIndex, duration, spinToCenter, numberOfRevolutions, direction)
+        wheel.spinToItem(winner, 4000, true, 4, 1);
+    });
+
+    wheel.onRest = (e) => {
+        const cat = cats[e.currentIndex];
+        input.value = cat.id;
+        resultado.textContent = '¡Te tocó: ' + cat.nombre + '!';
+        resultado.hidden = false;
+        btnGirar.hidden = true;
+        form.hidden = false;
+    };
+</script>
+
+{{>footer}}

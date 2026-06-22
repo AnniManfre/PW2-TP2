@@ -1,0 +1,85 @@
+.ruleta-main {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: calc(var(--unit) * 3) var(--gutter);
+    text-align: center;
+}
+
+.ruleta-titulo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: calc(var(--unit) * 0.5);
+}
+
+.ruleta-subtitulo {
+    color: var(--on-surface-variant);
+    margin-bottom: calc(var(--unit) * 3);
+}
+
+.ruleta-wrapper {
+    position: relative;
+    width: 340px;
+    max-width: 90vw;
+    margin: 0 auto calc(var(--unit) * 3);
+}
+
+/* Puntero superior que indica la categoría ganadora */
+.ruleta-puntero {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 56px;
+    color: var(--primary);
+    z-index: 2;
+    filter: drop-shadow(0 2px 3px #00000040);
+}
+
+/* Contenedor que dibuja spin-wheel */
+#ruleta {
+    width: 340px;
+    height: 340px;
+    max-width: 90vw;
+    margin: 0 auto;
+}
+
+.ruleta-resultado {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: calc(var(--unit) * 2);
+}
+
+.ruleta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--unit) * 0.75);
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    padding: calc(var(--unit) * 1.5) calc(var(--unit) * 3);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0px 5px 15px 0px #00000030;
+    transition: transform 0.1s ease, opacity 0.2s ease;
+}
+
+.ruleta-btn:hover {
+    transform: translateY(-2px);
+}
+
+.ruleta-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.ruleta-btn-comenzar {
+    background: #2e7d32;
+}
+
+/* El atributo hidden debe ganarle al display de los botones/forms */
+[hidden] {
+    display: none !important;
+}

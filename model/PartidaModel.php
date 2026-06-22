@@ -12,15 +12,20 @@ class PartidaModel {
         return !empty($filas) ? (int)$filas[0]['puntaje'] : 0;
     }
 
-    public function obtenerPreguntaRandom($idsUsados = [], $nivel = 2) {
+    public function obtenerCategorias() {
+        return $this->database->query("SELECT id, nombre, color FROM categorias ORDER BY id");
+    }
+
+    public function obtenerPreguntaRandom($idsUsados = [], $nivel = 2, $categoriaId = null) {
         if (empty($idsUsados)) {
             $sql = "SELECT pre.*, cat.nombre, cat.color
                     FROM preguntas pre
                     JOIN categorias cat ON pre.categoria_id = cat.id
                     WHERE pre.nivel = ?
+                    AND pre.categoria_id = ?
                     ORDER BY RAND()
                     LIMIT 1";
-            return $this->database->query($sql, [$nivel]);
+            return $this->database->query($sql, [$nivel, $categoriaId]);
         } else {
             $ids = implode(",", $idsUsados);
             $sql = "SELECT pre.*, cat.nombre, cat.color
@@ -28,9 +33,10 @@ class PartidaModel {
                     JOIN categorias cat ON pre.categoria_id = cat.id
                     WHERE pre.id NOT IN ($ids)
                     AND pre.nivel = ?
+                    AND pre.categoria_id = ?
                     ORDER BY RAND()
                     LIMIT 1";
-            return $this->database->query($sql, [$nivel]);
+            return $this->database->query($sql, [$nivel, $categoriaId]);
         }
     }
 

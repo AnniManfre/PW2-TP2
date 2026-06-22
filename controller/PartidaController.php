@@ -2,7 +2,7 @@
 
 class PartidaController
 {
-    const TOTAL_PREGUNTAS = 10;
+    const TOTAL_PREGUNTAS = 4;
 
     // Umbrales de nivel según puntaje acumulado del usuario
     // Nivel 1 (Principiante): 0–19 pts | Nivel 2 (Intermedio): 20–39 pts | Nivel 3 (Avanzado): ≥40 pts
@@ -30,12 +30,61 @@ class PartidaController
         return 3;
     }
 
+    public function ruleta()
+    {
+        if (!isset($_SESSION['user_id'])) {
+            Redirect::to('/user/login');
+            return;
+        }
+
+        $categorias = $this->model->obtenerCategorias();
+
+        $data = [
+            "usuario" => $_SESSION['usuario'],
+            "categorias" => $categorias,
+        ];
+
+        $this->renderer->render("ruletaView", $data);
+    }
+
+    public function empezar()
+    {
+        if (!isset($_SESSION['user_id'])) {
+            Redirect::to('/user/login');
+            return;
+        }
+
+        $catId = $this->request->post("categoria");
+        $ids = array_column($this->model->obtenerCategorias(), "id");
+
+        if (!in_array((int)$catId, array_map('intval', $ids), true)) {
+            header("Location: /partida/ruleta");
+            exit;
+        }
+
+        $_SESSION['categoria_partida'] = (int)$catId;
+        $_SESSION['contador'] = 0;
+        $_SESSION['puntaje'] = 0;
+        $_SESSION['preguntas_usadas'] = [];
+        unset($_SESSION['nivel_partida']);
+
+        header("Location: /partida/jugar");
+        exit;
+    }
+
     public function jugar()
     {
         if (!isset($_SESSION['user_id'])) {
             Redirect::to('/user/login');
             return;
         }
+
+        // La categoría se sortea en la ruleta antes de jugar
+        if (!isset($_SESSION['categoria_partida'])) {
+            header("Location: /partida/ruleta");
+            exit;
+        }
+        $categoria = $_SESSION['categoria_partida'];
 
         if (!isset($_SESSION['contador'])) {
             $_SESSION['contador'] = 0;
@@ -64,7 +113,7 @@ class PartidaController
             unset($_SESSION["mensaje"], $_SESSION["mensaje_tipo"]);
         }
 
-        $pregunta = $this->model->obtenerPreguntaRandom($_SESSION["preguntas_usadas"], $nivel);
+        $pregunta = $this->model->obtenerPreguntaRandom($_SESSION["preguntas_usadas"], $nivel, $categoria);
         if (empty($pregunta) == true) {
             if ($_SESSION["contador"] > 0) {
                 $this->model->guardarPartida($_SESSION["user_id"], $_SESSION["puntaje"]);
@@ -79,6 +128,7 @@ class PartidaController
             $_SESSION["contador"] = 0;
             $_SESSION["preguntas_usadas"] = [];
             unset($_SESSION["nivel_partida"]);
+            unset($_SESSION["categoria_partida"]);
 
             header("Location: /user/lobby");
             exit;
@@ -157,6 +207,7 @@ class PartidaController
                 $_SESSION["contador"] = 0;
                 $_SESSION["preguntas_usadas"] = [];
                 unset($_SESSION["nivel_partida"]);
+                unset($_SESSION["categoria_partida"]);
                 header("Location: /user/lobby");
                 exit;
             }
@@ -168,6 +219,7 @@ class PartidaController
             $_SESSION["contador"] = 0;
             $_SESSION["preguntas_usadas"] = [];
             unset($_SESSION["nivel_partida"]);
+            unset($_SESSION["categoria_partida"]);
             header("Location: /user/lobby");
             exit;
         }
@@ -185,6 +237,7 @@ class PartidaController
             $_SESSION["contador"] = 0;
             $_SESSION["preguntas_usadas"] = [];
             unset($_SESSION["nivel_partida"]);
+            unset($_SESSION["categoria_partida"]);
             header("Location: /user/lobby");
         } else {
             header("Location: /user/home");
