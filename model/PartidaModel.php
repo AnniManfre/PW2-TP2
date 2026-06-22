@@ -40,10 +40,10 @@ class PartidaModel {
         }
     }
 
-    public function guardarPartida($usuario_id, $puntaje) {
+    public function guardarPartida($usuario_id, $puntaje,$categoria_id) {
         $this->database->execute(
-            "INSERT INTO partidas (usuario_id, puntaje) VALUES (?, ?)",
-            [$usuario_id, $puntaje]
+            "INSERT INTO partidas (usuario_id, puntaje,categoria_id) VALUES (?, ?,?)",
+            [$usuario_id, $puntaje, $categoria_id]
         );
 
         return $this->database->execute(
@@ -51,6 +51,7 @@ class PartidaModel {
             [$puntaje, $usuario_id]
         );
     }
+
 }
 
 ?>

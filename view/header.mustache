@@ -16,11 +16,13 @@
 <nav>
     <a href="/partida/abandonar" class="logo">Trivia Clash</a>
     
+     {{#usuario}}
     <div class="nav-center">
         <div class="search-box">
             <input type="text" placeholder="Buscar...">
         </div>
     </div>
+    {{/usuario}}
      
     
     <div class="nav-right">
@@ -33,8 +35,8 @@
             <div class="profile-icon">👤</div>
             {{/foto_perfil}}
         </a>
+        {{/usuario}}
     </div>
-    {{/usuario}}
 </nav>
 
 <header>

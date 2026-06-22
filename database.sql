@@ -134,3 +134,5 @@ CREATE TABLE IF NOT EXISTS partidas (
 
     FOREIGN KEY (usuario_id) REFERENCES users(id)
 );
+ALTER TABLE partidas ADD COLUMN categoria_id INTEGER NULL;
+ALTER TABLE partidas ADD FOREIGN KEY (categoria_id) REFERENCES categorias(id);

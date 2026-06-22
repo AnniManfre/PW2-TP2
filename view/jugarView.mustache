@@ -14,11 +14,6 @@
         <span class="question-score">Puntaje: {{puntaje}}</span>
     </div>
 
-    <div class="timer-container">
-        ⏱️ Tiempo restante:
-        <span id="timer">{{tiempo_restante}}</span>s
-    </div>
-
     <div class="progress-bar">
         <div class="progress-fill" style="width: {{progreso}}%"></div>
     </div>
@@ -34,7 +29,6 @@
     </h2>
 
     <form method="POST" action="/partida/responder">
-        <input type="hidden" name="timeout" id="timeout" value="0">
         {{#opciones}}
         <button type="submit" name="respuesta" value="{{valor}}" class="option-btn">
             <span class="option-letter">{{letra}}</span>
@@ -57,27 +51,6 @@
             sessionStorage.setItem('scrollPos', window.scrollY);
         });
     });
-</script>
-
-<script>
-let tiempo = {{tiempo_restante}};
-
-const intervalo = setInterval(() => {
-
-    tiempo--;
-
-    document.getElementById("timer").textContent = tiempo;
-
-    if (tiempo <= 0) {
-
-        clearInterval(intervalo);
-
-        document.getElementById("timeout").value = "1";
-
-        document.querySelector("form").submit();
-    }
-
-}, 1000);
 </script>
 
 {{>footer}}

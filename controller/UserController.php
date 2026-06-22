@@ -331,7 +331,7 @@ class UserController
 
         $datosVista['user'] = $datosVista;
 
-        $datosVista['ranking'] = $this->model->obtenerTodos();
+        $datosVista['ranking'] = $this->model->obtenerPartidasRecientes($_SESSION['user_id']);
 
         if (isset($_SESSION["mensaje"])) {
             $datosVista['mensaje'] = $_SESSION["mensaje"];

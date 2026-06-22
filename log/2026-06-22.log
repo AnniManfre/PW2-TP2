@@ -1,0 +1,267 @@
+[21:14:53] [INFO] UserController::home
+[21:14:55] [INFO] UserController::home
+[21:14:56] [INFO] UserController::home
+[21:14:57] [INFO] UserController::home
+[21:14:57] [INFO] UserController::home
+[21:14:57] [INFO] UserController::home
+[21:14:57] [INFO] UserController::home
+[21:15:01] [INFO] UserController::home
+[21:15:01] [INFO] UserController::home
+[21:15:01] [INFO] UserController::home
+[21:15:01] [INFO] UserController::home
+[21:15:01] [INFO] UserController::home
+[21:19:01] [INFO] UserController::home
+[21:19:03] [INFO] UserController::login (form)
+[21:19:08] [INFO] UserController::procesarLogin
+[21:19:08] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [juand]
+[21:19:08] [INFO] UserController::procesarLogin - Login exitoso: juand
+[21:19:08] [INFO] UserController::perfil
+[21:19:08] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[21:19:08] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [2, 4]
+[21:19:13] [INFO] UserController::lobby
+[21:19:13] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[21:19:13] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:19:14] [INFO] UserController::perfil
+[21:19:14] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[21:19:14] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [2, 4]
+[21:19:16] [INFO] UserController::lobby
+[21:19:16] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[21:19:16] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:20:23] [INFO] UserController::home
+[21:20:23] [INFO] UserController::lobby
+[21:20:23] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[21:20:23] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:24:01] [INFO] UserController::lobby
+[21:24:01] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[21:24:01] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:24:04] [INFO] UserController::lobby
+[21:24:04] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[21:24:04] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:24:11] [INFO] UserController::lobby
+[21:24:11] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[21:24:11] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:26:51] [INFO] UserController::lobby
+[21:26:51] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[21:26:51] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:26:51] [INFO] UserController::lobby
+[21:26:51] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[21:26:51] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:26:51] [INFO] UserController::lobby
+[21:26:51] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[21:26:51] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:27:56] [INFO] UserController::perfil
+[21:27:56] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[21:27:56] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [2, 4]
+[21:27:57] [INFO] UserController::logout
+[21:27:57] [INFO] UserController::home
+[21:27:59] [INFO] UserController::home
+[21:28:02] [INFO] UserController::login (form)
+[21:28:03] [INFO] UserController::procesarLogin
+[21:28:03] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [juand]
+[21:28:03] [WARNING] UserController::procesarLogin - Credenciales inválidas: juand
+[21:28:14] [INFO] UserController::registro (form)
+[21:28:44] [INFO] UserController::procesarRegistro
+[21:28:44] [INFO] SQL: SELECT * FROM users WHERE email = ? [lucasmarron25@gmail.com]
+[21:28:44] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [juand]
+[21:28:44] [INFO] SQL: INSERT INTO users (nombre_completo, año_nacimiento, sexo, pais, ciudad, email, password, usuario, foto_perfil, validado) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, FALSE)
+[21:28:45] [INFO] UserController::procesarRegistro - Usuario registrado: juand. Token generado: 424560
+[21:28:45] [INFO] UserController::login (form)
+[21:28:46] [INFO] UserController::procesarLogin
+[21:28:46] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [juand]
+[21:28:46] [WARNING] UserController::procesarLogin - Intento de ingreso sin validar: juand
+[21:28:46] [INFO] UserController::validarCuenta (form)
+[21:28:52] [INFO] UserController::procesarValidacion
+[21:28:52] [WARNING] UserController::procesarValidacion - Token incorrecto para: lucasmarron25@gmail.com
+[21:28:59] [INFO] UserController::procesarValidacion
+[21:28:59] [INFO] UserController::procesarValidacion - Token correcto para: lucasmarron25@gmail.com
+[21:28:59] [INFO] UserController::login (form)
+[21:29:00] [INFO] UserController::procesarLogin
+[21:29:00] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [juand]
+[21:29:00] [INFO] UserController::procesarLogin - Login exitoso: juand
+[21:29:00] [INFO] UserController::perfil
+[21:29:00] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:29:00] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[21:29:05] [INFO] UserController::lobby
+[21:29:05] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:29:05] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:29:14] [INFO] UserController::lobby
+[21:29:14] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:29:14] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:29:31] [INFO] UserController::lobby
+[21:29:31] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:29:31] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:33:46] [INFO] UserController::lobby
+[21:33:46] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:33:46] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:33:46] [INFO] UserController::lobby
+[21:33:46] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:33:46] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:33:47] [INFO] UserController::lobby
+[21:33:47] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:33:47] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:33:48] [INFO] UserController::lobby
+[21:33:48] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:33:48] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:33:48] [INFO] UserController::lobby
+[21:33:48] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:33:48] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:33:49] [INFO] UserController::lobby
+[21:33:49] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:33:49] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:33:50] [INFO] UserController::lobby
+[21:33:50] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:33:50] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:34:48] [INFO] UserController::lobby
+[21:34:48] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:34:48] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:34:49] [INFO] UserController::lobby
+[21:34:49] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:34:49] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:35:22] [INFO] UserController::lobby
+[21:35:22] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:35:22] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:35:23] [INFO] UserController::lobby
+[21:35:23] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:35:23] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:35:23] [INFO] UserController::lobby
+[21:35:23] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:35:23] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:35:23] [INFO] UserController::lobby
+[21:35:23] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:35:23] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:35:23] [INFO] UserController::lobby
+[21:35:23] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:35:23] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:35:23] [INFO] UserController::lobby
+[21:35:23] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:35:23] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:35:23] [INFO] UserController::lobby
+[21:35:23] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:35:23] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:35:24] [INFO] UserController::lobby
+[21:35:24] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:35:24] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:35:24] [INFO] UserController::lobby
+[21:35:24] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:35:24] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:35:24] [INFO] UserController::lobby
+[21:35:24] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:35:24] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:35:24] [INFO] UserController::lobby
+[21:35:24] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:35:24] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:35:36] [INFO] UserController::lobby
+[21:35:36] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:35:36] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:35:38] [INFO] UserController::lobby
+[21:35:38] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:35:38] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:35:39] [INFO] UserController::lobby
+[21:35:39] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:35:39] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:35:40] [INFO] UserController::perfil
+[21:35:40] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:35:40] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[21:35:41] [INFO] UserController::logout
+[21:35:41] [INFO] UserController::home
+[21:35:42] [INFO] UserController::login (form)
+[21:35:43] [INFO] UserController::procesarLogin
+[21:35:43] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [juand]
+[21:35:43] [INFO] UserController::procesarLogin - Login exitoso: juand
+[21:35:43] [INFO] UserController::perfil
+[21:35:43] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:35:43] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[21:35:44] [INFO] UserController::lobby
+[21:35:44] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:35:44] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:35:53] [INFO] UserController::lobby
+[21:35:53] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:35:53] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:38:31] [INFO] UserController::lobby
+[21:38:31] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:38:31] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:38:33] [INFO] UserController::lobby
+[21:38:33] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:38:33] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:38:33] [INFO] UserController::lobby
+[21:38:33] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:38:33] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:38:33] [INFO] UserController::lobby
+[21:38:33] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:38:33] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:38:33] [INFO] UserController::lobby
+[21:38:33] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:38:33] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[21:42:36] [INFO] UserController::lobby
+[21:42:36] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:42:36] [INFO] UserController::lobby
+[21:42:36] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:42:37] [INFO] UserController::lobby
+[21:42:37] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:42:37] [INFO] UserController::lobby
+[21:42:37] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:44:35] [INFO] UserController::lobby
+[21:44:35] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:44:35] [INFO] UserController::lobby
+[21:44:35] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:44:35] [INFO] UserController::lobby
+[21:44:35] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:44:36] [INFO] UserController::lobby
+[21:44:36] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:44:38] [INFO] UserController::home
+[21:44:38] [INFO] UserController::lobby
+[21:44:38] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:45:56] [INFO] UserController::lobby
+[21:45:56] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:46:11] [INFO] UserController::lobby
+[21:46:11] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:59:33] [INFO] UserController::home
+[21:59:33] [INFO] UserController::lobby
+[21:59:33] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:59:34] [INFO] UserController::lobby
+[21:59:34] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:59:35] [INFO] UserController::lobby
+[21:59:35] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:59:35] [INFO] UserController::lobby
+[21:59:35] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:59:35] [INFO] UserController::lobby
+[21:59:35] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:59:35] [INFO] UserController::lobby
+[21:59:35] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:59:42] [INFO] UserController::home
+[21:59:42] [INFO] UserController::lobby
+[21:59:42] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:59:47] [INFO] UserController::home
+[21:59:47] [INFO] UserController::lobby
+[21:59:47] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:59:48] [INFO] UserController::home
+[21:59:48] [INFO] UserController::lobby
+[21:59:48] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:59:50] [INFO] UserController::home
+[21:59:50] [INFO] UserController::lobby
+[21:59:50] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:59:54] [INFO] UserController::lobby
+[21:59:54] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:59:55] [INFO] UserController::lobby
+[21:59:55] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:59:56] [INFO] UserController::lobby
+[21:59:56] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:59:56] [INFO] UserController::lobby
+[21:59:56] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:59:56] [INFO] UserController::lobby
+[21:59:56] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:59:57] [INFO] UserController::lobby
+[21:59:57] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:00:41] [INFO] UserController::lobby
+[22:00:41] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:00:45] [INFO] UserController::lobby
+[22:00:45] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:00:45] [INFO] UserController::lobby
+[22:00:45] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:00:45] [INFO] UserController::lobby
+[22:00:45] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:01:00] [INFO] UserController::lobby
+[22:01:00] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:01:11] [INFO] UserController::lobby
+[22:01:11] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]

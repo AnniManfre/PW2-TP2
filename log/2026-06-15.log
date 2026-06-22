@@ -403,3 +403,29 @@
 [23:20:00] [INFO] UserController::lobby
 [23:20:00] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
 [23:20:00] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[23:21:22] [INFO] UserController::logout
+[23:21:22] [INFO] UserController::home
+[23:21:23] [INFO] UserController::registro (form)
+[23:21:49] [INFO] UserController::procesarRegistro
+[23:21:49] [WARNING] UserController::procesarRegistro - Contraseña débil: La contraseña debe tener al menos 8 caracteres
+[23:22:07] [INFO] UserController::procesarRegistro
+[23:22:07] [INFO] SQL: SELECT * FROM users WHERE email = ? [asd@gmail.com]
+[23:22:07] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [asd]
+[23:22:07] [INFO] SQL: INSERT INTO users (nombre_completo, año_nacimiento, sexo, pais, ciudad, email, password, usuario, foto_perfil, validado) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, FALSE)
+[23:22:07] [INFO] UserController::procesarRegistro - Usuario registrado: asd. Token generado: 282891
+[23:22:07] [INFO] UserController::login (form)
+[23:22:19] [INFO] UserController::procesarLogin
+[23:22:19] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [asd]
+[23:22:19] [WARNING] UserController::procesarLogin - Intento de ingreso sin validar: asd
+[23:22:19] [INFO] UserController::validarCuenta (form)
+[23:22:47] [INFO] UserController::home
+[23:26:04] [INFO] UserController::login (form)
+[23:26:05] [INFO] UserController::procesarLogin
+[23:26:05] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [juand]
+[23:26:05] [INFO] UserController::procesarLogin - Login exitoso: juand
+[23:26:05] [INFO] UserController::perfil
+[23:26:05] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[23:26:10] [INFO] UserController::lobby
+[23:26:10] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[23:26:10] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC

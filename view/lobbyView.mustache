@@ -60,8 +60,13 @@
                 <tbody>
                     {{#ranking}}
                     <tr class="game-row">
-                        <td class="date-cell">Hoy, {{@index}}:00</td>
-                        <td><span class="category-badge">Categoría</span></td>
+                        <td class="date-cell">{{fecha_formateada}}</td>
+                        <td>
+                            <span class="category-badge" style="background-color: {{categoria_color}}; color: white;">
+                             {{#categoria_nombre}}{{categoria_nombre}}{{/categoria_nombre}}
+                             {{^categoria_nombre}}Mixta{{/categoria_nombre}}
+                            </span>
+                        </td>
                         <td class="opponent-cell">@{{usuario}}</td>
                         <td class="result-cell">
                             <span class="result-points">+{{puntaje}} Tkn</span>
