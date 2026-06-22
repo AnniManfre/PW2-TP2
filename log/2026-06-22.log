@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 [21:14:53] [INFO] UserController::home
 [21:14:55] [INFO] UserController::home
 [21:14:56] [INFO] UserController::home
@@ -265,3 +266,47 @@
 [22:01:00] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
 [22:01:11] [INFO] UserController::lobby
 [22:01:11] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+=======
+[22:47:21] [INFO] UserController::home
+[22:47:21] [INFO] UserController::lobby
+[22:47:21] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:47:21] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:47:21] [INFO] UserController::home
+[22:47:21] [INFO] UserController::lobby
+[22:47:21] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:47:21] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:47:24] [INFO] UserController::home
+[22:47:24] [INFO] UserController::lobby
+[22:47:24] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:47:24] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:47:24] [INFO] UserController::home
+[22:47:24] [INFO] UserController::lobby
+[22:47:24] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:47:24] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:47:27] [INFO] UserController::home
+[22:47:27] [INFO] UserController::lobby
+[22:47:27] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:47:27] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:47:33] [INFO] UserController::home
+[22:47:33] [INFO] UserController::lobby
+[22:47:33] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:47:33] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:47:35] [INFO] UserController::lobby
+[22:47:35] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:47:35] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:47:36] [INFO] UserController::home
+[22:47:36] [INFO] UserController::lobby
+[22:47:36] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:47:36] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:47:37] [INFO] UserController::lobby
+[22:47:37] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:47:37] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:47:37] [INFO] UserController::home
+[22:47:37] [INFO] UserController::lobby
+[22:47:37] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:47:37] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[22:47:38] [INFO] UserController::home
+[22:47:38] [INFO] UserController::lobby
+[22:47:38] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[22:47:38] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+>>>>>>> Stashed changes
