@@ -1,6 +1,6 @@
 {{>header}}
 
-<link rel="stylesheet" href="/PW2-TP2/public/styles/lobby.css">
+<link rel="stylesheet" href="/public/styles/lobby.css">
 
 <main class="lobby-main">
     <section class="hero-section">
@@ -16,7 +16,7 @@
     {{/mensaje}}
 
     <div class="actions-grid">
-        <a href="/PW2-TP2/partida/jugar" class="action-card action-primary">
+        <a href="/partida/jugar" class="action-card action-primary">
             <div class="card-icon-box">
                 <span class="material-symbols-outlined">add_circle</span>
             </div>
@@ -24,7 +24,6 @@
             <h3 class="action-title">Crear Partida</h3>
             <p class="action-description">Desafía a tus amigos o entra en un duelo aleatorio.</p>
             <span class="material-symbols-outlined action-arrow">arrow_forward</span>
-            <span class="action-bg-icon">rocket_launch</span>
         </a>
 
         <button class="action-card action-secondary" onclick="alert('Funcionalidad disponible en próximas entregas')">
@@ -35,7 +34,6 @@
             <h3 class="action-title">Ver Ranking</h3>
             <p class="action-description">Revisa tu posición en la tabla global.</p>
             <span class="material-symbols-outlined action-arrow">arrow_forward</span>
-            <span class="action-bg-icon">emoji_events</span>
         </button>
     </div>
 
@@ -45,7 +43,7 @@
                 <span class="material-symbols-outlined">history</span>
                 Partidas Recientes
             </h2>
-            <a href="/PW2-TP2/user/lobby" class="view-all">Ver todo</a>
+            <a href="/user/lobby" class="view-all">Ver todo</a>
         </div>
 
         <div class="games-table">
@@ -90,7 +88,7 @@
                     <h3 class="stats-title">{{user.nombre_completo}}</h3>
                     <p class="stats-level">Puntuación: <strong>{{user.puntaje}} Tkn</strong></p>
                 </div>
-                <a href="/PW2-TP2/user/perfil" class="btn-profile">
+                <a href="/user/perfil" class="btn-profile">
                     <span class="material-symbols-outlined">person</span>
                     Ver Perfil
                 </a>
@@ -99,7 +97,7 @@
     </section>
 
     <div class="logout-container">
-        <a href="/PW2-TP2/user/logout" class="btn-logout">
+        <a href="/user/logout" class="btn-logout">
             <span class="material-symbols-outlined">logout</span>
             Cerrar Sesión
         </a>

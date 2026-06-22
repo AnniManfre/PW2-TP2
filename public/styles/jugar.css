@@ -1,8 +1,11 @@
-/* Vista de juego: adaptada al tema claro del sitio (ver main.css). */
+
+.container {
+    padding-top: 0;
+}
 
 .question-card {
-    max-width: 640px;
-    margin: 40px auto;
+    max-width: 700px;
+    margin: 32px auto 40px;
     padding: 32px;
     background: white;
     border-radius: 24px;
@@ -32,6 +35,31 @@
 
 .question-score {
     color: var(--primary);
+}
+
+/* Badge de nivel del jugador */
+.nivel-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.nivel-1 {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.nivel-2 {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.nivel-3 {
+    background: #fce4ec;
+    color: #c62828;
 }
 
 /* Barra de progreso del avance por las 10 preguntas. */
@@ -131,4 +159,19 @@
     background: #e0ddff;
     color: #2817a3;
     border-left: 4px solid var(--primary);
+}
+
+.btn-abandonar {
+    display: block;
+    text-align: center;
+    margin-top: 60px;
+    color: var(--error);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.btn-abandonar:hover {
+    text-decoration: underline;
+    color: var(--error);
 }
