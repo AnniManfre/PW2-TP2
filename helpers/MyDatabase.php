@@ -5,7 +5,7 @@ class MyDatabase {
     private $conexion;
 
     public function __construct($hostname, $username, $password, $database) {
-        $this->conexion = new mysqli($hostname, $username, $password, $database);
+        $this->conexion = new mysqli($hostname, $username, $password, $database, 3400);
     }
 
     public function query($sql, $params = []) {

@@ -189,10 +189,13 @@ class PartidaController
     {
         $pregunta = $_SESSION["pregunta_actual"];
         $respuestaEnviada = $this->request->post("respuesta");
-
         $respuesta = $respuestaEnviada;
 
         $_SESSION["contador"]++;
+
+        // Obtener el texto de la respuesta correcta desde la base de datos
+        $respuestaCorrecta = strtolower($pregunta["respuesta_correcta"]);
+        $textoRespuestaCorrecta = $pregunta["opcion_" . $respuestaCorrecta];
 
         if ($respuesta == $pregunta["respuesta_correcta"]) {
             $_SESSION["puntaje"]++;
