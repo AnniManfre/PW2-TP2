@@ -22,40 +22,16 @@
 
                 <h1 class="profile-name">{{nombre_completo}}</h1>
                 <p class="profile-subtitle">{{nivel}} · {{categoria}}</p>
-
-                <a href="/user/editarPerfil" class="btn-edit" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
-                 <span class="material-symbols-outlined">edit</span>
-                    Editar Perfil
-                </a>
             </div>
 
-            <div class="location-card card-shadow">
+            <div class="qr-card card-shadow">
                 <div class="location-header">
-                    <span class="material-symbols-outlined location-icon">location_on</span>
-                    <span class="location-label">Ubicación</span>
+                    <span class="material-symbols-outlined location-icon">qr_code_2</span>
+                    <span class="location-label">Compartir perfil</span>
                 </div>
-                <div class="location-map" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-                    {{#pais}}
-                        <div style="width: 100%; height: 200px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                            <iframe 
-                                width="100%" 
-                                height="100%" 
-                                frameborder="0" 
-                                style="border:0;" 
-                                src="https://maps.google.com/maps?q={{ciudad}},{{pais}}&output=embed" 
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                        <p class="location-text" style="font-weight: 500; color: #555;">
-                            <span class="material-symbols-outlined" style="vertical-align: middle; font-size: 18px;">pin_drop</span>
-                            {{ciudad}}, {{pais}}
-                        </p>
-                    {{/pais}}
-                    
-                    {{^pais}}
-                        <span class="material-symbols-outlined location-placeholder" style="font-size: 48px; color: #ccc;">public</span>
-                        <p class="location-text">Ubicación no especificada</p>
-                    {{/pais}}
+                <div class="qr-body">
+                    <img src="/user/qr?id={{id}}" alt="Código QR del perfil" class="qr-image">
+                    <p class="qr-caption">Escaneá el QR para ver este perfil</p>
                 </div>
             </div>
         </div>
@@ -127,19 +103,53 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="action-buttons">
-                <a href="/user/lobby" class="btn-action btn-primary" style="text-decoration: none;">
-                    <span class="material-symbols-outlined">home</span>
-                    Ir al Lobby
-                </a>
-                <a href="/user/logout" class="btn-action btn-secondary" style="text-decoration: none;">
-                    <span class="material-symbols-outlined">logout</span>
-                    Cerrar Sesión
+                <a href="/user/editarPerfil" class="btn-edit">
+                    <span class="material-symbols-outlined">edit</span>
+                    Editar Perfil
                 </a>
             </div>
         </div>
+    </div>
+
+    <div class="location-card location-card-full card-shadow">
+        <div class="location-header">
+            <span class="material-symbols-outlined location-icon">location_on</span>
+            <span class="location-label">Ubicación</span>
+        </div>
+        <div class="location-body">
+            {{#pais}}
+                <div class="location-map-frame">
+                    <iframe
+                        width="100%"
+                        height="100%"
+                        frameborder="0"
+                        src="https://maps.google.com/maps?q={{ciudad}},{{pais}}&output=embed"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p class="location-text">
+                    <span class="material-symbols-outlined">pin_drop</span>
+                    {{ciudad}}, {{pais}}
+                </p>
+            {{/pais}}
+
+            {{^pais}}
+                <span class="material-symbols-outlined location-placeholder">public</span>
+                <p class="location-text">Ubicación no especificada</p>
+            {{/pais}}
+        </div>
+    </div>
+
+    <div class="action-buttons action-buttons-full">
+        <a href="/user/lobby" class="btn-action btn-primary">
+            <span class="material-symbols-outlined">home</span>
+            Ir al Lobby
+        </a>
+        <a href="/user/logout" class="btn-action btn-secondary">
+            <span class="material-symbols-outlined">logout</span>
+            Cerrar Sesión
+        </a>
     </div>
 </main>
 
