@@ -2,6 +2,7 @@
 
 <link rel="stylesheet" href="/public/styles/registro.css">
 
+<div class="auth-form auth-form--wide">
     <h2>Crear Cuenta</h2>
 
     {{#error}}
@@ -53,18 +54,18 @@
             <div class="password-requirements">
                 <p class="requirements-title">Requisitos de seguridad: </p>
                 <ul>
-                    <li class="" id="req-length">
-                        <span class="requirement-icon">✓</span>
+                    <li class="requirement" id="req-length">
+                        <span class="requirement-icon">○</span>
                         <span>Mínimo 8 caracteres.</span>
                     </li>
 
-                    <li class="" id="req-uppercase">
-                        <span class="requirement-icon">✓</span>
+                    <li class="requirement" id="req-uppercase">
+                        <span class="requirement-icon">○</span>
                         <span>Al menos 1 letra mayúscula (A-Z).</span>
                     </li>
 
-                    <li class="" id="req-number">
-                        <span class="requirement-icon">✓</span>
+                    <li class="requirement" id="req-number">
+                        <span class="requirement-icon">○</span>
                         <span>Al menos 1 número (0-9).</span>
                     </li>
                 </ul>
@@ -83,46 +84,33 @@
             <p class="info-text">Entre 3 y 20 caracteres, solo letras y números.</p>
         </div>
 
-        <button type="submit" class="btn">CREAR CUENTA</button>
+        <button type="submit" class="btn">Crear Cuenta</button>
     </form>
 
     <div class="text-center" style="margin-top: 25px;">
-        ¿Ya tienes cuenta? <a href="/user/login">INICIAR SESIÓN</a>
+        ¿Ya tienes cuenta? <a href="/user/login">Iniciar Sesión</a>
     </div>
+</div>
 
     <script>
+        function setRequirement(el, met) {
+            const icon = el.querySelector('.requirement-icon');
+            if (met) {
+                el.classList.add('requirement-checked');
+                el.classList.remove('requirement-unchecked');
+                icon.textContent = '✓';
+            } else {
+                el.classList.remove('requirement-checked');
+                el.classList.add('requirement-unchecked');
+                icon.textContent = '○';
+            }
+        }
+
         function validarContraseña() {
             const password = document.getElementById('password').value;
-
-            // Mínimo 8 caracteres.
-            const reqLength = document.getElementById('req-length');
-            if (password.length >= 8) {
-                reqLength.classList.add('requirement-checked');
-                reqLength.classList.remove('requirement-unchecked');
-            } else {
-                reqLength.classList.remove('requirement-checked');
-                reqLength.classList.add('requirement-unchecked');
-            }
-
-            // Al menos 1 mayúscula.
-            const reqUppercase = document.getElementById('req-uppercase');
-            if (/[A-Z]/.test(password) === true) {
-                reqUppercase.classList.add('requirement-checked');
-                reqUppercase.classList.remove('requirement-unchecked');
-            } else {
-                reqUppercase.classList.remove('requirement-checked');
-                reqUppercase.classList.add('requirement-unchecked');
-            }
-
-            // Al menos 1 número.
-            const reqNumber = document.getElementById('req-number');
-            if (/[0-9]/.test(password) === true) {
-                reqNumber.classList.add('requirement-checked');
-                reqNumber.classList.remove('requirement-unchecked');
-            } else {
-                reqNumber.classList.remove('requirement-checked');
-                reqNumber.classList.add('requirement-unchecked');
-            }
+            setRequirement(document.getElementById('req-length'), password.length >= 8);
+            setRequirement(document.getElementById('req-uppercase'), /[A-Z]/.test(password));
+            setRequirement(document.getElementById('req-number'), /[0-9]/.test(password));
         }
 
         document.addEventListener('DOMContentLoaded', validarContraseña);
