@@ -75,56 +75,6 @@ nav a.logo:hover {
     transform: scale(1.05);
 }
 
-.nav-center {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
-.search-box {
-    display: flex;
-    align-items: center;
-    background: #f0f4f8;
-    border-radius: var(--radius);
-    padding: var(--unit) calc(var(--unit) * 1.75);
-    border: 2px solid var(--outline-variant);
-    transition: all var(--transition);
-    max-width: 300px;
-    width: 100%;
-}
-
-.search-box:hover {
-    border-color: var(--primary);
-    background: white;
-}
-
-.search-box:focus-within {
-    border-color: var(--primary);
-    background: white;
-    box-shadow: 0 0 0 3px rgba(53, 37, 205, 0.1);
-}
-
-.search-box input {
-    background: transparent;
-    border: none;
-    outline: none;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9em;
-    width: 100%;
-    padding: 0 var(--unit);
-    color: var(--on-surface);
-}
-
-.search-box input::placeholder {
-    color: var(--on-surface-variant);
-}
-
-.search-icon {
-    color: var(--on-surface-variant);
-    font-size: 1.1em;
-    cursor: pointer;
-}
-
 .nav-right {
     display: flex;
     align-items: center;
@@ -192,6 +142,15 @@ header p {
     margin-top: calc(var(--unit) * 1.5);
     font-weight: 400;
     letter-spacing: 0.02em;
+}
+
+/* Encabezado compacto para el resto de las vistas */
+header.page-header {
+    padding: calc(var(--unit) * 2.5) calc(var(--unit) * 2.5);
+}
+
+header.page-header h1 {
+    font-size: 1.6em;
 }
 
 /* Contenedor y diseño. */
@@ -284,6 +243,24 @@ h2 {
     transform: translateY(0);
 }
 
+/* Formularios de login / registro: más angostos y centrados */
+.auth-form {
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.auth-form--wide {
+    max-width: 560px;
+}
+
+.auth-form .btn {
+    display: block;
+    width: fit-content;
+    padding: calc(var(--unit) * 1.75) calc(var(--unit) * 5);
+    margin: calc(var(--unit) * 2) auto 0;
+    font-size: 0.95em;
+}
+
 .btn-secondary {
     background: linear-gradient(135deg, var(--secondary) 0%, #8d0a54 100%);
     box-shadow: 0 2px 8px rgba(180, 19, 109, 0.15);
@@ -370,10 +347,6 @@ h2 {
     h2 {
         font-size: 1.8em;
     }
-
-    .search-box {
-        max-width: 200px;
-    }
 }
 
 /* Mobile (menos de 768px) */
@@ -386,15 +359,6 @@ h2 {
 
     nav a.logo {
         font-size: 1.1em;
-    }
-
-    .nav-center {
-        order: 3;
-        flex-basis: 100%;
-    }
-
-    .search-box {
-        max-width: 100%;
     }
 
     .nav-right {
@@ -489,10 +453,5 @@ h2 {
     .btn {
         padding: calc(var(--unit) * 1.375) calc(var(--unit) * 2);
         font-size: 0.9em;
-    }
-
-    .search-box {
-        padding: calc(var(--unit) * 0.75) calc(var(--unit) * 1.25);
-        font-size: 0.85em;
     }
 }
