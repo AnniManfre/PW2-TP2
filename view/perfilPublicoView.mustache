@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de jugador</title>
+    <link rel="stylesheet" href="/public/styles/perfilPublico.css">
+</head>
+<body>
+    <div class="card">
+        {{#no_encontrado}}
+            <h1 class="name">Jugador no encontrado</h1>
+            <p class="vacio">El perfil que buscás no existe.</p>
+        {{/no_encontrado}}
+
+        {{^no_encontrado}}
+            {{#foto_perfil}}
+                <img src="{{foto_perfil}}" alt="Foto de perfil" class="avatar">
+            {{/foto_perfil}}
+            {{^foto_perfil}}
+                <div class="avatar-placeholder">&#128100;</div>
+            {{/foto_perfil}}
+
+            <h1 class="name">{{nombre_completo}}</h1>
+            <p class="username">@{{usuario}}</p>
+            <span class="nivel">{{nivel}} &middot; {{categoria}}</span>
+
+            <div class="stats">
+                <div>
+                    <div class="stat-value">{{puntaje}}</div>
+                    <div class="stat-label">Tokens</div>
+                </div>
+                <div>
+                    <div class="stat-value">{{partidas_ganadas}}</div>
+                    <div class="stat-label">Partidas ganadas</div>
+                </div>
+            </div>
+
+            {{#pais}}
+                <p class="location">&#128205; {{ciudad}}, {{pais}}</p>
+            {{/pais}}
+        {{/no_encontrado}}
+    </div>
+</body>
+</html>

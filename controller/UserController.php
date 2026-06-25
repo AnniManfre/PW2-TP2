@@ -341,5 +341,62 @@ class UserController
 
         $this->renderer->render("lobbyView", $datosVista);
     }
+
+    // Genera y devuelve la imagen QR (PNG) que apunta a la vista pública del usuario
+    public function qr()
+    {
+        Log::info("UserController::qr");
+
+        $id = $this->request->get('id', $_SESSION['user_id'] ?? null);
+        if ($id === null) {
+            return;
+        }
+
+        require_once __DIR__ . '/../phpqrcode/qrlib.php';
+
+        $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+        $url  = "http://" . $host . "/user/publico?id=" . urlencode($id);
+
+        // Limpiamos cualquier salida previa para no corromper el PNG
+        while (ob_get_level() > 0) {
+            ob_end_clean();
+        }
+
+        QRcode::png($url, false, QR_ECLEVEL_M, 6, 2);
+        exit;
+    }
+
+    // Vista pública (la que abre el QR)
+    public function publico()
+    {
+        Log::info("UserController::publico");
+
+        $id = $this->request->get('id');
+        $usuario = $id !== null ? $this->model->obtenerPorId($id) : null;
+
+        if ($usuario === null) {
+            $this->renderer->render("perfilPublicoView", ['no_encontrado' => true]);
+            return;
+        }
+
+        $puntaje = $usuario['puntaje'] ?? 0;
+        if ($puntaje < 20)      $nivelNum = 1;
+        elseif ($puntaje < 40)  $nivelNum = 2;
+        else                    $nivelNum = 3;
+
+        $datos = [
+            'nombre_completo'  => $usuario['nombre_completo'],
+            'usuario'          => $usuario['usuario'],
+            'pais'             => $usuario['pais'],
+            'ciudad'           => $usuario['ciudad'],
+            'foto_perfil'      => $usuario['foto_perfil'] ?? null,
+            'puntaje'          => $puntaje,
+            'nivel'            => 'Nivel ' . $nivelNum,
+            'categoria'        => PartidaController::NIVELES[$nivelNum],
+            'partidas_ganadas' => $this->model->contarPartidasGanadas($usuario['id'], PartidaController::TOTAL_PREGUNTAS),
+        ];
+
+        $this->renderer->render("perfilPublicoView", $datos);
+    }
 }
 
