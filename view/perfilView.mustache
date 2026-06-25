@@ -30,8 +30,10 @@
                     <span class="location-label">Compartir perfil</span>
                 </div>
                 <div class="qr-body">
-                    <img src="/user/qr?id={{id}}" alt="Código QR del perfil" class="qr-image">
-                    <p class="qr-caption">Escaneá el QR para ver este perfil</p>
+                    <a href="/user/publico?id={{id}}" target="_blank" class="qr-link">
+                        <img src="/user/qr?id={{id}}" alt="Código QR del perfil" class="qr-image">
+                    </a>
+                    <p class="qr-caption">Escaneá el QR o tocá la imagen para ver el perfil</p>
                 </div>
             </div>
         </div>

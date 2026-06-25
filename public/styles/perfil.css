@@ -254,6 +254,16 @@
     background: linear-gradient(135deg, var(--surface-container-high) 0%, var(--surface-container) 100%);
 }
 
+.qr-link {
+    display: inline-block;
+    line-height: 0;
+    transition: transform var(--transition);
+}
+
+.qr-link:hover {
+    transform: scale(1.03);
+}
+
 .qr-image {
     width: 168px;
     height: 168px;
