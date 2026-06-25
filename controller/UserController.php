@@ -21,7 +21,7 @@ class UserController
             Redirect::to('/user/lobby');
             return;
         }
-        $this->renderer->render("homeView");
+        $this->renderer->render("homeView", ['banner' => true]);
     }
 
     public function registro()
@@ -245,6 +245,7 @@ class UserController
 
         $user['nivel']     = 'Nivel ' . $nivelNum;
         $user['categoria'] = PartidaController::NIVELES[$nivelNum];
+        $user['page_title'] = 'Mi Perfil';
 
         $this->renderer->render("perfilView", $user);
     }
@@ -260,6 +261,7 @@ class UserController
 
         // Buscamos los datos actuales para rellenar el formulario
         $user = $this->model->obtenerPorId($_SESSION['user_id']);
+        $user['page_title'] = 'Editar Perfil';
         $this->renderer->render("editarPerfilView", $user);
     }
 
@@ -333,6 +335,8 @@ class UserController
 
         $datosVista['ranking'] = $this->model->obtenerPartidasRecientes($_SESSION['user_id']);
 
+        $datosVista['banner'] = true;
+
         if (isset($_SESSION["mensaje"])) {
             $datosVista['mensaje'] = $_SESSION["mensaje"];
             $datosVista['mensaje_clase'] = (($_SESSION["mensaje_tipo"] ?? "info") === "error") ? "error" : "success";
@@ -397,6 +401,45 @@ class UserController
         ];
 
         $this->renderer->render("perfilPublicoView", $datos);
+    }
+
+    // Ranking global: todos los usuarios ordenados por tokens acumulados
+    public function ranking()
+    {
+        Log::info("UserController::ranking");
+
+        if (!isset($_SESSION['user_id'])) {
+            Redirect::to('/user/login');
+            return;
+        }
+
+        // obtenerTodos() ya devuelve los usuarios ordenados por puntaje DESC
+        $usuarios = $this->model->obtenerTodos();
+
+        $ranking = [];
+        $posicion = 0;
+        foreach ($usuarios as $u) {
+            $posicion++;
+            $ranking[] = [
+                'posicion'        => $posicion,
+                'usuario'         => $u['usuario'],
+                'nombre_completo' => $u['nombre_completo'],
+                'puntaje'         => $u['puntaje'],
+                'es_actual'       => ($u['id'] == $_SESSION['user_id']),
+                'top1'            => $posicion === 1,
+                'top2'            => $posicion === 2,
+                'top3'            => $posicion === 3,
+            ];
+        }
+
+        $usuarioActual = $this->model->obtenerPorId($_SESSION['user_id']);
+
+        $this->renderer->render("rankingView", [
+            'ranking'     => $ranking,
+            'usuario'     => $usuarioActual['usuario'],
+            'foto_perfil' => $usuarioActual['foto_perfil'] ?? null,
+            'page_title'  => 'Ranking Global',
+        ]);
     }
 }
 

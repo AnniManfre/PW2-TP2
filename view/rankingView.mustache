@@ -1,0 +1,52 @@
+{{>header}}
+
+<link rel="stylesheet" href="/public/styles/ranking.css">
+
+<main class="ranking-main">
+    <p class="ranking-subtitle">Los mejores jugadores por tokens acumulados</p>
+
+    <div class="ranking-table-wrap card-shadow">
+        <table class="ranking-table">
+            <thead>
+                <tr>
+                    <th class="col-pos">Puesto</th>
+                    <th class="col-player">Jugador</th>
+                    <th class="col-tokens">Tokens</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#ranking}}
+                <tr class="rank-row {{#es_actual}}rank-row-me{{/es_actual}}{{#top1}}rank-top1{{/top1}}{{#top2}}rank-top2{{/top2}}{{#top3}}rank-top3{{/top3}}">
+                    <td class="col-pos">
+                        {{#top1}}<span class="medal">🥇</span>{{/top1}}
+                        {{#top2}}<span class="medal">🥈</span>{{/top2}}
+                        {{#top3}}<span class="medal">🥉</span>{{/top3}}
+                        <span class="pos-num">{{posicion}}°</span>
+                    </td>
+                    <td class="col-player">
+                        <span class="player-name">{{nombre_completo}}</span>
+                        <span class="player-user">@{{usuario}}</span>
+                        {{#es_actual}}<span class="badge-me">Vos</span>{{/es_actual}}
+                    </td>
+                    <td class="col-tokens">{{puntaje}} <span class="tkn">Tkn</span></td>
+                </tr>
+                {{/ranking}}
+
+                {{^ranking}}
+                <tr>
+                    <td colspan="3" class="ranking-empty">Todavía no hay jugadores en el ranking.</td>
+                </tr>
+                {{/ranking}}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="ranking-actions">
+        <a href="/user/lobby" class="ranking-back">
+            <span class="material-symbols-outlined">arrow_back</span>
+            Volver al Lobby
+        </a>
+    </div>
+</main>
+
+{{>footer}}
