@@ -160,3 +160,33 @@ header p {
         padding: 25px 12px;
     }
 }
+
+.admin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: #ede9fe;
+    color: var(--primary) !important;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    text-decoration: none !important;
+    transition: all var(--transition);
+    border: 1px solid var(--outline-variant);
+}
+
+.admin-link:hover {
+    background: var(--primary);
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(53, 37, 205, 0.2);
+    transform: translateY(-1px);
+    border-color: var(--primary);
+}
+
+.admin-link .navbar-icon {
+    font-size: 18px;
+    font-weight: normal;
+}

@@ -1,0 +1,417 @@
+[00:37:11] [INFO] UserController::home
+[00:37:11] [INFO] UserController::home
+[00:37:13] [INFO] UserController::login (form)
+[00:37:13] [INFO] UserController::home
+[00:37:15] [INFO] UserController::procesarLogin
+[00:37:15] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [asd1234]
+[00:37:15] [INFO] UserController::procesarLogin - Login exitoso: asd1234
+[00:37:15] [INFO] UserController::perfil
+[00:37:15] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[00:37:15] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[00:37:15] [INFO] UserController::qr
+[00:37:16] [INFO] UserController::home
+[00:37:17] [INFO] UserController::lobby
+[00:37:17] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[00:37:21] [INFO] UserController::publico
+[00:37:21] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[00:37:21] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[00:37:22] [INFO] UserController::home
+[00:37:22] [INFO] UserController::lobby
+[00:37:22] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[00:37:29] [INFO] UserController::lobby
+[00:37:29] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[00:37:29] [INFO] UserController::home
+[00:37:29] [INFO] UserController::lobby
+[00:37:29] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[00:38:59] [INFO] UserController::lobby
+[00:38:59] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[00:39:00] [INFO] UserController::home
+[00:39:00] [INFO] UserController::lobby
+[00:39:00] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[00:39:03] [INFO] UserController::perfil
+[00:39:03] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[00:39:03] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[00:39:03] [INFO] UserController::qr
+[00:39:04] [INFO] UserController::home
+[00:39:04] [INFO] UserController::lobby
+[00:39:04] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[00:39:05] [INFO] UserController::home
+[00:39:05] [INFO] UserController::lobby
+[00:39:05] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[00:39:05] [INFO] UserController::home
+[00:39:05] [INFO] UserController::lobby
+[00:39:05] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[00:39:47] [INFO] UserController::logout
+[00:39:47] [INFO] UserController::home
+[00:39:47] [INFO] UserController::home
+[00:39:48] [INFO] UserController::login (form)
+[00:39:48] [INFO] UserController::home
+[00:39:54] [INFO] UserController::procesarLogin
+[00:39:54] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [Admin]
+[00:39:54] [WARNING] UserController::procesarLogin - Credenciales inválidas: Admin
+[00:39:54] [INFO] UserController::home
+[00:40:00] [INFO] UserController::procesarLogin
+[00:40:00] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [admin]
+[00:40:00] [WARNING] UserController::procesarLogin - Credenciales inválidas: admin
+[00:40:00] [INFO] UserController::home
+[00:40:20] [INFO] UserController::procesarLogin
+[00:40:20] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [Administrador]
+[00:40:20] [WARNING] UserController::procesarLogin - Credenciales inválidas: Administrador
+[00:40:20] [INFO] UserController::home
+[00:41:45] [INFO] UserController::procesarLogin
+[00:41:45] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [admin]
+[00:41:45] [WARNING] UserController::procesarLogin - Credenciales inválidas: admin
+[00:41:46] [INFO] UserController::home
+[00:41:48] [INFO] UserController::procesarLogin
+[00:41:48] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [admin]
+[00:41:48] [WARNING] UserController::procesarLogin - Credenciales inválidas: admin
+[00:41:48] [INFO] UserController::home
+[00:41:53] [INFO] UserController::procesarLogin
+[00:41:53] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [Admin]
+[00:41:53] [WARNING] UserController::procesarLogin - Credenciales inválidas: Admin
+[00:41:53] [INFO] UserController::home
+[00:41:55] [INFO] UserController::registro (form)
+[00:41:55] [INFO] UserController::home
+[00:42:01] [INFO] UserController::login (form)
+[00:42:01] [INFO] UserController::home
+[00:44:18] [INFO] UserController::home
+[00:44:41] [INFO] UserController::login (form)
+[00:44:41] [INFO] UserController::home
+[00:44:46] [INFO] UserController::procesarLogin
+[00:44:46] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [admin]
+[00:44:47] [INFO] UserController::procesarLogin - Login exitoso: admin
+[00:44:47] [INFO] UserController::perfil
+[00:44:47] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:44:47] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [2, 4]
+[00:44:47] [INFO] UserController::qr
+[00:44:47] [INFO] UserController::home
+[00:44:47] [INFO] UserController::lobby
+[00:44:47] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:44:53] [INFO] UserController::lobby
+[00:44:53] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:44:53] [INFO] UserController::home
+[00:44:53] [INFO] UserController::lobby
+[00:44:53] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:45:03] [INFO] UserController::perfil
+[00:45:03] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:45:03] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [2, 4]
+[00:45:03] [INFO] UserController::qr
+[00:45:03] [INFO] UserController::home
+[00:45:03] [INFO] UserController::lobby
+[00:45:03] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:45:17] [INFO] UserController::home
+[00:45:17] [INFO] UserController::lobby
+[00:45:17] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:45:17] [INFO] UserController::home
+[00:45:17] [INFO] UserController::lobby
+[00:45:17] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:45:26] [INFO] UserController::home
+[00:45:32] [INFO] UserController::home
+[00:45:39] [INFO] UserController::home
+[00:45:45] [INFO] UserController::home
+[00:45:51] [INFO] UserController::home
+[00:45:56] [INFO] UserController::home
+[00:46:02] [INFO] UserController::home
+[00:46:07] [INFO] UserController::home
+[00:46:12] [INFO] UserController::home
+[00:46:17] [INFO] UserController::home
+[00:46:22] [INFO] UserController::home
+[00:46:26] [INFO] UserController::home
+[00:46:31] [INFO] UserController::home
+[00:46:35] [INFO] UserController::home
+[00:46:40] [INFO] UserController::home
+[00:46:44] [INFO] UserController::home
+[00:46:48] [INFO] UserController::home
+[00:46:53] [INFO] UserController::home
+[00:46:57] [INFO] UserController::home
+[00:47:02] [INFO] UserController::home
+[00:47:06] [INFO] UserController::home
+[00:47:11] [INFO] UserController::home
+[00:47:16] [INFO] UserController::home
+[00:47:20] [INFO] UserController::home
+[00:47:24] [INFO] UserController::home
+[00:47:29] [INFO] UserController::home
+[00:47:30] [INFO] UserController::logout
+[00:47:30] [INFO] UserController::home
+[00:47:30] [INFO] UserController::home
+[00:47:31] [INFO] UserController::login (form)
+[00:47:31] [INFO] UserController::home
+[00:47:33] [INFO] UserController::home
+[00:47:38] [INFO] UserController::home
+[00:47:40] [INFO] UserController::procesarLogin
+[00:47:40] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [Admin]
+[00:47:40] [INFO] UserController::procesarLogin - Login exitoso: Admin
+[00:47:40] [INFO] UserController::perfil
+[00:47:40] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:47:40] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [2, 4]
+[00:47:40] [INFO] UserController::qr
+[00:47:40] [INFO] UserController::home
+[00:47:40] [INFO] UserController::lobby
+[00:47:40] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:47:42] [INFO] UserController::home
+[00:47:42] [INFO] AdminController::dashboard
+[00:47:42] [INFO] UserController::home
+[00:47:42] [INFO] UserController::lobby
+[00:47:42] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:47:45] [INFO] UserController::home
+[00:47:48] [INFO] AdminController::preguntas
+[00:47:48] [INFO] UserController::home
+[00:47:48] [INFO] UserController::home
+[00:47:48] [INFO] UserController::lobby
+[00:47:48] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:47:51] [INFO] UserController::home
+[00:47:54] [INFO] UserController::home
+[00:47:55] [INFO] AdminController::dashboard
+[00:47:56] [INFO] UserController::home
+[00:47:56] [INFO] UserController::lobby
+[00:47:56] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:47:57] [INFO] UserController::home
+[00:48:00] [INFO] UserController::home
+[00:48:02] [INFO] AdminController::agregarPregunta
+[00:48:02] [INFO] UserController::home
+[00:48:02] [INFO] UserController::lobby
+[00:48:02] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:48:03] [INFO] UserController::home
+[00:48:05] [INFO] AdminController::preguntas
+[00:48:05] [INFO] UserController::home
+[00:48:05] [INFO] UserController::lobby
+[00:48:05] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:48:07] [INFO] UserController::home
+[00:48:07] [INFO] AdminController::dashboard
+[00:48:07] [INFO] UserController::home
+[00:48:07] [INFO] UserController::lobby
+[00:48:07] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:48:08] [INFO] UserController::home
+[00:48:08] [INFO] UserController::lobby
+[00:48:08] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:48:08] [INFO] UserController::home
+[00:48:08] [INFO] UserController::lobby
+[00:48:08] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:48:09] [INFO] UserController::home
+[00:48:10] [INFO] UserController::home
+[00:49:46] [INFO] UserController::lobby
+[00:49:46] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:49:47] [INFO] UserController::home
+[00:49:47] [INFO] UserController::lobby
+[00:49:47] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:49:48] [INFO] AdminController::dashboard
+[00:49:48] [INFO] UserController::home
+[00:49:48] [INFO] UserController::lobby
+[00:49:48] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:49:50] [INFO] AdminController::usuarios
+[00:49:50] [INFO] UserController::home
+[00:49:50] [INFO] UserController::lobby
+[00:49:50] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:49:53] [INFO] AdminController::dashboard
+[00:49:54] [INFO] UserController::home
+[00:49:54] [INFO] UserController::lobby
+[00:49:54] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:49:55] [INFO] AdminController::reportadas
+[00:49:55] [INFO] UserController::home
+[00:49:55] [INFO] UserController::lobby
+[00:49:55] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:49:56] [INFO] AdminController::dashboard
+[00:49:56] [INFO] UserController::home
+[00:49:56] [INFO] UserController::lobby
+[00:49:56] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:49:57] [INFO] AdminController::reportes
+[00:49:57] [INFO] UserController::home
+[00:49:57] [INFO] UserController::lobby
+[00:49:57] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:50:04] [INFO] AdminController::dashboard
+[00:50:05] [INFO] UserController::home
+[00:50:05] [INFO] UserController::lobby
+[00:50:05] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:50:05] [INFO] UserController::home
+[00:50:05] [INFO] UserController::lobby
+[00:50:05] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:50:06] [INFO] UserController::home
+[00:50:06] [INFO] UserController::lobby
+[00:50:06] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:53:22] [INFO] UserController::lobby
+[00:53:22] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:53:23] [INFO] UserController::home
+[00:53:23] [INFO] UserController::lobby
+[00:53:23] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:53:24] [INFO] UserController::home
+[00:53:24] [INFO] UserController::lobby
+[00:53:24] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:53:31] [INFO] UserController::home
+[00:53:31] [INFO] UserController::lobby
+[00:53:31] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:53:33] [INFO] UserController::lobby
+[00:53:33] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:53:33] [INFO] UserController::home
+[00:53:33] [INFO] UserController::lobby
+[00:53:33] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:53:38] [INFO] AdminController::dashboard
+[00:53:38] [INFO] UserController::home
+[00:53:38] [INFO] UserController::lobby
+[00:53:38] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:53:40] [INFO] AdminController::sugeridas
+[00:53:40] [INFO] UserController::home
+[00:53:40] [INFO] UserController::lobby
+[00:53:40] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:53:41] [INFO] AdminController::dashboard
+[00:53:41] [INFO] UserController::home
+[00:53:41] [INFO] UserController::lobby
+[00:53:41] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:53:42] [INFO] AdminController::agregarPregunta
+[00:53:42] [INFO] UserController::home
+[00:53:42] [INFO] UserController::lobby
+[00:53:42] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:53:44] [INFO] AdminController::preguntas
+[00:53:44] [INFO] UserController::home
+[00:53:44] [INFO] UserController::lobby
+[00:53:44] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:53:46] [INFO] AdminController::dashboard
+[00:53:46] [INFO] UserController::home
+[00:53:46] [INFO] UserController::lobby
+[00:53:46] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:53:47] [INFO] AdminController::preguntas
+[00:53:47] [INFO] UserController::home
+[00:53:47] [INFO] UserController::lobby
+[00:53:47] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:53:50] [INFO] AdminController::dashboard
+[00:53:50] [INFO] UserController::home
+[00:53:50] [INFO] UserController::lobby
+[00:53:50] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:53:52] [INFO] AdminController::reportes
+[00:53:52] [INFO] UserController::home
+[00:53:52] [INFO] UserController::lobby
+[00:53:52] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:53:54] [INFO] AdminController::dashboard
+[00:53:54] [INFO] UserController::home
+[00:53:54] [INFO] UserController::lobby
+[00:53:54] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:53:55] [INFO] AdminController::usuarios
+[00:53:55] [INFO] UserController::home
+[00:53:55] [INFO] UserController::lobby
+[00:53:55] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:53:56] [INFO] AdminController::dashboard
+[00:53:56] [INFO] UserController::home
+[00:53:56] [INFO] UserController::lobby
+[00:53:56] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:53:57] [INFO] AdminController::reportadas
+[00:53:57] [INFO] UserController::home
+[00:53:57] [INFO] UserController::lobby
+[00:53:57] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:53:59] [INFO] AdminController::dashboard
+[00:53:59] [INFO] UserController::home
+[00:53:59] [INFO] UserController::lobby
+[00:53:59] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:54:05] [INFO] UserController::home
+[00:54:05] [INFO] UserController::lobby
+[00:54:05] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:54:05] [INFO] UserController::home
+[00:54:05] [INFO] UserController::lobby
+[00:54:05] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:54:09] [INFO] UserController::home
+[00:54:09] [INFO] UserController::lobby
+[00:54:09] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:54:17] [INFO] UserController::home
+[00:54:17] [INFO] UserController::lobby
+[00:54:17] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:54:18] [INFO] UserController::lobby
+[00:54:18] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:54:19] [INFO] UserController::home
+[00:54:19] [INFO] UserController::lobby
+[00:54:19] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:56:31] [INFO] UserController::lobby
+[00:56:31] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:56:31] [INFO] UserController::home
+[00:56:31] [INFO] UserController::lobby
+[00:56:31] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:56:32] [INFO] UserController::home
+[00:56:32] [INFO] UserController::lobby
+[00:56:32] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:56:38] [INFO] UserController::lobby
+[00:56:38] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:56:38] [INFO] UserController::home
+[00:56:38] [INFO] UserController::lobby
+[00:56:38] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:56:42] [INFO] UserController::home
+[00:56:42] [INFO] UserController::lobby
+[00:56:42] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:56:48] [INFO] UserController::home
+[00:56:48] [INFO] UserController::lobby
+[00:56:48] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:56:50] [INFO] UserController::lobby
+[00:56:50] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:56:50] [INFO] UserController::home
+[00:56:50] [INFO] UserController::lobby
+[00:56:50] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:57:13] [INFO] UserController::lobby
+[00:57:13] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:57:14] [INFO] UserController::home
+[00:57:14] [INFO] UserController::lobby
+[00:57:14] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:57:17] [INFO] UserController::logout
+[00:57:17] [INFO] UserController::home
+[00:57:17] [INFO] UserController::home
+[00:57:18] [INFO] UserController::login (form)
+[00:57:18] [INFO] UserController::home
+[00:57:20] [INFO] UserController::procesarLogin
+[00:57:20] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [Admin]
+[00:57:20] [INFO] UserController::procesarLogin - Login exitoso: Admin
+[00:57:20] [INFO] UserController::perfil
+[00:57:20] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:57:20] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [2, 4]
+[00:57:20] [INFO] UserController::qr
+[00:57:21] [INFO] UserController::home
+[00:57:21] [INFO] UserController::lobby
+[00:57:21] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:57:22] [INFO] UserController::lobby
+[00:57:22] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:57:22] [INFO] UserController::home
+[00:57:22] [INFO] UserController::lobby
+[00:57:22] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:57:25] [INFO] UserController::home
+[00:57:25] [INFO] UserController::lobby
+[00:57:25] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:57:35] [INFO] UserController::home
+[00:57:35] [INFO] UserController::lobby
+[00:57:35] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:57:40] [INFO] UserController::lobby
+[00:57:40] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:57:40] [INFO] UserController::home
+[00:57:40] [INFO] UserController::lobby
+[00:57:40] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:58:41] [INFO] UserController::lobby
+[00:58:41] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:58:41] [INFO] UserController::home
+[00:58:41] [INFO] UserController::lobby
+[00:58:41] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:58:44] [INFO] UserController::home
+[00:58:44] [INFO] UserController::lobby
+[00:58:44] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:58:51] [INFO] UserController::lobby
+[00:58:51] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:58:51] [INFO] UserController::home
+[00:58:51] [INFO] UserController::lobby
+[00:58:51] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:58:53] [INFO] UserController::home
+[00:58:53] [INFO] UserController::lobby
+[00:58:53] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:59:01] [INFO] UserController::home
+[00:59:01] [INFO] UserController::lobby
+[00:59:01] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:59:06] [INFO] UserController::lobby
+[00:59:06] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:59:06] [INFO] UserController::home
+[00:59:06] [INFO] UserController::lobby
+[00:59:06] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:59:08] [INFO] UserController::home
+[00:59:09] [INFO] UserController::lobby
+[00:59:09] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:59:10] [INFO] UserController::home
+[00:59:10] [INFO] UserController::lobby
+[00:59:10] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:59:18] [INFO] UserController::home
+[00:59:18] [INFO] UserController::lobby
+[00:59:18] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:59:19] [INFO] UserController::lobby
+[00:59:19] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[00:59:19] [INFO] UserController::home
+[00:59:19] [INFO] UserController::lobby
+[00:59:19] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]

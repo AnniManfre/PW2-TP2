@@ -1,0 +1,81 @@
+{{>header}}
+
+<link rel="stylesheet" href="/public/styles/dashboard.css">
+
+<div class="dashboard">
+
+    <h1>Panel de Administración</h1>
+    <p>Bienvenido {{usuario}}</p>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Usuarios</h3>
+            <span>{{total_usuarios}}</span>
+        </div>
+
+        <div class="card">
+            <h3>Preguntas</h3>
+            <span>{{total_preguntas}}</span>
+        </div>
+
+        <div class="card">
+            <h3>Sugeridas</h3>
+            <span>{{preguntas_sugeridas}}</span>
+        </div>
+
+        <div class="card">
+            <h3>Reportadas</h3>
+            <span>{{preguntas_reportadas}}</span>
+        </div>
+
+        <div class="card">
+            <h3>Partidas</h3>
+            <span>{{partidas}}</span>
+        </div>
+
+    </div>
+
+    <div class="menu-grid">
+
+        <a href="/admin/preguntas" class="menu-card">
+            <span>📚</span>
+            <h2>Administrar Preguntas</h2>
+            <p>Editar y eliminar preguntas.</p>
+        </a>
+
+        <a href="/admin/agregarPregunta" class="menu-card">
+            <span>➕</span>
+            <h2>Agregar Pregunta</h2>
+            <p>Crear nuevas preguntas.</p>
+        </a>
+
+        <a href="/admin/sugeridas" class="menu-card">
+            <span>💡</span>
+            <h2>Preguntas Sugeridas</h2>
+            <p>Revisar propuestas de usuarios.</p>
+        </a>
+
+        <a href="/admin/reportadas" class="menu-card">
+            <span>🚩</span>
+            <h2>Preguntas Reportadas</h2>
+            <p>Revisar reportes.</p>
+        </a>
+
+        <a href="/admin/usuarios" class="menu-card">
+            <span>👥</span>
+            <h2>Usuarios</h2>
+            <p>Administrar usuarios.</p>
+        </a>
+
+        <a href="/admin/reportes" class="menu-card">
+            <span>📈</span>
+            <h2>Reportes</h2>
+            <p>Estadísticas del sistema.</p>
+        </a>
+
+    </div>
+
+</div>
+
+{{>footer}}

@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS users (
     usuario VARCHAR(50) NOT NULL UNIQUE,
     foto_perfil VARCHAR(255),
     puntaje INT DEFAULT 0,
-    validado BOOLEAN DEFAULT FALSE
+    validado BOOLEAN DEFAULT FALSE,
+    rol ENUM('usuario', 'admin', 'editor') NOT NULL DEFAULT 'usuario'
 );
 
 ALTER TABLE users ADD COLUMN token INT NULL;
@@ -38,6 +39,7 @@ CREATE TABLE IF NOT EXISTS preguntas (
 
     categoria_id INTEGER NOT NULL,
     nivel TINYINT NOT NULL DEFAULT 2,
+    estado ENUM('activa', 'sugerida', 'reportada') NOT NULL DEFAULT 'activa',
 
     FOREIGN KEY (categoria_id) REFERENCES categorias(id)
 );
@@ -134,5 +136,3 @@ CREATE TABLE IF NOT EXISTS partidas (
 
     FOREIGN KEY (usuario_id) REFERENCES users(id)
 );
-ALTER TABLE partidas ADD COLUMN categoria_id INTEGER NULL;
-ALTER TABLE partidas ADD FOREIGN KEY (categoria_id) REFERENCES categorias(id);
