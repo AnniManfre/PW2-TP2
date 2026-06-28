@@ -1,0 +1,510 @@
+[20:37:29] [INFO] UserController::home
+[20:37:30] [INFO] UserController::home
+[20:37:31] [INFO] UserController::login (form)
+[20:37:32] [INFO] UserController::home
+[20:37:32] [INFO] UserController::procesarLogin
+[20:37:32] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [juand]
+[20:37:33] [INFO] UserController::procesarLogin - Login exitoso: juand
+[20:37:33] [INFO] UserController::perfil
+[20:37:33] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:37:33] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:37:33] [INFO] UserController::qr
+[20:37:34] [INFO] UserController::home
+[20:37:34] [INFO] UserController::lobby
+[20:37:34] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:37:37] [INFO] UserController::perfil
+[20:37:37] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:37:37] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:37:37] [INFO] UserController::qr
+[20:37:37] [INFO] UserController::home
+[20:37:37] [INFO] UserController::perfil
+[20:37:37] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:37:37] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:37:37] [INFO] UserController::lobby
+[20:37:37] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:37:37] [INFO] UserController::qr
+[20:37:37] [INFO] UserController::perfil
+[20:37:37] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:37:37] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:37:38] [INFO] UserController::qr
+[20:37:38] [INFO] UserController::perfil
+[20:37:38] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:37:38] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:37:38] [INFO] UserController::home
+[20:37:38] [INFO] UserController::qr
+[20:37:38] [INFO] UserController::perfil
+[20:37:38] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:37:38] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:37:38] [INFO] UserController::qr
+[20:37:38] [INFO] UserController::perfil
+[20:37:38] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:37:38] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:37:38] [INFO] UserController::qr
+[20:37:39] [INFO] UserController::perfil
+[20:37:39] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:37:39] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:37:39] [INFO] UserController::qr
+[20:37:39] [INFO] UserController::home
+[20:37:39] [INFO] UserController::lobby
+[20:37:39] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:37:41] [INFO] UserController::perfil
+[20:37:41] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:37:41] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:37:41] [INFO] UserController::qr
+[20:37:41] [INFO] UserController::home
+[20:37:41] [INFO] UserController::lobby
+[20:37:41] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:37:42] [INFO] UserController::publico
+[20:37:42] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:37:42] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:37:42] [INFO] UserController::home
+[20:37:42] [INFO] UserController::lobby
+[20:37:42] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:39:53] [INFO] UserController::perfil
+[20:39:53] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:39:53] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:39:53] [INFO] UserController::qr
+[20:39:53] [INFO] UserController::home
+[20:39:53] [INFO] UserController::lobby
+[20:39:53] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:39:54] [INFO] UserController::perfil
+[20:39:54] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:39:54] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:39:54] [INFO] UserController::qr
+[20:39:55] [INFO] UserController::perfil
+[20:39:55] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:39:55] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:39:55] [INFO] UserController::qr
+[20:39:55] [INFO] UserController::perfil
+[20:39:55] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:39:55] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:39:55] [INFO] UserController::qr
+[20:39:55] [INFO] UserController::perfil
+[20:39:55] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:39:55] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:39:55] [INFO] UserController::qr
+[20:39:55] [INFO] UserController::perfil
+[20:39:55] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:39:55] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:39:55] [INFO] UserController::qr
+[20:39:55] [INFO] UserController::perfil
+[20:39:55] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:39:55] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:39:55] [INFO] UserController::qr
+[20:39:55] [INFO] UserController::perfil
+[20:39:55] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:39:55] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:39:56] [INFO] UserController::qr
+[20:39:56] [INFO] UserController::home
+[20:39:56] [INFO] UserController::lobby
+[20:39:56] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:40:01] [INFO] UserController::editarPerfil
+[20:40:01] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:40:01] [INFO] UserController::home
+[20:40:02] [INFO] UserController::lobby
+[20:40:02] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:40:06] [INFO] UserController::procesarEdicion
+[20:40:06] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:40:06] [INFO] SQL: UPDATE users SET nombre_completo = ?, año_nacimiento = ?, sexo = ?, pais = ?, ciudad = ?, foto_perfil = ? WHERE id = ?
+[20:40:06] [INFO] UserController::procesarEdicion - Perfil actualizado para ID: 1
+[20:40:06] [INFO] UserController::perfil
+[20:40:06] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:40:06] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:40:06] [INFO] UserController::qr
+[20:40:06] [INFO] UserController::home
+[20:40:06] [INFO] UserController::lobby
+[20:40:06] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:40:09] [INFO] UserController::home
+[20:40:09] [INFO] UserController::lobby
+[20:40:09] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:40:09] [INFO] UserController::home
+[20:40:09] [INFO] UserController::lobby
+[20:40:09] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:40:11] [INFO] UserController::perfil
+[20:40:11] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:40:11] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:40:11] [INFO] UserController::qr
+[20:40:11] [INFO] UserController::home
+[20:40:11] [INFO] UserController::lobby
+[20:40:11] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:40:13] [INFO] UserController::logout
+[20:40:13] [INFO] UserController::home
+[20:40:13] [INFO] UserController::home
+[20:40:14] [INFO] UserController::registro (form)
+[20:40:14] [INFO] UserController::home
+[20:40:37] [INFO] UserController::procesarRegistro
+[20:40:37] [INFO] SQL: SELECT * FROM users WHERE email = ? [lucasmarron25@gmail.com]
+[20:40:37] [WARNING] UserController::procesarRegistro - Email ya existe: lucasmarron25@gmail.com
+[20:40:37] [INFO] UserController::home
+[20:40:40] [INFO] UserController::registro (form)
+[20:40:40] [INFO] UserController::home
+[20:41:02] [INFO] UserController::home
+[20:43:14] [INFO] UserController::registro (form)
+[20:43:14] [INFO] UserController::home
+[20:43:15] [INFO] UserController::registro (form)
+[20:43:15] [INFO] UserController::home
+[20:43:15] [INFO] UserController::registro (form)
+[20:43:15] [INFO] UserController::home
+[20:43:38] [INFO] UserController::procesarRegistro
+[20:43:38] [INFO] SQL: SELECT * FROM users WHERE email = ? [lucasmarron25@gmail.com]
+[20:43:38] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucasm]
+[20:43:38] [INFO] SQL: INSERT INTO users (nombre_completo, año_nacimiento, sexo, pais, ciudad, email, password, usuario, foto_perfil, validado) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, FALSE)
+[20:43:38] [INFO] UserController::procesarRegistro - Usuario registrado: lucasm. Token generado: 140691
+[20:43:38] [INFO] UserController::login (form)
+[20:43:38] [INFO] UserController::home
+[20:43:44] [INFO] UserController::procesarLogin
+[20:43:44] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucasm]
+[20:43:44] [WARNING] UserController::procesarLogin - Intento de ingreso sin validar: lucasm
+[20:43:45] [INFO] UserController::validarCuenta (form)
+[20:43:45] [INFO] UserController::home
+[20:43:50] [INFO] UserController::procesarValidacion
+[20:43:50] [INFO] UserController::procesarValidacion - Token correcto para: lucasmarron25@gmail.com
+[20:43:50] [INFO] UserController::login (form)
+[20:43:50] [INFO] UserController::home
+[20:43:52] [INFO] UserController::procesarLogin
+[20:43:52] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucasm]
+[20:43:52] [INFO] UserController::procesarLogin - Login exitoso: lucasm
+[20:43:52] [INFO] UserController::perfil
+[20:43:52] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:43:52] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:43:52] [INFO] UserController::qr
+[20:43:52] [INFO] UserController::home
+[20:43:52] [INFO] UserController::lobby
+[20:43:52] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:43:56] [INFO] UserController::home
+[20:43:56] [INFO] UserController::lobby
+[20:43:56] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:43:56] [INFO] UserController::home
+[20:43:57] [INFO] UserController::lobby
+[20:43:57] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:48:12] [INFO] UserController::lobby
+[20:48:12] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:48:12] [INFO] UserController::home
+[20:48:13] [INFO] UserController::lobby
+[20:48:13] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:48:17] [INFO] UserController::perfil
+[20:48:17] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:48:17] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:48:17] [INFO] UserController::qr
+[20:48:17] [INFO] UserController::home
+[20:48:17] [INFO] UserController::lobby
+[20:48:17] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:48:19] [INFO] UserController::publico
+[20:48:19] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:48:19] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:48:19] [INFO] UserController::home
+[20:48:19] [INFO] UserController::lobby
+[20:48:19] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:48:22] [INFO] UserController::lobby
+[20:48:22] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:48:23] [INFO] UserController::home
+[20:48:23] [INFO] UserController::lobby
+[20:48:23] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:48:25] [INFO] UserController::ranking
+[20:48:25] [INFO] SQL: SELECT id, nombre_completo, usuario, puntaje FROM users ORDER BY puntaje DESC
+[20:48:25] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:48:25] [INFO] UserController::home
+[20:48:25] [INFO] UserController::lobby
+[20:48:25] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:48:27] [INFO] UserController::lobby
+[20:48:27] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:48:27] [INFO] UserController::home
+[20:48:27] [INFO] UserController::lobby
+[20:48:27] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:48:30] [INFO] UserController::logout
+[20:48:30] [INFO] UserController::home
+[20:48:30] [INFO] UserController::home
+[20:48:31] [INFO] UserController::login (form)
+[20:48:31] [INFO] UserController::home
+[20:48:31] [INFO] UserController::procesarLogin
+[20:48:31] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucasm]
+[20:48:31] [INFO] UserController::procesarLogin - Login exitoso: lucasm
+[20:48:31] [INFO] UserController::perfil
+[20:48:31] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[20:48:31] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[20:48:32] [INFO] UserController::qr
+[20:48:32] [INFO] UserController::home
+[20:48:32] [INFO] UserController::lobby
+[20:48:32] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:25:36] [INFO] UserController::perfil
+[21:25:36] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:25:36] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[21:25:36] [INFO] UserController::qr
+[21:25:37] [INFO] UserController::home
+[21:25:37] [INFO] UserController::lobby
+[21:25:37] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:25:38] [INFO] UserController::home
+[21:25:38] [INFO] UserController::lobby
+[21:25:38] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:25:38] [INFO] UserController::home
+[21:25:38] [INFO] UserController::lobby
+[21:25:38] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:25:39] [INFO] UserController::perfil
+[21:25:39] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:25:39] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[21:25:39] [INFO] UserController::qr
+[21:25:39] [INFO] UserController::home
+[21:25:39] [INFO] UserController::lobby
+[21:25:39] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:25:42] [INFO] UserController::logout
+[21:25:42] [INFO] UserController::home
+[21:25:42] [INFO] UserController::home
+[21:25:43] [INFO] UserController::registro (form)
+[21:25:43] [INFO] UserController::home
+[21:26:11] [INFO] UserController::procesarRegistro
+[21:26:11] [WARNING] UserController::procesarRegistro - Las contraseñas no coinciden
+[21:26:11] [INFO] UserController::home
+[21:26:13] [INFO] UserController::registro (form)
+[21:26:13] [INFO] UserController::home
+[21:26:25] [INFO] UserController::procesarRegistro
+[21:26:25] [INFO] SQL: SELECT * FROM users WHERE email = ? [marronlu25@gmail.com]
+[21:26:25] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucasmm]
+[21:26:26] [INFO] SQL: INSERT INTO users (nombre_completo, año_nacimiento, sexo, pais, ciudad, email, password, usuario, foto_perfil, validado) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, FALSE)
+[21:26:26] [INFO] UserController::procesarRegistro - Usuario registrado: lucasmm. Token generado: 229078
+[21:26:26] [INFO] UserController::home
+[21:31:29] [INFO] UserController::procesarRegistro
+[21:31:29] [INFO] SQL: SELECT * FROM users WHERE email = ? [marronlu25@gmail.com]
+[21:31:29] [WARNING] UserController::procesarRegistro - Email ya existe: marronlu25@gmail.com
+[21:31:29] [INFO] UserController::home
+[21:31:55] [INFO] UserController::procesarRegistro
+[21:31:55] [INFO] SQL: SELECT * FROM users WHERE email = ? [marronlu25@gmail.com]
+[21:31:55] [WARNING] UserController::procesarRegistro - Email ya existe: marronlu25@gmail.com
+[21:31:55] [INFO] UserController::home
+[21:32:17] [INFO] UserController::procesarRegistro
+[21:32:17] [INFO] SQL: SELECT * FROM users WHERE email = ? [benitoantoniomaltinez2@gmail.com]
+[21:32:17] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucasmddd]
+[21:32:17] [INFO] SQL: INSERT INTO users (nombre_completo, año_nacimiento, sexo, pais, ciudad, email, password, usuario, foto_perfil, validado) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, FALSE)
+[21:32:17] [INFO] UserController::procesarRegistro - Usuario registrado: lucasmddd. Token generado: 267457
+[21:32:23] [INFO] UserController::home
+[21:32:23] [INFO] UserController::home
+[21:32:33] [INFO] UserController::login (form)
+[21:32:33] [INFO] UserController::home
+[21:32:45] [INFO] UserController::procesarLogin
+[21:32:45] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucasmdd]
+[21:32:45] [WARNING] UserController::procesarLogin - Credenciales inválidas: lucasmdd
+[21:32:45] [INFO] UserController::home
+[21:32:49] [INFO] UserController::procesarLogin
+[21:32:49] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucasmddd]
+[21:32:50] [WARNING] UserController::procesarLogin - Credenciales inválidas: lucasmddd
+[21:32:50] [INFO] UserController::home
+[21:33:19] [INFO] UserController::home
+[21:33:19] [INFO] UserController::home
+[21:35:38] [INFO] UserController::home
+[21:35:38] [INFO] UserController::home
+[21:35:55] [INFO] UserController::login (form)
+[21:35:55] [INFO] UserController::home
+[21:35:57] [INFO] UserController::home
+[21:35:57] [INFO] UserController::home
+[21:37:50] [INFO] UserController::home
+[21:37:50] [INFO] UserController::home
+[21:37:51] [INFO] UserController::home
+[21:37:51] [INFO] UserController::home
+[21:37:51] [INFO] UserController::home
+[21:37:51] [INFO] UserController::home
+[21:37:51] [INFO] UserController::home
+[21:37:51] [INFO] UserController::home
+[21:37:52] [INFO] UserController::registro (form)
+[21:37:52] [INFO] UserController::home
+[21:38:11] [INFO] UserController::procesarRegistro
+[21:38:11] [INFO] SQL: SELECT * FROM users WHERE email = ? [lucasmarron25@gmail.com]
+[21:38:11] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucasm]
+[21:38:11] [INFO] SQL: INSERT INTO users (nombre_completo, año_nacimiento, sexo, pais, ciudad, email, password, usuario, foto_perfil, validado) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, FALSE)
+[21:38:11] [INFO] UserController::procesarRegistro - Usuario registrado: lucasm. Token generado: 393036
+[21:38:15] [INFO] UserController::validarCuenta (form)
+[21:38:15] [INFO] UserController::registro (form)
+[21:38:15] [INFO] UserController::home
+[21:38:23] [INFO] UserController::home
+[21:38:23] [INFO] UserController::home
+[21:38:23] [INFO] UserController::login (form)
+[21:38:23] [INFO] UserController::home
+[21:38:27] [INFO] UserController::procesarLogin
+[21:38:27] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucasm]
+[21:38:27] [WARNING] UserController::procesarLogin - Intento de ingreso sin validar: lucasm
+[21:38:27] [INFO] UserController::validarCuenta (form)
+[21:38:27] [INFO] UserController::home
+[21:38:48] [INFO] UserController::procesarValidacion
+[21:38:48] [INFO] UserController::procesarValidacion - Token correcto para: lucasmarron25@gmail.com
+[21:38:48] [INFO] UserController::login (form)
+[21:38:48] [INFO] UserController::home
+[21:38:49] [INFO] UserController::procesarLogin
+[21:38:49] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucasm]
+[21:38:49] [WARNING] UserController::procesarLogin - Credenciales inválidas: lucasm
+[21:38:49] [INFO] UserController::home
+[21:38:51] [INFO] UserController::procesarLogin
+[21:38:51] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucasm]
+[21:38:51] [INFO] UserController::procesarLogin - Login exitoso: lucasm
+[21:38:51] [INFO] UserController::perfil
+[21:38:51] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:38:51] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[21:38:51] [INFO] UserController::qr
+[21:38:52] [INFO] UserController::home
+[21:38:52] [INFO] UserController::lobby
+[21:38:52] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:42:25] [INFO] UserController::perfil
+[21:42:25] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:42:25] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[21:42:25] [INFO] UserController::qr
+[21:42:26] [INFO] UserController::home
+[21:42:26] [INFO] UserController::lobby
+[21:42:26] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:42:29] [INFO] UserController::procesarLogin
+[21:42:29] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucasm]
+[21:42:29] [WARNING] UserController::procesarLogin - Credenciales inválidas: lucasm
+[21:42:29] [INFO] UserController::home
+[21:42:29] [INFO] UserController::lobby
+[21:42:29] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:42:31] [INFO] UserController::home
+[21:42:31] [INFO] UserController::lobby
+[21:42:31] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:42:31] [INFO] UserController::home
+[21:42:31] [INFO] UserController::lobby
+[21:42:31] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:42:31] [INFO] UserController::home
+[21:42:31] [INFO] UserController::lobby
+[21:42:31] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:42:31] [INFO] UserController::home
+[21:42:31] [INFO] UserController::lobby
+[21:42:31] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:42:33] [INFO] UserController::perfil
+[21:42:33] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:42:33] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[21:42:33] [INFO] UserController::qr
+[21:42:33] [INFO] UserController::home
+[21:42:33] [INFO] UserController::lobby
+[21:42:33] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[21:42:34] [INFO] UserController::logout
+[21:42:34] [INFO] UserController::home
+[21:42:34] [INFO] UserController::home
+[21:42:35] [INFO] UserController::registro (form)
+[21:42:36] [INFO] UserController::home
+[21:42:56] [INFO] UserController::procesarRegistro
+[21:42:56] [INFO] SQL: SELECT * FROM users WHERE email = ? [marronlu25@gmail.com]
+[21:42:56] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucasmm]
+[21:42:56] [INFO] SQL: INSERT INTO users (nombre_completo, año_nacimiento, sexo, pais, ciudad, email, password, usuario, foto_perfil, validado) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, FALSE)
+[21:42:56] [INFO] UserController::procesarRegistro - Usuario registrado: lucasmm. Token generado: 169515
+[21:43:00] [INFO] UserController::registro (form)
+[21:43:00] [INFO] UserController::home
+[21:48:17] [INFO] UserController::registro (form)
+[21:48:17] [INFO] UserController::home
+[21:48:19] [INFO] UserController::home
+[21:48:19] [INFO] UserController::home
+[21:48:20] [INFO] UserController::registro (form)
+[21:48:20] [INFO] UserController::home
+[21:49:06] [INFO] UserController::procesarRegistro
+[21:49:06] [INFO] SQL: SELECT * FROM users WHERE email = ? [toshimarronlu@gmail.com]
+[21:49:06] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucas]
+[21:49:06] [INFO] SQL: INSERT INTO users (nombre_completo, año_nacimiento, sexo, pais, ciudad, email, password, usuario, foto_perfil, validado) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, FALSE)
+[21:49:07] [INFO] UserController::procesarRegistro - Usuario registrado: lucas. Token generado: 694452
+[21:49:10] [INFO] UserController::registro (form)
+[21:49:10] [INFO] UserController::home
+[21:49:14] [INFO] UserController::home
+[21:49:14] [INFO] UserController::home
+[21:49:15] [INFO] UserController::login (form)
+[21:49:15] [INFO] UserController::home
+[21:49:18] [INFO] UserController::procesarLogin
+[21:49:18] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucas]
+[21:49:18] [WARNING] UserController::procesarLogin - Intento de ingreso sin validar: lucas
+[21:49:18] [INFO] UserController::home
+[21:49:27] [INFO] UserController::procesarValidacion
+[21:49:27] [INFO] UserController::procesarValidacion - Token correcto para: toshimarronlu@gmail.com
+[21:49:27] [INFO] UserController::login (form)
+[21:49:27] [INFO] UserController::home
+[21:49:31] [INFO] UserController::procesarLogin
+[21:49:31] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucas]
+[21:49:31] [INFO] UserController::procesarLogin - Login exitoso: lucas
+[21:49:31] [INFO] UserController::perfil
+[21:49:31] [INFO] SQL: SELECT * FROM users WHERE id = ? [3]
+[21:49:31] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [3, 4]
+[21:49:31] [INFO] UserController::qr
+[21:49:31] [INFO] UserController::home
+[21:49:31] [INFO] UserController::lobby
+[21:49:31] [INFO] SQL: SELECT * FROM users WHERE id = ? [3]
+[21:49:34] [INFO] UserController::home
+[21:49:34] [INFO] UserController::lobby
+[21:49:34] [INFO] SQL: SELECT * FROM users WHERE id = ? [3]
+[21:49:34] [INFO] UserController::home
+[21:49:34] [INFO] UserController::lobby
+[21:49:34] [INFO] SQL: SELECT * FROM users WHERE id = ? [3]
+[21:49:36] [INFO] UserController::logout
+[21:49:36] [INFO] UserController::home
+[21:49:36] [INFO] UserController::home
+[21:54:08] [INFO] UserController::home
+[21:54:08] [INFO] UserController::home
+[21:54:08] [INFO] UserController::home
+[21:54:08] [INFO] UserController::home
+[21:54:08] [INFO] UserController::home
+[21:54:08] [INFO] UserController::home
+[21:54:08] [INFO] UserController::home
+[21:54:08] [INFO] UserController::home
+[21:54:09] [INFO] UserController::home
+[21:54:09] [INFO] UserController::home
+[21:54:09] [INFO] UserController::registro (form)
+[21:54:09] [INFO] UserController::home
+[21:54:45] [INFO] UserController::procesarRegistro
+[21:54:45] [INFO] SQL: SELECT * FROM users WHERE email = ? [rukimarruki@gmail.com]
+[21:54:45] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucass]
+[21:54:45] [INFO] SQL: INSERT INTO users (nombre_completo, año_nacimiento, sexo, pais, ciudad, email, password, usuario, foto_perfil, validado) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, FALSE)
+[21:54:46] [INFO] UserController::procesarRegistro - Usuario registrado: lucass. Token generado: 704125
+[21:54:51] [INFO] UserController::validarCuenta (form)
+[21:54:51] [INFO] UserController::home
+[21:55:03] [INFO] UserController::procesarValidacion
+[21:55:03] [INFO] UserController::procesarValidacion - Token correcto para: rukimarruki@gmail.com
+[21:55:03] [INFO] UserController::login (form)
+[21:55:03] [INFO] UserController::home
+[21:55:07] [INFO] UserController::procesarLogin
+[21:55:07] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucass]
+[21:55:07] [INFO] UserController::procesarLogin - Login exitoso: lucass
+[21:55:07] [INFO] UserController::perfil
+[21:55:07] [INFO] SQL: SELECT * FROM users WHERE id = ? [4]
+[21:55:07] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [4, 4]
+[21:55:07] [INFO] UserController::qr
+[21:55:07] [INFO] UserController::home
+[21:55:07] [INFO] UserController::lobby
+[21:55:07] [INFO] SQL: SELECT * FROM users WHERE id = ? [4]
+[21:57:13] [INFO] UserController::perfil
+[21:57:13] [INFO] SQL: SELECT * FROM users WHERE id = ? [4]
+[21:57:13] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [4, 4]
+[21:57:13] [INFO] UserController::qr
+[21:57:13] [INFO] UserController::home
+[21:57:13] [INFO] UserController::lobby
+[21:57:13] [INFO] SQL: SELECT * FROM users WHERE id = ? [4]
+[21:57:13] [INFO] UserController::home
+[21:57:13] [INFO] UserController::lobby
+[21:57:13] [INFO] SQL: SELECT * FROM users WHERE id = ? [4]
+[21:57:13] [INFO] UserController::home
+[21:57:13] [INFO] UserController::lobby
+[21:57:13] [INFO] SQL: SELECT * FROM users WHERE id = ? [4]
+[21:57:15] [INFO] UserController::logout
+[21:57:15] [INFO] UserController::home
+[21:57:15] [INFO] UserController::home
+[21:57:16] [INFO] UserController::registro (form)
+[21:57:16] [INFO] UserController::home
+[21:57:45] [INFO] UserController::procesarRegistro
+[21:57:45] [INFO] SQL: SELECT * FROM users WHERE email = ? [showtimelu25@gmail.com]
+[21:57:45] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucasss]
+[21:57:45] [INFO] SQL: INSERT INTO users (nombre_completo, año_nacimiento, sexo, pais, ciudad, email, password, usuario, foto_perfil, validado) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, FALSE)
+[21:57:45] [INFO] UserController::procesarRegistro - Usuario registrado: lucasss. Token generado: 895358
+[21:57:48] [INFO] UserController::validarCuenta (form)
+[21:57:48] [INFO] UserController::home
+[21:57:59] [INFO] UserController::procesarValidacion
+[21:57:59] [INFO] UserController::procesarValidacion - Token correcto para: showtimelu25@gmail.com
+[21:57:59] [INFO] UserController::login (form)
+[21:57:59] [INFO] UserController::home
+[21:58:07] [INFO] UserController::procesarLogin
+[21:58:07] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucasss]
+[21:58:07] [INFO] UserController::procesarLogin - Login exitoso: lucasss
+[21:58:07] [INFO] UserController::perfil
+[21:58:07] [INFO] SQL: SELECT * FROM users WHERE id = ? [5]
+[21:58:07] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [5, 4]
+[21:58:07] [INFO] UserController::qr
+[21:58:08] [INFO] UserController::home
+[21:58:08] [INFO] UserController::lobby
+[21:58:08] [INFO] SQL: SELECT * FROM users WHERE id = ? [5]

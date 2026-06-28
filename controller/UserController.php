@@ -49,7 +49,7 @@ class UserController
         $pais = !empty($pais) ? $pais : null;
         $ciudad = !empty($ciudad) ? $ciudad : null;
 
-        // Validaciones básicas
+        // Validaciones 
         if (empty($nombre_completo) || empty($email) || empty($usuario) || empty($password)) {
             Log::warning("UserController::procesarRegistro - Campos vacíos");
             $this->renderer->render("registroView", ['error' => 'Los campos obligatorios no pueden estar vacíos']);
@@ -62,7 +62,7 @@ class UserController
             return;
         }
 
-        // Validación de complejidad de contraseña
+        // Validación de contraseña
         $passwordError = $this->validarContraseña($password);
         if ($passwordError) {
             Log::warning("UserController::procesarRegistro - Contraseña débil: $passwordError");
@@ -83,63 +83,63 @@ class UserController
             return;
         }
 
-        // Registrar usuario (sin foto)
+        // Registrar usuario 
         $this->model->registrar($nombre_completo, $año_nacimiento, $sexo, $pais, $ciudad, $email, $password, $usuario, null);
 
-        // GENERAMOS EL TOKEN REAL DE 6 DÍGITOS
+        
         $token = rand(100000, 999999);
         
-        // Guardamos el token en la base de datos y seteamos cuenta_validada en 0
+        // Guarda el token en la base de datos y seteamos cuenta_validada en 0
         $this->model->guardarTokenValidacion($email, $token);
 
         Log::info("UserController::procesarRegistro - Usuario registrado: $usuario. Token generado: $token");
 
-        // Guardamos los datos temporalmente en la sesión para la pantalla de validación
-        $_SESSION['email_en_validacion'] = $email;
-        $_SESSION['token_creado'] = $token; // Guardado para mostrarlo "chiquito" en la vista
+        $mailer = new Mailer();
+        $correoEnviado = $mailer->enviarTokenActivacion($email, $nombre_completo, $token);
 
-        // Redirigir a login con mensaje
-        $_SESSION['success'] = "¡Cuenta creada exitosamente! Por favor, inicia sesión.";
-        Redirect::to('/user/login');
+        if ($correoEnviado) {
+            $_SESSION['email_en_validacion'] = $email;
+            $_SESSION['success'] = "¡Cuenta creada! Te enviamos un código de verificación de 6 dígitos a tu correo.";
+            Redirect::to('/user/validarCuenta'); 
+            exit;
+        } else {
+            $_SESSION['error'] = "Hubo un problema al enviarte el correo de activación. Por favor, contactá a soporte.";
+            Redirect::to('/user/registro');
+            exit;
+        }
+        
     }
 
     private function validarContraseña($password)
     {
-        // Verificar longitud mínima
+       
         if (strlen($password) < 8) {
             return 'La contraseña debe tener al menos 8 caracteres';
         }
 
-        // Verificar que tenga al menos una mayúscula
+        
         if (!preg_match('/[A-Z]/', $password)) {
             return 'La contraseña debe contener al menos una letra mayúscula (A-Z)';
         }
 
-        // Verificar que tenga al menos un número
+       
         if (!preg_match('/[0-9]/', $password)) {
             return 'La contraseña debe contener al menos un número (0-9)';
         }
 
-        return null; // Contraseña válida
+        return null; 
     }
-
-    public function validarCuenta()
-    {
+public function validarCuenta() {
+  
         Log::info("UserController::validarCuenta (form)");
 
-        if (!isset($_SESSION['email_en_validacion'])) {
-            Redirect::to('/user/registro');
-            return;
-        }
-
-        // Le pasamos el correo y el token de ayuda a la vista
         $data = [
-            'email' => $_SESSION['email_en_validacion'],
-            'token_ayuda' => $_SESSION['token_creado'] ?? null
+            'email' => $_SESSION['email_en_validacion'] ?? 'Email no guardado en sesión',
         ];
 
         $this->renderer->render("validarCuentaView", $data);
     }
+    
 
     public function procesarValidacion()
     {
@@ -206,13 +206,12 @@ class UserController
 
             if (isset($user['cuenta_validada']) && $user['cuenta_validada'] == 0) {
                 Log::warning("UserController::procesarLogin - Intento de ingreso sin validar: $usuario");
-                // Guardamos los datos en la sesión temporal para la vista de validación
+                
                 $_SESSION['email_en_validacion'] = $user['email'];
-                $_SESSION['token_creado'] = $user['token']; 
+               
                 Redirect::to('/user/validarCuenta');
-                // vuelta al login mostrando el mensaje de error
-                $this->renderer->render("loginView", ['error' => 'Tu cuenta aún no está validada. Por favor, ingresá el código de verificación.']);
-                return; // Corta la ejecución acá para que no cree la sesión de juego
+            
+                exit; 
             }
 
             Log::info("UserController::procesarLogin - Login exitoso: $usuario");
