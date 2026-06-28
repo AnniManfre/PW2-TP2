@@ -119,5 +119,56 @@ class UserModel
                 
         return $this->database->query($sql, [$usuario_id]);
     }
+
+public function getEfectividad($id, $puntajePerfecto)
+    {
+        $sql = "SELECT puntaje FROM partidas WHERE usuario_id = ?";
+        $historial = $this->database->query($sql, [$id]);
+
+        if (empty($historial)) {
+            return 0; // Si nunca jugó, efectividad 0%
+        }
+
+        $respuestas_correctas = 0;
+        $preguntas_jugadas = 0;
+
+        foreach ($historial as $partida) {
+            $puntos = (int)$partida['puntaje'];
+            $respuestas_correctas += $puntos;
+
+            if ($puntos === $puntajePerfecto) {
+                
+                $preguntas_jugadas += $puntajePerfecto;
+            } else {
+                
+                $preguntas_jugadas += ($puntos + 1);
+            }
+        }
+
+        if ($preguntas_jugadas > 0) {
+            return round(($respuestas_correctas / $preguntas_jugadas) * 100);
+        }
+
+        return 0;
+    }
+    public function obtenerRacha($id, $puntajePerfecto)
+    {
+        $sql = "SELECT puntaje FROM partidas WHERE usuario_id = ? ORDER BY fecha DESC";
+        $historial = $this->database->query($sql, [$id]);
+
+        $racha = 0;
+
+        if (!empty($historial)) {
+            foreach ($historial as $partida) {
+                if ((int)$partida['puntaje'] === $puntajePerfecto) {
+                    $racha++;
+                } else {
+                    break; 
+                }
+            }
+        }
+
+        return $racha;
+    }
 }
 

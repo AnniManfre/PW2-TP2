@@ -235,7 +235,14 @@ public function validarCuenta() {
         }
 
         $user = $this->model->obtenerPorId($_SESSION['user_id']);
-        $user['partidas_ganadas'] = $this->model->contarPartidasGanadas($_SESSION['user_id'], PartidaController::TOTAL_PREGUNTAS);
+        $id = $_SESSION['user_id'];
+        $totalPreg = PartidaController::TOTAL_PREGUNTAS;
+
+        
+        $user['partidas_ganadas'] = $this->model->contarPartidasGanadas($id, $totalPreg);
+        $user['efectividad']      = $this->model->getEfectividad($id, $totalPreg);
+        $user['racha_actual']     = $this->model->obtenerRacha($id, $totalPreg);
+
 
         $puntaje = $user['puntaje'] ?? 0;
         if ($puntaje < 20)      $nivelNum = 1;
