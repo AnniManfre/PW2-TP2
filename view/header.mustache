@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100;300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/public/styles/main.css">
-    <link rel="stylesheet" href="/public/styles/navbar.css">
+    <link rel="stylesheet" href="/public/styles/navbar.css?v=2">
     <link rel="stylesheet" href="/public/styles/header.css">
 </head>
 
@@ -17,6 +17,12 @@
     <a href="/partida/abandonar" class="logo">Trivia Clash</a>
 
     <div class="nav-right">
+    {{#esAdmin}}
+        <a href="/admin/dashboard" class="admin-link">
+            <span class="material-symbols-outlined navbar-icon">admin_panel_settings</span>
+            Panel de Control
+        </a>
+    {{/esAdmin}}
      {{#usuario}}
         <a href="/user/perfil" class="profile-link" title="Mi Perfil">
             {{#foto_perfil}}

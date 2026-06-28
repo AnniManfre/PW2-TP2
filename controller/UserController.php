@@ -89,7 +89,7 @@ class UserController
         
         $token = rand(100000, 999999);
         
-        // Guarda el token en la base de datos y seteamos cuenta_validada en 0
+        // Guardamos el token en la base de datos y seteamos cuenta_validada en 0
         $this->model->guardarTokenValidacion($email, $token);
 
         Log::info("UserController::procesarRegistro - Usuario registrado: $usuario. Token generado: $token");
@@ -150,7 +150,7 @@ public function validarCuenta() {
 
         if (empty($token_ingresado) || empty($email)) {
             $this->renderer->render("validarCuentaView", [
-                'error' => 'El código es requerido', 
+                'error' => 'El código es requerido',
                 'token_ayuda' => $_SESSION['token_creado'] ?? null
             ]);
             return;
@@ -161,7 +161,7 @@ public function validarCuenta() {
 
         if ($esValido) {
             Log::info("UserController::procesarValidacion - Token correcto para: $email");
-            
+
             // Activamos la cuenta cambiando el estado a 1
             $this->model->activarCuenta($email);
 
@@ -190,7 +190,7 @@ public function validarCuenta() {
     public function procesarLogin()
     {
         Log::info("UserController::procesarLogin");
-        
+
         $usuario = $this->request->post('usuario');
         $password = $this->request->post('password');
 
@@ -208,16 +208,20 @@ public function validarCuenta() {
                 Log::warning("UserController::procesarLogin - Intento de ingreso sin validar: $usuario");
                 
                 $_SESSION['email_en_validacion'] = $user['email'];
-               
+                $_SESSION['token_creado'] = $user['token']; 
                 Redirect::to('/user/validarCuenta');
             
                 exit; 
             }
 
             Log::info("UserController::procesarLogin - Login exitoso: $usuario");
+
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['usuario'] = $user['usuario'];
             $_SESSION['nombre_completo'] = $user['nombre_completo'];
+            $_SESSION['rol'] = $user['rol'];
+            $_SESSION['esAdmin'] = ($user['rol'] === 'admin');
+
             Redirect::to('/user/perfil');
         } else {
             Log::warning("UserController::procesarLogin - Credenciales inválidas: $usuario");
@@ -235,14 +239,7 @@ public function validarCuenta() {
         }
 
         $user = $this->model->obtenerPorId($_SESSION['user_id']);
-        $id = $_SESSION['user_id'];
-        $totalPreg = PartidaController::TOTAL_PREGUNTAS;
-
-        
-        $user['partidas_ganadas'] = $this->model->contarPartidasGanadas($id, $totalPreg);
-        $user['efectividad']      = $this->model->getEfectividad($id, $totalPreg);
-        $user['racha_actual']     = $this->model->obtenerRacha($id, $totalPreg);
-
+        $user['partidas_ganadas'] = $this->model->contarPartidasGanadas($_SESSION['user_id'], PartidaController::TOTAL_PREGUNTAS);
 
         $puntaje = $user['puntaje'] ?? 0;
         if ($puntaje < 20)      $nivelNum = 1;
@@ -258,7 +255,7 @@ public function validarCuenta() {
     public function editarPerfil()
     {
         Log::info("UserController::editarPerfil");
-        
+
         // Verificamos que esté logueado
         if (!isset($_SESSION['user_id'])) {
             Redirect::to('/user/login');
@@ -274,7 +271,7 @@ public function validarCuenta() {
     public function procesarEdicion()
     {
         Log::info("UserController::procesarEdicion");
-        
+
         if (!isset($_SESSION['user_id'])) {
             Redirect::to('/user/login');
             return;
@@ -307,7 +304,7 @@ public function validarCuenta() {
             return;
         }
 
-    
+
         $this->model->actualizarPerfil($id, $nombre_completo, $año_nacimiento, $sexo, $pais, $ciudad, $foto_perfil);
 
         // Actualizamos el nombre en la sesión 
@@ -329,13 +326,14 @@ public function validarCuenta() {
     public function lobby()
     {
         Log::info("UserController::lobby");
-        
+
         if (!isset($_SESSION['user_id'])) {
             Redirect::to('/user/login');
             return;
         }
 
         $datosVista = $this->model->obtenerPorId($_SESSION['user_id']);
+        $datosVista["esAdmin"] = ($_SESSION["rol"] === "admin");
 
         $datosVista['user'] = $datosVista;
 
@@ -448,4 +446,3 @@ public function validarCuenta() {
         ]);
     }
 }
-

@@ -23,6 +23,7 @@ class PartidaModel {
                     JOIN categorias cat ON pre.categoria_id = cat.id
                     WHERE pre.nivel = ?
                     AND pre.categoria_id = ?
+                    AND pre.estado = 'activa'
                     ORDER BY RAND()
                     LIMIT 1";
             return $this->database->query($sql, [$nivel, $categoriaId]);
@@ -34,6 +35,7 @@ class PartidaModel {
                     WHERE pre.id NOT IN ($ids)
                     AND pre.nivel = ?
                     AND pre.categoria_id = ?
+                    AND pre.estado = 'activa'
                     ORDER BY RAND()
                     LIMIT 1";
             return $this->database->query($sql, [$nivel, $categoriaId]);

@@ -1,0 +1,82 @@
+{{>header}}
+
+<link rel="stylesheet" href="/public/styles/admin.css">
+
+<div class="container admin-section">
+    <div class="admin-header">
+        <div>
+            <h1>🚩 Preguntas Reportadas</h1>
+            <p>Preguntas que los usuarios han denunciado como erróneas, duplicadas o mal formuladas</p>
+        </div>
+        <div>
+            <a href="/admin/dashboard" class="btn-admin btn-admin-secondary">
+                <span class="material-symbols-outlined">arrow_back</span>
+                Panel de Control
+            </a>
+        </div>
+    </div>
+
+    {{#mensaje}}
+        <div class="alert-box alert-{{mensaje_clase}}">
+            <span class="material-symbols-outlined">check_circle</span>
+            {{mensaje}}
+        </div>
+    {{/mensaje}}
+
+    <div class="table-container">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Categoría</th>
+                    <th>Nivel</th>
+                    <th>Pregunta y Opciones</th>
+                    <th>Respuesta</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#preguntas}}
+                <tr>
+                    <td><strong>#{{id}}</strong></td>
+                    <td>
+                        <span class="badge" style="background-color: {{color}}22; color: {{color}}; border: 1px solid {{color}};">
+                            {{categoria_nombre}}
+                        </span>
+                    </td>
+                    <td>Nivel {{nivel}}</td>
+                    <td>
+                        <strong style="color: var(--error);">{{pregunta}}</strong>
+                        <div style="font-size: 0.85rem; color: var(--on-surface-variant); margin-top: 5px;">
+                            A: {{opcion_a}} | B: {{opcion_b}} | C: {{opcion_c}} | D: {{opcion_d}}
+                        </div>
+                    </td>
+                    <td><span class="badge badge-active">{{respuesta_correcta}}</span></td>
+                    <td>
+                        <div class="action-buttons">
+                            <a href="/admin/resolverReporte?id={{id}}&accion=keep" class="btn-admin btn-admin-success" title="Mantener pregunta y descartar reporte">
+                                <span class="material-symbols-outlined">check</span> Mantener Activa
+                            </a>
+                            <a href="/admin/editarPregunta?id={{id}}" class="btn-admin btn-admin-secondary" title="Corregir y Guardar">
+                                <span class="material-symbols-outlined">edit</span> Editar
+                            </a>
+                            <a href="/admin/resolverReporte?id={{id}}&accion=delete" class="btn-admin btn-admin-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar permanentemente esta pregunta reportada?')" title="Eliminar pregunta del juego">
+                                <span class="material-symbols-outlined">delete</span> Eliminar
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {{/preguntas}}
+                {{^preguntas}}
+                <tr>
+                    <td colspan="6" style="text-align: center; padding: 40px; color: var(--on-surface-variant);">
+                        No hay reportes de preguntas pendientes de revisión. ¡Buen trabajo!
+                    </td>
+                </tr>
+                {{/preguntas}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{{>footer}}

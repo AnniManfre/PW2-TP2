@@ -42,6 +42,7 @@ class PartidaController
         $data = [
             "usuario" => $_SESSION['usuario'],
             "categorias" => $categorias,
+            "esAdmin" => (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'),
         ];
 
         $this->renderer->render("ruletaView", $data);
@@ -207,6 +208,7 @@ class PartidaController
             "nivel" => $nivel,
             "nivel_nombre" => self::NIVELES[$nivel],
             "tiempo_restante" => 30,
+            "esAdmin" => (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'),
         ];
 
         $this->renderer->render("jugarView", $data);

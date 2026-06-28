@@ -28,11 +28,20 @@ class Configurator {
         return new PartidaController($this->getPartidaModel(), $this->getRenderer(), new Request());
     }
 
+    private function getAdminModel() {
+        return new AdminModel($this->getDatabase());
+    }
+
+    public function getAdminController() {
+        return new AdminController($this->getAdminModel(), $this->getRenderer(), new Request());
+    }
+
     private function getDatabase() {
         return new MyDatabase($this->config['hostname'],
                               $this->config['username'],
                               $this->config['password'],
-                              $this->config['database']
+                              $this->config['database'],
+                              $this->config['port'] ?? null
         );
     }
 
