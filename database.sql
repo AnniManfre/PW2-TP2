@@ -4,7 +4,7 @@ USE juego;
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre_completo VARCHAR(100) NOT NULL,
-    año_nacimiento INT,
+    anio_nacimiento INT,
     sexo ENUM('Masculino', 'Femenino', 'Prefiero no decirlo') DEFAULT 'Prefiero no decirlo',
     pais VARCHAR(50),
     ciudad VARCHAR(50),
@@ -133,6 +133,8 @@ CREATE TABLE IF NOT EXISTS partidas (
     usuario_id INTEGER NOT NULL,
     puntaje INTEGER DEFAULT 0,
     fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
-
     FOREIGN KEY (usuario_id) REFERENCES users(id)
 );
+
+ALTER TABLE partidas ADD COLUMN categoria_id INTEGER NULL;
+ALTER TABLE partidas ADD FOREIGN KEY (categoria_id) REFERENCES categorias(id);

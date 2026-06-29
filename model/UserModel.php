@@ -9,13 +9,13 @@ class UserModel
         $this->database = $database;
     }
 
-    public function registrar($nombre_completo, $año_nacimiento, $sexo, $pais, $ciudad, $email, $password, $usuario, $foto_perfil = null)
+    public function registrar($nombre_completo, $anio_nacimiento, $sexo, $pais, $ciudad, $email, $password, $usuario, $foto_perfil = null)
     {
         $password_hash = password_hash($password, PASSWORD_BCRYPT);
-        $sql = "INSERT INTO users (nombre_completo, año_nacimiento, sexo, pais, ciudad, email, password, usuario, foto_perfil, validado) 
+        $sql = "INSERT INTO users (nombre_completo, anio_nacimiento, sexo, pais, ciudad, email, password, usuario, foto_perfil, validado) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, FALSE)";
         Log::info("SQL: $sql");
-        return $this->database->execute($sql, [$nombre_completo, $año_nacimiento, $sexo, $pais, $ciudad, $email, $password_hash, $usuario, $foto_perfil]);
+        return $this->database->execute($sql, [$nombre_completo, $anio_nacimiento, $sexo, $pais, $ciudad, $email, $password_hash, $usuario, $foto_perfil]);
     }
 
     public function loginPorCredenciales($usuario, $password)
@@ -79,11 +79,11 @@ class UserModel
         return !empty($filas) ? (int)$filas[0]["ganadas"] : 0;
     }
 
-    public function actualizarPerfil($id, $nombre_completo, $año_nacimiento, $sexo, $pais, $ciudad, $foto_perfil = null)
+    public function actualizarPerfil($id, $nombre_completo, $anio_nacimiento, $sexo, $pais, $ciudad, $foto_perfil = null)
     {
-        $sql = "UPDATE users SET nombre_completo = ?, año_nacimiento = ?, sexo = ?, pais = ?, ciudad = ?, foto_perfil = ? WHERE id = ?";
+        $sql = "UPDATE users SET nombre_completo = ?, anio_nacimiento = ?, sexo = ?, pais = ?, ciudad = ?, foto_perfil = ? WHERE id = ?";
         Log::info("SQL: $sql");
-        return $this->database->execute($sql, [$nombre_completo, $año_nacimiento, $sexo, $pais, $ciudad, $foto_perfil, $id]);
+        return $this->database->execute($sql, [$nombre_completo, $anio_nacimiento, $sexo, $pais, $ciudad, $foto_perfil, $id]);
     }
 
     public function guardarTokenValidacion($email, $token)

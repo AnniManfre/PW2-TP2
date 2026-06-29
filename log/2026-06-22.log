@@ -64,7 +64,7 @@
 [21:28:44] [INFO] UserController::procesarRegistro
 [21:28:44] [INFO] SQL: SELECT * FROM users WHERE email = ? [lucasmarron25@gmail.com]
 [21:28:44] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [juand]
-[21:28:44] [INFO] SQL: INSERT INTO users (nombre_completo, año_nacimiento, sexo, pais, ciudad, email, password, usuario, foto_perfil, validado) 
+[21:28:44] [INFO] SQL: INSERT INTO users (nombre_completo, anio_nacimiento, sexo, pais, ciudad, email, password, usuario, foto_perfil, validado) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, FALSE)
 [21:28:45] [INFO] UserController::procesarRegistro - Usuario registrado: juand. Token generado: 424560
 [21:28:45] [INFO] UserController::login (form)

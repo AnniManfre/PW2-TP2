@@ -35,7 +35,7 @@ class UserController
         Log::info("UserController::procesarRegistro");
 
         $nombre_completo = $this->request->post('nombre_completo');
-        $año_nacimiento = $this->request->post('año_nacimiento');
+        $anio_nacimiento = $this->request->post('anio_nacimiento');
         $sexo = $this->request->post('sexo') ?? 'Prefiero no decirlo';
         $pais = $this->request->post('pais');
         $ciudad = $this->request->post('ciudad');
@@ -45,7 +45,7 @@ class UserController
         $usuario = $this->request->post('usuario');
 
         // Convertir campos opcionales vacíos a NULL
-        $año_nacimiento = !empty($año_nacimiento) ? (int)$año_nacimiento : null;
+        $anio_nacimiento = !empty($anio_nacimiento) ? (int)$anio_nacimiento : null;
         $pais = !empty($pais) ? $pais : null;
         $ciudad = !empty($ciudad) ? $ciudad : null;
 
@@ -84,7 +84,7 @@ class UserController
         }
 
         // Registrar usuario 
-        $this->model->registrar($nombre_completo, $año_nacimiento, $sexo, $pais, $ciudad, $email, $password, $usuario, null);
+        $this->model->registrar($nombre_completo, $anio_nacimiento, $sexo, $pais, $ciudad, $email, $password, $usuario, null);
 
         
         $token = rand(100000, 999999);
@@ -285,13 +285,13 @@ public function validarCuenta() {
 
         // Agarramos los datos nuevos del formulario
         $nombre_completo = $this->request->post('nombre_completo');
-        $año_nacimiento = $this->request->post('año_nacimiento');
+        $anio_nacimiento = $this->request->post('anio_nacimiento');
         $sexo = $this->request->post('sexo');
         $pais = $this->request->post('pais');
         $ciudad = $this->request->post('ciudad');
 
         // Convertir campos opcionales vacíos a NULL (igual que en tu registro)
-        $año_nacimiento = !empty($año_nacimiento) ? (int)$año_nacimiento : null;
+        $anio_nacimiento = !empty($anio_nacimiento) ? (int)$anio_nacimiento : null;
         $pais = !empty($pais) ? $pais : null;
         $ciudad = !empty($ciudad) ? $ciudad : null;
 
@@ -305,7 +305,7 @@ public function validarCuenta() {
         }
 
 
-        $this->model->actualizarPerfil($id, $nombre_completo, $año_nacimiento, $sexo, $pais, $ciudad, $foto_perfil);
+        $this->model->actualizarPerfil($id, $nombre_completo, $anio_nacimiento, $sexo, $pais, $ciudad, $foto_perfil);
 
         // Actualizamos el nombre en la sesión 
         $_SESSION['nombre_completo'] = $nombre_completo;

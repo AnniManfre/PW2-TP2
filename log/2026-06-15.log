@@ -35,14 +35,14 @@
 [22:07:48] [INFO] UserController::editarPerfil
 [22:07:48] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
 [22:07:58] [INFO] UserController::procesarEdicion
-[22:07:58] [INFO] SQL: UPDATE users SET nombre_completo = ?, año_nacimiento = ?, sexo = ?, pais = ?, ciudad = ?, foto_perfil = ? WHERE id = ?
+[22:07:58] [INFO] SQL: UPDATE users SET nombre_completo = ?, anio_nacimiento = ?, sexo = ?, pais = ?, ciudad = ?, foto_perfil = ? WHERE id = ?
 [22:07:58] [INFO] UserController::procesarEdicion - Perfil actualizado para ID: 1
 [22:07:58] [INFO] UserController::perfil
 [22:07:58] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
 [22:08:02] [INFO] UserController::editarPerfil
 [22:08:02] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
 [22:08:05] [INFO] UserController::procesarEdicion
-[22:08:05] [INFO] SQL: UPDATE users SET nombre_completo = ?, año_nacimiento = ?, sexo = ?, pais = ?, ciudad = ?, foto_perfil = ? WHERE id = ?
+[22:08:05] [INFO] SQL: UPDATE users SET nombre_completo = ?, anio_nacimiento = ?, sexo = ?, pais = ?, ciudad = ?, foto_perfil = ? WHERE id = ?
 [22:08:05] [INFO] UserController::procesarEdicion - Perfil actualizado para ID: 1
 [22:08:05] [INFO] UserController::perfil
 [22:08:05] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
@@ -102,7 +102,7 @@
 [22:21:17] [INFO] UserController::editarPerfil
 [22:21:17] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
 [22:21:25] [INFO] UserController::procesarEdicion
-[22:21:25] [INFO] SQL: UPDATE users SET nombre_completo = ?, año_nacimiento = ?, sexo = ?, pais = ?, ciudad = ?, foto_perfil = ? WHERE id = ?
+[22:21:25] [INFO] SQL: UPDATE users SET nombre_completo = ?, anio_nacimiento = ?, sexo = ?, pais = ?, ciudad = ?, foto_perfil = ? WHERE id = ?
 [22:21:25] [INFO] UserController::procesarEdicion - Perfil actualizado para ID: 1
 [22:21:25] [INFO] UserController::perfil
 [22:21:25] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
@@ -111,7 +111,7 @@
 [22:22:22] [INFO] UserController::editarPerfil
 [22:22:22] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
 [22:22:30] [INFO] UserController::procesarEdicion
-[22:22:30] [INFO] SQL: UPDATE users SET nombre_completo = ?, año_nacimiento = ?, sexo = ?, pais = ?, ciudad = ?, foto_perfil = ? WHERE id = ?
+[22:22:30] [INFO] SQL: UPDATE users SET nombre_completo = ?, anio_nacimiento = ?, sexo = ?, pais = ?, ciudad = ?, foto_perfil = ? WHERE id = ?
 [22:22:30] [INFO] UserController::procesarEdicion - Perfil actualizado para ID: 1
 [22:22:30] [INFO] UserController::perfil
 [22:22:30] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
@@ -352,7 +352,7 @@
 [23:11:50] [INFO] UserController::procesarRegistro
 [23:11:50] [INFO] SQL: SELECT * FROM users WHERE email = ? [marronlu25@gmail.com]
 [23:11:50] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [juand]
-[23:11:50] [INFO] SQL: INSERT INTO users (nombre_completo, año_nacimiento, sexo, pais, ciudad, email, password, usuario, foto_perfil, validado) 
+[23:11:50] [INFO] SQL: INSERT INTO users (nombre_completo, anio_nacimiento, sexo, pais, ciudad, email, password, usuario, foto_perfil, validado) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, FALSE)
 [23:11:50] [INFO] UserController::procesarRegistro - Usuario registrado: juand. Token generado: 366993
 [23:11:50] [INFO] UserController::login (form)
@@ -411,7 +411,7 @@
 [23:22:07] [INFO] UserController::procesarRegistro
 [23:22:07] [INFO] SQL: SELECT * FROM users WHERE email = ? [asd@gmail.com]
 [23:22:07] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [asd]
-[23:22:07] [INFO] SQL: INSERT INTO users (nombre_completo, año_nacimiento, sexo, pais, ciudad, email, password, usuario, foto_perfil, validado) 
+[23:22:07] [INFO] SQL: INSERT INTO users (nombre_completo, anio_nacimiento, sexo, pais, ciudad, email, password, usuario, foto_perfil, validado) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, FALSE)
 [23:22:07] [INFO] UserController::procesarRegistro - Usuario registrado: asd. Token generado: 282891
 [23:22:07] [INFO] UserController::login (form)

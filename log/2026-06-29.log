@@ -415,3 +415,9 @@
 [00:59:19] [INFO] UserController::home
 [00:59:19] [INFO] UserController::lobby
 [00:59:19] [INFO] SQL: SELECT * FROM users WHERE id = ? [2]
+[21:03:41] [INFO] UserController::home
+[21:03:42] [INFO] UserController::home
+[21:04:20] [INFO] UserController::login (form)
+[21:04:20] [INFO] UserController::home
+[21:04:28] [INFO] UserController::home
+[21:04:28] [INFO] UserController::home
