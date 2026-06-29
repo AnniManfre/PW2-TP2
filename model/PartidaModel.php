@@ -54,6 +54,23 @@ class PartidaModel {
         );
     }
 
+    // El usuario reporta una pregunta mientras juega: pasa a estado 'reportada'
+    public function reportarPregunta($id) {
+        return $this->database->execute(
+            "UPDATE preguntas SET estado = 'reportada' WHERE id = ? AND estado = 'activa'",
+            [$id]
+        );
+    }
+
+    // El usuario sugiere una pregunta nueva: se guarda como 'sugerida' para que el admin la apruebe
+    public function sugerirPregunta($pregunta, $opcion_a, $opcion_b, $opcion_c, $opcion_d, $respuesta_correcta, $categoria_id, $nivel) {
+        return $this->database->execute(
+            "INSERT INTO preguntas (pregunta, opcion_a, opcion_b, opcion_c, opcion_d, respuesta_correcta, categoria_id, nivel, estado)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'sugerida')",
+            [$pregunta, $opcion_a, $opcion_b, $opcion_c, $opcion_d, $respuesta_correcta, $categoria_id, $nivel]
+        );
+    }
+
 }
 
 ?>

@@ -205,3 +205,53 @@
     box-shadow: 0 4px 12px rgba(186, 26, 26, 0.2);
     transform: translateY(-1px);
 }
+
+.game-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+}
+
+.game-actions .btn-abandonar {
+    margin: 0;
+}
+
+.btn-reportar {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 24px;
+    background-color: #fff;
+    color: var(--on-surface-variant);
+    border: 1.5px solid var(--outline-variant);
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all var(--transition);
+}
+
+.btn-reportar .material-symbols-outlined {
+    font-size: 18px;
+}
+
+.btn-reportar:hover {
+    background-color: #fff7ed;
+    color: #c2410c;
+    border-color: #fdba74;
+    transform: translateY(-1px);
+}
+
+.btn-reportar.reportado {
+    background-color: #dcfce7;
+    color: #15803d;
+    border-color: #86efac;
+    cursor: default;
+    transform: none;
+}

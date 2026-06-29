@@ -316,4 +316,75 @@ class PartidaController
         }
         exit;
     }
+
+    // El usuario reporta la pregunta actual mientras juega (se llama por AJAX, no corta la partida)
+    public function reportar()
+    {
+        header('Content-Type: application/json');
+
+        if (!isset($_SESSION['user_id']) || !isset($_SESSION["pregunta_actual"]["id"])) {
+            echo json_encode(["ok" => false]);
+            exit;
+        }
+
+        $this->model->reportarPregunta($_SESSION["pregunta_actual"]["id"]);
+        echo json_encode(["ok" => true]);
+        exit;
+    }
+
+    // Muestra el formulario para sugerir una pregunta nueva
+    public function sugerir()
+    {
+        if (!isset($_SESSION['user_id'])) {
+            Redirect::to('/user/login');
+            return;
+        }
+
+        $data = [
+            "usuario"     => $_SESSION['usuario'],
+            "categorias"  => $this->model->obtenerCategorias(),
+            "esAdmin"     => (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'),
+            "page_title"  => 'Sugerir Pregunta',
+        ];
+
+        if (isset($_SESSION["error_sugerir"])) {
+            $data['error'] = $_SESSION["error_sugerir"];
+            unset($_SESSION["error_sugerir"]);
+        }
+
+        $this->renderer->render("sugerirView", $data);
+    }
+
+    // Guarda la pregunta sugerida con estado 'sugerida' para que el admin la revise
+    public function procesarSugerencia()
+    {
+        if (!isset($_SESSION['user_id'])) {
+            Redirect::to('/user/login');
+            return;
+        }
+
+        $pregunta     = trim($this->request->post('pregunta') ?? '');
+        $a            = trim($this->request->post('opcion_a') ?? '');
+        $b            = trim($this->request->post('opcion_b') ?? '');
+        $c            = trim($this->request->post('opcion_c') ?? '');
+        $d            = trim($this->request->post('opcion_d') ?? '');
+        $correcta     = $this->request->post('respuesta_correcta');
+        $categoria_id = $this->request->post('categoria_id');
+        $nivel        = $this->request->post('nivel');
+
+        // Validación básica
+        if ($pregunta === '' || $a === '' || $b === '' || $c === '' || $d === ''
+            || !in_array($correcta, ['a', 'b', 'c', 'd'], true)
+            || empty($categoria_id) || empty($nivel)) {
+            $_SESSION["error_sugerir"] = "Completá todos los campos y marcá cuál es la respuesta correcta.";
+            Redirect::to('/partida/sugerir');
+            return;
+        }
+
+        $this->model->sugerirPregunta($pregunta, $a, $b, $c, $d, $correcta, $categoria_id, $nivel);
+
+        $_SESSION["mensaje"] = "¡Gracias! Tu pregunta fue enviada y un administrador la revisará.";
+        $_SESSION["mensaje_tipo"] = "success";
+        Redirect::to('/user/lobby');
+    }
 }

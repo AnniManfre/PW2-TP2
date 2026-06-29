@@ -1,6 +1,6 @@
 {{>header}}
 
-<link rel="stylesheet" href="/public/styles/jugar.css?v=3">
+<link rel="stylesheet" href="/public/styles/jugar.css?v=4">
 
 
 <div class="question-card">
@@ -42,7 +42,14 @@
         </button>
         {{/opciones}}
     </form>
-    <a href="/partida/abandonar" class="btn-abandonar">Abandonar Partida</a>
+
+    <div class="game-actions">
+        <a href="/partida/abandonar" class="btn-abandonar">Abandonar Partida</a>
+        <button type="button" id="btn-reportar" class="btn-reportar" onclick="reportarPregunta()">
+            <span class="material-symbols-outlined">flag</span>
+            Reportar pregunta
+        </button>
+    </div>
 </div>
 
 
@@ -57,9 +64,7 @@
             sessionStorage.setItem('scrollPos', window.scrollY);
         });
     });
-</script>
 
-<script>
 let tiempo = {{tiempo_restante}};
 
 const intervalo = setInterval(() => {
@@ -78,6 +83,21 @@ const intervalo = setInterval(() => {
     }
 
 }, 1000);
+
+function reportarPregunta() {
+    const btn = document.getElementById("btn-reportar");
+
+    fetch("/partida/reportar", { method: "POST" })
+        .then(res => res.json())
+        .then(data => {
+            if (data.ok) {
+                btn.classList.add("reportado");
+                btn.disabled = true;
+                btn.innerHTML = '<span class="material-symbols-outlined">check</span> Pregunta reportada';
+            }
+        })
+        .catch(() => {});
+}
 </script>
 
 {{>footer}}

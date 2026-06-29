@@ -1,0 +1,80 @@
+{{>header}}
+
+<link rel="stylesheet" href="/public/styles/sugerir.css">
+
+<form method="POST" action="/partida/procesarSugerencia" class="auth-form auth-form--wide sugerir-form">
+
+    <p class="sugerir-intro">
+        <span class="material-symbols-outlined">lightbulb</span>
+        Proponé una pregunta nueva. Un administrador la revisará antes de que entre al juego.
+    </p>
+
+    {{#error}}
+    <div class="error">{{error}}</div>
+    {{/error}}
+
+    <div class="form-group">
+        <label for="pregunta">Pregunta</label>
+        <input type="text" id="pregunta" name="pregunta" placeholder="Ej: ¿Cuál es la capital de Francia?" required>
+    </div>
+
+    <div class="form-group">
+        <label for="opcion_a">Opción A</label>
+        <input type="text" id="opcion_a" name="opcion_a" placeholder="Primera opción" required>
+    </div>
+
+    <div class="form-group">
+        <label for="opcion_b">Opción B</label>
+        <input type="text" id="opcion_b" name="opcion_b" placeholder="Segunda opción" required>
+    </div>
+
+    <div class="form-group">
+        <label for="opcion_c">Opción C</label>
+        <input type="text" id="opcion_c" name="opcion_c" placeholder="Tercera opción" required>
+    </div>
+
+    <div class="form-group">
+        <label for="opcion_d">Opción D</label>
+        <input type="text" id="opcion_d" name="opcion_d" placeholder="Cuarta opción" required>
+    </div>
+
+    <div class="form-group">
+        <label for="respuesta_correcta">¿Cuál es la respuesta correcta?</label>
+        <select id="respuesta_correcta" name="respuesta_correcta" required>
+            <option value="">Elegí la opción correcta</option>
+            <option value="a">Opción A</option>
+            <option value="b">Opción B</option>
+            <option value="c">Opción C</option>
+            <option value="d">Opción D</option>
+        </select>
+    </div>
+
+    <div class="sugerir-selects">
+        <div class="form-group">
+            <label for="categoria_id">Categoría</label>
+            <select id="categoria_id" name="categoria_id" required>
+                <option value="">Elegí una</option>
+                {{#categorias}}
+                <option value="{{id}}">{{nombre}}</option>
+                {{/categorias}}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="nivel">Dificultad</label>
+            <select id="nivel" name="nivel" required>
+                <option value="1">Fácil</option>
+                <option value="2" selected>Intermedio</option>
+                <option value="3">Difícil</option>
+            </select>
+        </div>
+    </div>
+
+    <button type="submit" class="btn">Enviar sugerencia</button>
+
+    <div class="text-center sugerir-volver">
+        <a href="/user/lobby">Volver al lobby</a>
+    </div>
+</form>
+
+{{>footer}}

@@ -94,6 +94,68 @@
     color: white;
 }
 
+.suggest-banner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: white;
+    border: 1px solid var(--outline-variant);
+    border-left: 4px solid var(--primary);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin-bottom: calc(var(--unit) * 3.75);
+    text-decoration: none;
+    color: var(--on-surface);
+    transition: all var(--transition);
+}
+
+.suggest-banner:hover {
+    box-shadow: 0 4px 14px rgba(53, 37, 205, 0.1);
+    transform: translateY(-1px);
+}
+
+.suggest-banner-icon {
+    font-size: 28px;
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+.suggest-banner-text {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.suggest-banner-text strong {
+    font-size: 0.95em;
+    font-weight: 700;
+}
+
+.suggest-banner-text span {
+    font-size: 0.85em;
+    color: var(--on-surface-variant);
+}
+
+.suggest-banner-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+
+.suggest-banner-cta .material-symbols-outlined {
+    font-size: 18px;
+}
+
+@media (max-width: 480px) {
+    .suggest-banner-text span {
+        display: none;
+    }
+}
+
 .action-card,
 .action-card:hover,
 .action-card:visited {
