@@ -10,6 +10,7 @@ class MyDatabase {
         } else {
             $this->conexion = new mysqli($hostname, $username, $password, $database);
         }
+         $this->conexion->set_charset("utf8mb4");
     }
 
     public function query($sql, $params = []) {
