@@ -3,6 +3,25 @@
     padding-top: 0;
 }
 
+.timer-container {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--on-surface-variant);
+    background: #f1efff;
+    border: 1px solid var(--outline-variant);
+    border-radius: 9999px;
+    padding: 10px 22px;
+    width: fit-content;
+    margin: 0 auto 20px;
+}
+
+.timer-container #timer {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
 .question-card {
     max-width: 700px;
     margin: 32px auto 40px;
