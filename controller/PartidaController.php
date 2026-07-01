@@ -68,6 +68,9 @@ class PartidaController
         $_SESSION['puntaje'] = 0;
         $_SESSION['preguntas_usadas'] = [];
         unset($_SESSION['nivel_partida']);
+        unset($_SESSION['pregunta_activa']);
+        unset($_SESSION['pregunta_actual']);
+        unset($_SESSION['inicio_pregunta']);
 
         header("Location: /partida/jugar");
         exit;
