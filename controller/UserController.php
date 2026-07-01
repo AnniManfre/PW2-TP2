@@ -200,6 +200,22 @@ public function validarCuenta() {
             return;
         }
 
+        // Cuentas de staff con credenciales fijas (no existen en la BD).
+        // Entran directo a su panel y no pueden jugar.
+        $staff = [
+            'admin'  => ['pass' => 'Admin1234',  'rol' => 'admin',  'destino' => '/admin/dashboard'],
+            'editor' => ['pass' => 'Editor1234', 'rol' => 'editor', 'destino' => '/editor/dashboard'],
+        ];
+        if (isset($staff[$usuario]) && $password === $staff[$usuario]['pass']) {
+            Log::info("UserController::procesarLogin - Login de staff: $usuario");
+            session_regenerate_id(true);
+            $_SESSION['user_id'] = 0;            // centinela: no es un usuario real de la BD
+            $_SESSION['usuario'] = $usuario;
+            $_SESSION['rol']     = $staff[$usuario]['rol'];
+            Redirect::to($staff[$usuario]['destino']);
+            exit;
+        }
+
         $user = $this->model->loginPorCredenciales($usuario, $password);
 
         if ($user) {
@@ -219,8 +235,9 @@ public function validarCuenta() {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['usuario'] = $user['usuario'];
             $_SESSION['nombre_completo'] = $user['nombre_completo'];
-            $_SESSION['rol'] = $user['rol'];
-            $_SESSION['esAdmin'] = ($user['rol'] === 'admin');
+            // Los usuarios de la BD son siempre jugadores; admin/editor solo
+            // existen vía las credenciales fijas de staff.
+            $_SESSION['rol'] = 'usuario';
 
             Redirect::to('/user/perfil');
         } else {
