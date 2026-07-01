@@ -36,6 +36,11 @@ class Configurator {
         return new AdminController($this->getAdminModel(), $this->getRenderer(), new Request());
     }
 
+    public function getEditorController() {
+        // Reutiliza AdminModel: el editor opera sobre las mismas preguntas.
+        return new EditorController($this->getAdminModel(), $this->getRenderer(), new Request());
+    }
+
     private function getDatabase() {
         return new MyDatabase($this->config['hostname'],
                               $this->config['username'],

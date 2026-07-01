@@ -1,0 +1,40 @@
+{{>header}}
+
+<link rel="stylesheet" href="/public/styles/dashboard.css">
+
+<div class="dashboard">
+
+    <h1>Panel de Editor</h1>
+    <p>Bienvenido {{staff}}</p>
+
+    <div class="menu-grid">
+
+        <a href="/editor/preguntas" class="menu-card">
+            <span>📚</span>
+            <h2>Administrar Preguntas</h2>
+            <p>Editar y eliminar preguntas.</p>
+        </a>
+
+        <a href="/editor/agregarPregunta" class="menu-card">
+            <span>➕</span>
+            <h2>Agregar Pregunta</h2>
+            <p>Crear nuevas preguntas.</p>
+        </a>
+
+        <a href="/editor/sugeridas" class="menu-card">
+            <span>💡</span>
+            <h2>Preguntas Sugeridas</h2>
+            <p>Revisar propuestas de usuarios.</p>
+        </a>
+
+    </div>
+
+    <div style="margin-top: 30px;">
+        <a href="/user/logout" class="menu-card" style="display:inline-block;">
+            🚪 Cerrar sesión
+        </a>
+    </div>
+
+</div>
+
+{{>footer}}
