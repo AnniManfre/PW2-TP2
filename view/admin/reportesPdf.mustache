@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { font-family: DejaVu Sans, sans-serif; }
+        body { color: #1f2937; font-size: 12px; }
+        h1 { font-size: 20px; margin-bottom: 2px; }
+        h2 { font-size: 14px; margin: 18px 0 6px; color: #4338ca; border-bottom: 1px solid #c7d2fe; padding-bottom: 3px; }
+        p.sub { color: #6b7280; margin-top: 0; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
+        th, td { border: 1px solid #d1d5db; padding: 5px 8px; text-align: left; }
+        th { background: #eef2ff; }
+        td.num { text-align: right; }
+        .bar-wrap { background: #eef2ff; border-radius: 3px; height: 10px; width: 100%; }
+        .bar { background: #6366f1; height: 10px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <h1>Trivia Clash — Reportes y Estadísticas</h1>
+    <p class="sub">Resumen del sistema</p>
+
+    <h2>Usuarios por País</h2>
+    <table>
+        <thead><tr><th>País</th><th>Cantidad</th></tr></thead>
+        <tbody>
+            {{#usuarios_por_pais}}
+            <tr><td>{{pais}}</td><td class="num">{{cantidad}}</td></tr>
+            {{/usuarios_por_pais}}
+            {{^usuarios_por_pais}}
+            <tr><td colspan="2">Sin datos de ubicación.</td></tr>
+            {{/usuarios_por_pais}}
+        </tbody>
+    </table>
+
+    <h2>Distribución por Sexo</h2>
+    <table>
+        <thead><tr><th>Sexo</th><th>Cantidad</th></tr></thead>
+        <tbody>
+            {{#usuarios_por_sexo}}
+            <tr><td>{{sexo}}</td><td class="num">{{cantidad}}</td></tr>
+            {{/usuarios_por_sexo}}
+        </tbody>
+    </table>
+
+    <h2>Preguntas Activas por Categoría</h2>
+    <table>
+        <thead><tr><th>Categoría</th><th>Cantidad</th></tr></thead>
+        <tbody>
+            {{#preguntas_por_categoria}}
+            <tr><td>{{categoria}}</td><td class="num">{{cantidad}}</td></tr>
+            {{/preguntas_por_categoria}}
+        </tbody>
+    </table>
+
+    <h2>Actividad de Usuarios (Top 10)</h2>
+    <table>
+        <thead>
+            <tr><th>Usuario</th><th>Partidas</th><th>Puntaje Total</th><th>Promedio</th></tr>
+        </thead>
+        <tbody>
+            {{#partidas_por_usuario}}
+            <tr>
+                <td>{{usuario}}</td>
+                <td class="num">{{partidas_jugadas}}</td>
+                <td class="num">{{puntaje_total}}</td>
+                <td class="num">{{promedio_puntaje}}</td>
+            </tr>
+            {{/partidas_por_usuario}}
+            {{^partidas_por_usuario}}
+            <tr><td colspan="4">Aún no se jugaron partidas.</td></tr>
+            {{/partidas_por_usuario}}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -18,6 +18,11 @@ class MustacheRenderer {
         $template = $this->mustache->loadTemplate($viewName);
         echo $template->render($data);
     }
+
+    public function fetch($viewName, $data = []) {
+        $template = $this->mustache->loadTemplate($viewName);
+        return $template->render($data);
+    }
 }
 
 ?>

@@ -13,51 +13,44 @@ class AdminController
         $this->request = $request;
     }
 
-    private function checkAdmin()
-    {
-        if (session_status() === PHP_SESSION_NONE) {
-            @session_start();
-        }
-        if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-            Redirect::to('/user/lobby');
-            exit();
-        }
-    }
+    // El control de acceso (rol admin) lo resuelve Auth::guard() en index.php.
 
     public function dashboard()
     {
-        $this->checkAdmin();
         Log::info("AdminController::dashboard");
-        
+
         $stats = $this->model->obtenerEstadisticas();
-        $this->renderer->render("dashboard/dashboard", $stats);
+        // 'staff' (no 'usuario') para no disparar el link de perfil de jugador del header.
+        $stats['staff'] = $_SESSION['usuario'] ?? '';
+        $this->renderer->render("admin/dashboard", $stats);
     }
 
     public function preguntas()
     {
-        $this->checkAdmin();
         Log::info("AdminController::preguntas");
 
         $preguntas = $this->model->obtenerPreguntasPorEstado('activa');
-        $this->renderer->render("dashboard/adminPreguntas", ['preguntas' => $preguntas]);
+        $this->renderer->render("admin/adminPreguntas", [
+            'preguntas' => $preguntas,
+            'base' => 'admin',
+        ]);
     }
 
     public function agregarPregunta()
     {
-        $this->checkAdmin();
         Log::info("AdminController::agregarPregunta");
 
         $categorias = $this->model->obtenerCategorias();
-        $this->renderer->render("dashboard/adminAgregarPregunta", [
+        $this->renderer->render("admin/adminAgregarPregunta", [
             'categorias' => $categorias,
             'titulo_accion' => 'Agregar Pregunta',
-            'action_url' => '/admin/procesarAgregarPregunta'
+            'action_url' => '/admin/procesarAgregarPregunta',
+            'base' => 'admin',
         ]);
     }
 
     public function procesarAgregarPregunta()
     {
-        $this->checkAdmin();
         Log::info("AdminController::procesarAgregarPregunta");
 
         $pregunta = $this->request->post('pregunta');
@@ -72,17 +65,18 @@ class AdminController
 
         if (empty($pregunta) || empty($opcion_a) || empty($opcion_b) || empty($opcion_c) || empty($opcion_d) || empty($respuesta_correcta) || empty($categoria_id) || empty($nivel)) {
             $categorias = $this->model->obtenerCategorias();
-            $this->renderer->render("dashboard/adminAgregarPregunta", [
+            $this->renderer->render("admin/adminAgregarPregunta", [
                 'error' => 'Todos los campos son obligatorios',
                 'categorias' => $categorias,
                 'titulo_accion' => 'Agregar Pregunta',
-                'action_url' => '/admin/procesarAgregarPregunta'
+                'action_url' => '/admin/procesarAgregarPregunta',
+                'base' => 'admin',
             ]);
             return;
         }
 
         $this->model->insertarPregunta($pregunta, $opcion_a, $opcion_b, $opcion_c, $opcion_d, $respuesta_correcta, $categoria_id, $nivel, $estado);
-        
+
         $_SESSION['mensaje'] = "Pregunta creada exitosamente.";
         $_SESSION['mensaje_tipo'] = "success";
 
@@ -95,7 +89,6 @@ class AdminController
 
     public function editarPregunta()
     {
-        $this->checkAdmin();
         $id = (int)$this->request->get('id');
         Log::info("AdminController::editarPregunta - ID: $id");
 
@@ -106,7 +99,7 @@ class AdminController
         }
 
         $categorias = $this->model->obtenerCategorias();
-        
+
         // Marcar la categoría seleccionada y la respuesta correcta
         foreach ($categorias as &$cat) {
             $cat['selected'] = ($cat['id'] == $pregunta['categoria_id']);
@@ -125,20 +118,20 @@ class AdminController
             ['valor' => 'd', 'selected' => (strtolower($pregunta['respuesta_correcta']) == 'd')]
         ];
 
-        $this->renderer->render("dashboard/adminAgregarPregunta", [
+        $this->renderer->render("admin/adminAgregarPregunta", [
             'pregunta' => $pregunta,
             'categorias' => $categorias,
             'niveles' => $niveles,
             'respuestas' => $respuestas,
             'titulo_accion' => 'Editar Pregunta',
             'action_url' => '/admin/procesarEditarPregunta',
-            'is_edit' => true
+            'is_edit' => true,
+            'base' => 'admin',
         ]);
     }
 
     public function procesarEditarPregunta()
     {
-        $this->checkAdmin();
         $id = (int)$this->request->post('id');
         Log::info("AdminController::procesarEditarPregunta - ID: $id");
 
@@ -154,13 +147,14 @@ class AdminController
 
         if (empty($pregunta) || empty($opcion_a) || empty($opcion_b) || empty($opcion_c) || empty($opcion_d) || empty($respuesta_correcta) || empty($categoria_id) || empty($nivel)) {
             $categorias = $this->model->obtenerCategorias();
-            $this->renderer->render("dashboard/adminAgregarPregunta", [
+            $this->renderer->render("admin/adminAgregarPregunta", [
                 'error' => 'Todos los campos son obligatorios',
                 'pregunta' => ['id' => $id, 'pregunta' => $pregunta, 'opcion_a' => $opcion_a, 'opcion_b' => $opcion_b, 'opcion_c' => $opcion_c, 'opcion_d' => $opcion_d],
                 'categorias' => $categorias,
                 'titulo_accion' => 'Editar Pregunta',
                 'action_url' => '/admin/procesarEditarPregunta',
-                'is_edit' => true
+                'is_edit' => true,
+                'base' => 'admin',
             ]);
             return;
         }
@@ -181,7 +175,6 @@ class AdminController
 
     public function eliminarPregunta()
     {
-        $this->checkAdmin();
         $id = (int)$this->request->get('id');
         Log::info("AdminController::eliminarPregunta - ID: $id");
 
@@ -202,16 +195,17 @@ class AdminController
 
     public function sugeridas()
     {
-        $this->checkAdmin();
         Log::info("AdminController::sugeridas");
 
         $preguntas = $this->model->obtenerPreguntasPorEstado('sugerida');
-        $this->renderer->render("dashboard/adminSugeridas", ['preguntas' => $preguntas]);
+        $this->renderer->render("admin/adminSugeridas", [
+            'preguntas' => $preguntas,
+            'base' => 'admin',
+        ]);
     }
 
     public function aprobarSugerida()
     {
-        $this->checkAdmin();
         $id = (int)$this->request->get('id');
         Log::info("AdminController::aprobarSugerida - ID: $id");
 
@@ -225,16 +219,17 @@ class AdminController
 
     public function reportadas()
     {
-        $this->checkAdmin();
         Log::info("AdminController::reportadas");
 
         $preguntas = $this->model->obtenerPreguntasPorEstado('reportada');
-        $this->renderer->render("dashboard/adminReportadas", ['preguntas' => $preguntas]);
+        $this->renderer->render("admin/adminReportadas", [
+            'preguntas' => $preguntas,
+            'base' => 'admin',
+        ]);
     }
 
     public function resolverReporte()
     {
-        $this->checkAdmin();
         $id = (int)$this->request->get('id');
         $accion = $this->request->get('accion'); // 'keep' o 'delete'
         Log::info("AdminController::resolverReporte - ID: $id, Accion: $accion");
@@ -254,69 +249,74 @@ class AdminController
 
     public function usuarios()
     {
-        $this->checkAdmin();
         Log::info("AdminController::usuarios");
 
         $usuarios = $this->model->obtenerTodosUsuarios();
-        foreach ($usuarios as &$user) {
-            $user['es_rol_usuario'] = ($user['rol'] === 'usuario');
-            $user['es_rol_admin'] = ($user['rol'] === 'admin');
-            $user['es_rol_editor'] = ($user['rol'] === 'editor');
-        }
-        $this->renderer->render("dashboard/adminUsuarios", ['usuarios' => $usuarios]);
-    }
-
-    public function cambiarRol()
-    {
-        $this->checkAdmin();
-        $id = (int)$this->request->post('usuario_id');
-        $nuevo_rol = $this->request->post('rol');
-        Log::info("AdminController::cambiarRol - ID: $id, Rol: $nuevo_rol");
-
-        if (in_array($nuevo_rol, ['usuario', 'admin', 'editor'])) {
-            $this->model->actualizarRolUsuario($id, $nuevo_rol);
-            $_SESSION['mensaje'] = "El rol del usuario ha sido actualizado a: $nuevo_rol.";
-            $_SESSION['mensaje_tipo'] = "success";
-        }
-
-        Redirect::to('/admin/usuarios');
+        $this->renderer->render("admin/adminUsuarios", ['usuarios' => $usuarios]);
     }
 
     public function eliminarUsuario()
     {
-        $this->checkAdmin();
         $id = (int)$this->request->get('id');
         Log::info("AdminController::eliminarUsuario - ID: $id");
 
-        if ($id === (int)$_SESSION['user_id']) {
-            $_SESSION['mensaje'] = "No puedes eliminar tu propia cuenta de administrador.";
-            $_SESSION['mensaje_tipo'] = "error";
-        } else {
-            $this->model->eliminarUsuario($id);
-            $_SESSION['mensaje'] = "El usuario y todas sus partidas asociadas han sido eliminados.";
-            $_SESSION['mensaje_tipo'] = "info";
-        }
+        $this->model->eliminarUsuario($id);
+        $_SESSION['mensaje'] = "El usuario y todas sus partidas asociadas han sido eliminados.";
+        $_SESSION['mensaje_tipo'] = "info";
 
         Redirect::to('/admin/usuarios');
     }
 
     public function reportes()
     {
-        $this->checkAdmin();
         Log::info("AdminController::reportes");
 
-        $usuariosPorPais = $this->model->obtenerUsuariosPorPais();
-        $usuariosPorSexo = $this->model->obtenerUsuariosPorSexo();
-        $preguntasPorCategoria = $this->model->obtenerPreguntasPorCategoria();
-        $partidasPorUsuario = $this->model->obtenerPartidasPorUsuario();
+        $data = $this->datosReportes();
+        // Datos en JSON para los gráficos (Chart.js) de la vista.
+        $data['sexo_json'] = json_encode($this->paraGrafico($data['usuarios_por_sexo'], 'sexo', 'cantidad'));
+        $data['categoria_json'] = json_encode($this->paraGrafico($data['preguntas_por_categoria'], 'categoria', 'cantidad'));
+        $data['pais_json'] = json_encode($this->paraGrafico($data['usuarios_por_pais'], 'pais', 'cantidad'));
 
-        $data = [
-            'usuarios_por_pais' => $usuariosPorPais,
-            'usuarios_por_sexo' => $usuariosPorSexo,
-            'preguntas_por_categoria' => $preguntasPorCategoria,
-            'partidas_por_usuario' => $partidasPorUsuario
+        $this->renderer->render("admin/adminReportes", $data);
+    }
+
+    // Genera el PDF del panel de estadísticas con dompdf
+    public function reportesPdf()
+    {
+        Log::info("AdminController::reportesPdf");
+
+        require_once __DIR__ . '/../vendor/autoload.php';
+
+        $data = $this->datosReportes();
+        $html = $this->renderer->fetch("admin/reportesPdf", $data);
+
+        $dompdf = new \Dompdf\Dompdf();
+        $dompdf->loadHtml($html, 'UTF-8');
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $dompdf->stream("estadisticas-trivia-clash.pdf", ['Attachment' => true]);
+        exit;
+    }
+
+    private function datosReportes()
+    {
+        return [
+            'usuarios_por_pais' => $this->model->obtenerUsuariosPorPais(),
+            'usuarios_por_sexo' => $this->model->obtenerUsuariosPorSexo(),
+            'preguntas_por_categoria' => $this->model->obtenerPreguntasPorCategoria(),
+            'partidas_por_usuario' => $this->model->obtenerPartidasPorUsuario(),
         ];
+    }
 
-        $this->renderer->render("dashboard/adminReportes", $data);
+    // Convierte una lista de filas en {labels:[...], valores:[...]} para Chart.js.
+    private function paraGrafico($filas, $claveEtiqueta, $claveValor)
+    {
+        $labels = [];
+        $valores = [];
+        foreach ($filas as $fila) {
+            $labels[] = $fila[$claveEtiqueta];
+            $valores[] = (int)$fila[$claveValor];
+        }
+        return ['labels' => $labels, 'valores' => $valores];
     }
 }

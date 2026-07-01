@@ -1,0 +1,82 @@
+{{>header}}
+
+<link rel="stylesheet" href="/public/styles/admin.css">
+
+<div class="container admin-section">
+    <div class="admin-header">
+        <div>
+            <h1>💡 Preguntas Sugeridas</h1>
+            <p>Propuestas de preguntas realizadas por los usuarios para validar e incorporar al juego</p>
+        </div>
+        <div>
+            <a href="/{{base}}/dashboard" class="btn-admin btn-admin-secondary">
+                <span class="material-symbols-outlined">arrow_back</span>
+                Panel de Control
+            </a>
+        </div>
+    </div>
+
+    {{#mensaje}}
+        <div class="alert-box alert-{{mensaje_clase}}">
+            <span class="material-symbols-outlined">check_circle</span>
+            {{mensaje}}
+        </div>
+    {{/mensaje}}
+
+    <div class="table-container">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Categoría</th>
+                    <th>Nivel</th>
+                    <th>Pregunta y Opciones</th>
+                    <th>Respuesta Correcta</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#preguntas}}
+                <tr>
+                    <td><strong>#{{id}}</strong></td>
+                    <td>
+                        <span class="badge" style="background-color: {{color}}22; color: {{color}}; border: 1px solid {{color}};">
+                            {{categoria_nombre}}
+                        </span>
+                    </td>
+                    <td>Nivel {{nivel}}</td>
+                    <td>
+                        <strong>{{pregunta}}</strong>
+                        <div style="font-size: 0.85rem; color: var(--on-surface-variant); margin-top: 5px;">
+                            A: {{opcion_a}} | B: {{opcion_b}} | C: {{opcion_c}} | D: {{opcion_d}}
+                        </div>
+                    </td>
+                    <td><span class="badge badge-active">{{respuesta_correcta}}</span></td>
+                    <td>
+                        <div class="action-buttons">
+                            <a href="/{{base}}/aprobarSugerida?id={{id}}" class="btn-admin btn-admin-success" title="Aprobar y Activar">
+                                <span class="material-symbols-outlined">done</span> Aprobar
+                            </a>
+                            <a href="/{{base}}/editarPregunta?id={{id}}" class="btn-admin btn-admin-secondary" title="Editar antes de aprobar">
+                                <span class="material-symbols-outlined">edit</span>
+                            </a>
+                            <a href="/{{base}}/eliminarPregunta?id={{id}}" class="btn-admin btn-admin-danger" onclick="return confirm('¿Estás seguro de que deseas rechazar y eliminar esta sugerencia?')" title="Rechazar y Eliminar">
+                                <span class="material-symbols-outlined">close</span>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {{/preguntas}}
+                {{^preguntas}}
+                <tr>
+                    <td colspan="6" style="text-align: center; padding: 40px; color: var(--on-surface-variant);">
+                        No hay preguntas sugeridas pendientes de revisión.
+                    </td>
+                </tr>
+                {{/preguntas}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{{>footer}}

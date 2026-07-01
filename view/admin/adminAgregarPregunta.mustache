@@ -1,0 +1,107 @@
+{{>header}}
+
+<link rel="stylesheet" href="/public/styles/admin.css">
+
+<div class="container admin-section">
+    <div class="admin-header">
+        <div>
+            <h1>{{titulo_accion}}</h1>
+            <p>Formulario de carga y modificación de preguntas</p>
+        </div>
+        <div>
+            <a href="/{{base}}/preguntas" class="btn-admin btn-admin-secondary">
+                <span class="material-symbols-outlined">arrow_back</span>
+                Volver a Preguntas
+            </a>
+        </div>
+    </div>
+
+    {{#error}}
+        <div class="alert-box alert-error">
+            <span class="material-symbols-outlined">error</span>
+            {{error}}
+        </div>
+    {{/error}}
+
+    <div class="form-container">
+        <form action="{{action_url}}" method="POST">
+            {{#is_edit}}
+                <input type="hidden" name="id" value="{{pregunta.id}}">
+                <input type="hidden" name="estado" value="{{pregunta.estado}}">
+            {{/is_edit}}
+
+            <div class="form-group">
+                <label for="pregunta">Texto de la Pregunta</label>
+                <textarea name="pregunta" id="pregunta" class="form-control" placeholder="Escribe la pregunta..." required>{{pregunta.pregunta}}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="opcion_a">Opción A</label>
+                <input type="text" name="opcion_a" id="opcion_a" class="form-control" value="{{pregunta.opcion_a}}" placeholder="Texto para la opción A" required>
+            </div>
+
+            <div class="form-group">
+                <label for="opcion_b">Opción B</label>
+                <input type="text" name="opcion_b" id="opcion_b" class="form-control" value="{{pregunta.opcion_b}}" placeholder="Texto para la opción B" required>
+            </div>
+
+            <div class="form-group">
+                <label for="opcion_c">Opción C</label>
+                <input type="text" name="opcion_c" id="opcion_c" class="form-control" value="{{pregunta.opcion_c}}" placeholder="Texto para la opción C" required>
+            </div>
+
+            <div class="form-group">
+                <label for="opcion_d">Opción D</label>
+                <input type="text" name="opcion_d" id="opcion_d" class="form-control" value="{{pregunta.opcion_d}}" placeholder="Texto para la opción D" required>
+            </div>
+
+            <div class="form-group">
+                <label for="respuesta_correcta">Respuesta Correcta</label>
+                <select name="respuesta_correcta" id="respuesta_correcta" class="form-control" required>
+                    <option value="" disabled {{^pregunta}}selected{{/pregunta}}>Selecciona la opción correcta</option>
+                    {{#respuestas}}
+                        <option value="{{valor}}" {{#selected}}selected{{/selected}}>Opción {{valor}}</option>
+                    {{/respuestas}}
+                    {{^respuestas}}
+                        <option value="a">Opción A</option>
+                        <option value="b">Opción B</option>
+                        <option value="c">Opción C</option>
+                        <option value="d">Opción D</option>
+                    {{/respuestas}}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="categoria_id">Categoría</label>
+                <select name="categoria_id" id="categoria_id" class="form-control" required>
+                    <option value="" disabled {{^pregunta}}selected{{/pregunta}}>Selecciona la categoría</option>
+                    {{#categorias}}
+                        <option value="{{id}}" {{#selected}}selected{{/selected}}>{{nombre}}</option>
+                    {{/categorias}}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="nivel">Dificultad (Nivel)</label>
+                <select name="nivel" id="nivel" class="form-control" required>
+                    <option value="" disabled {{^pregunta}}selected{{/pregunta}}>Selecciona el nivel</option>
+                    {{#niveles}}
+                        <option value="{{valor}}" {{#selected}}selected{{/selected}}>{{nombre}}</option>
+                    {{/niveles}}
+                    {{^niveles}}
+                        <option value="1">Fácil (Principiante)</option>
+                        <option value="2">Medio (Intermedio)</option>
+                        <option value="3">Difícil (Avanzado)</option>
+                    {{/niveles}}
+                </select>
+            </div>
+
+            <div class="form-actions">
+                <a href="/{{base}}/preguntas" class="btn-admin btn-admin-secondary">Cancelar</a>
+                <button type="submit" class="btn-admin btn-admin-primary">Guardar Pregunta</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{{>footer}}

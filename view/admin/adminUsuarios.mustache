@@ -1,0 +1,69 @@
+{{>header}}
+
+<link rel="stylesheet" href="/public/styles/admin.css">
+
+<div class="container admin-section">
+    <div class="admin-header">
+        <div>
+            <h1>👥 Administrar Usuarios</h1>
+            <p>Gestión de cuentas de usuario y validación de accesos</p>
+        </div>
+        <div>
+            <a href="/admin/dashboard" class="btn-admin btn-admin-secondary">
+                <span class="material-symbols-outlined">arrow_back</span>
+                Panel de Control
+            </a>
+        </div>
+    </div>
+
+    {{#mensaje}}
+        <div class="alert-box alert-{{mensaje_clase}}">
+            <span class="material-symbols-outlined">
+                {{#mensaje_clase}}check_circle{{/mensaje_clase}}
+            </span>
+            {{mensaje}}
+        </div>
+    {{/mensaje}}
+
+    <div class="table-container">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre Completo</th>
+                    <th>Usuario</th>
+                    <th>Email</th>
+                    <th>Estado Cuenta</th>
+                    <th>Puntaje</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#usuarios}}
+                <tr>
+                    <td><strong>#{{id}}</strong></td>
+                    <td>{{nombre_completo}}</td>
+                    <td>@{{usuario}}</td>
+                    <td>{{email}}</td>
+                    <td>
+                        {{#cuenta_validada}}
+                            <span class="badge badge-active">Validada</span>
+                        {{/cuenta_validada}}
+                        {{^cuenta_validada}}
+                            <span class="badge badge-reported">Sin Validar</span>
+                        {{/cuenta_validada}}
+                    </td>
+                    <td><strong>{{puntaje}} Tkn</strong></td>
+                    <td>
+                        <a href="/admin/eliminarUsuario?id={{id}}" class="btn-admin btn-admin-danger" style="padding: 5px 10px;" onclick="return confirm('¿Estás seguro de que deseas eliminar permanentemente este usuario y todo su historial de partidas?')" title="Eliminar Usuario">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
+                        </a>
+                    </td>
+                </tr>
+                {{/usuarios}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{{>footer}}

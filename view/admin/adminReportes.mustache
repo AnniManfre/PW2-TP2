@@ -1,0 +1,164 @@
+{{>header}}
+
+<link rel="stylesheet" href="/public/styles/admin.css">
+
+<div class="container admin-section">
+    <div class="admin-header">
+        <div>
+            <h1>📈 Reportes y Estadísticas</h1>
+            <p>Métricas de uso, distribución demográfica y participación de Trivia Clash</p>
+        </div>
+        <div>
+            <a href="/admin/reportesPdf" class="btn-admin btn-admin-primary">
+                <span class="material-symbols-outlined">picture_as_pdf</span>
+                Descargar PDF
+            </a>
+            <a href="/admin/dashboard" class="btn-admin btn-admin-secondary">
+                <span class="material-symbols-outlined">arrow_back</span>
+                Panel de Control
+            </a>
+        </div>
+    </div>
+
+    <div class="reports-grid">
+        <div class="report-card">
+            <h3>📚 Preguntas por Categoría</h3>
+            <canvas id="chartCategoria" height="220"></canvas>
+        </div>
+        <div class="report-card">
+            <h3>🚻 Usuarios por Sexo</h3>
+            <canvas id="chartSexo" height="220"></canvas>
+        </div>
+
+        <!-- Usuarios por País -->
+        <div class="report-card">
+            <h3>👥 Usuarios por País</h3>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>País</th>
+                        <th style="text-align: right;">Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#usuarios_por_pais}}
+                    <tr>
+                        <td><strong>{{pais}}</strong></td>
+                        <td style="text-align: right;"><span class="badge badge-active">{{cantidad}}</span></td>
+                    </tr>
+                    {{/usuarios_por_pais}}
+                    {{^usuarios_por_pais}}
+                    <tr>
+                        <td colspan="2" style="text-align: center; color: var(--on-surface-variant);">No hay datos de ubicación disponibles.</td>
+                    </tr>
+                    {{/usuarios_por_pais}}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Distribución de Género -->
+        <div class="report-card">
+            <h3>🚻 Distribución por Sexo</h3>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Sexo</th>
+                        <th style="text-align: right;">Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#usuarios_por_sexo}}
+                    <tr>
+                        <td><strong>{{sexo}}</strong></td>
+                        <td style="text-align: right;"><span class="badge badge-role-admin">{{cantidad}}</span></td>
+                    </tr>
+                    {{/usuarios_por_sexo}}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Preguntas por Categoría -->
+        <div class="report-card">
+            <h3>📚 Preguntas Activas por Categoría</h3>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Categoría</th>
+                        <th style="text-align: right;">Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#preguntas_por_categoria}}
+                    <tr>
+                        <td><strong>{{categoria}}</strong></td>
+                        <td style="text-align: right;"><span class="badge badge-role-editor">{{cantidad}}</span></td>
+                    </tr>
+                    {{/preguntas_por_categoria}}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Participación y Rendimiento de Usuarios -->
+        <div class="report-card" style="grid-column: span 2;">
+            <h3>🏆 Actividad de Usuarios (Top 10)</h3>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th style="text-align: center;">Partidas Jugadas</th>
+                        <th style="text-align: center;">Puntaje Total acumulado</th>
+                        <th style="text-align: center;">Puntaje Promedio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#partidas_por_usuario}}
+                    <tr>
+                        <td><strong>@{{usuario}}</strong></td>
+                        <td style="text-align: center;"><span class="badge badge-active">{{partidas_jugadas}}</span></td>
+                        <td style="text-align: center;"><span class="badge badge-role-admin">{{puntaje_total}} Tkn</span></td>
+                        <td style="text-align: center;"><strong>{{promedio_puntaje}}</strong></td>
+                    </tr>
+                    {{/partidas_por_usuario}}
+                    {{^partidas_por_usuario}}
+                    <tr>
+                        <td colspan="4" style="text-align: center; color: var(--on-surface-variant); padding: 20px;">Aún no se han jugado partidas en el sistema.</td>
+                    </tr>
+                    {{/partidas_por_usuario}}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+    const dataCategoria = {{{categoria_json}}};
+    const dataSexo = {{{sexo_json}}};
+
+    new Chart(document.getElementById('chartCategoria'), {
+        type: 'bar',
+        data: {
+            labels: dataCategoria.labels,
+            datasets: [{
+                label: 'Preguntas activas',
+                data: dataCategoria.valores,
+                backgroundColor: '#6366f1',
+            }]
+        },
+        options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+    });
+
+    new Chart(document.getElementById('chartSexo'), {
+        type: 'doughnut',
+        data: {
+            labels: dataSexo.labels,
+            datasets: [{
+                data: dataSexo.valores,
+                backgroundColor: ['#6366f1', '#ec4899', '#f59e0b', '#10b981'],
+            }]
+        }
+    });
+</script>
+
+{{>footer}}
