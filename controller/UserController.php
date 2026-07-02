@@ -184,7 +184,20 @@ public function validarCuenta() {
     public function login()
     {
         Log::info("UserController::login (form)");
-        $this->renderer->render("loginView");
+
+        // Mostrar el aviso que dejó otra acción (ej. "Cuenta validada exitosamente")
+        // y limpiarlo para que no se repita al recargar.
+        $data = [];
+        if (isset($_SESSION['success'])) {
+            $data['success'] = $_SESSION['success'];
+            unset($_SESSION['success']);
+        }
+        if (isset($_SESSION['error'])) {
+            $data['error'] = $_SESSION['error'];
+            unset($_SESSION['error']);
+        }
+
+        $this->renderer->render("loginView", $data);
     }
 
     public function procesarLogin()
@@ -220,7 +233,10 @@ public function validarCuenta() {
 
         if ($user) {
 
-            if (isset($user['cuenta_validada']) && $user['cuenta_validada'] == 0) {
+            // Para entrar hay que estar validado (cuenta_validada == 1). Cualquier
+            // otro valor (0, NULL o ausente) se considera NO validada. Usamos empty()
+            // porque isset() daría false con NULL y dejaría pasar la cuenta sin validar.
+            if (empty($user['cuenta_validada'])) {
                 Log::warning("UserController::procesarLogin - Intento de ingreso sin validar: $usuario");
                 
                 $_SESSION['email_en_validacion'] = $user['email'];

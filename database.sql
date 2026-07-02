@@ -138,3 +138,5 @@ CREATE TABLE IF NOT EXISTS partidas (
 
 ALTER TABLE partidas ADD COLUMN categoria_id INTEGER NULL;
 ALTER TABLE partidas ADD FOREIGN KEY (categoria_id) REFERENCES categorias(id);
+/*ALTER TABLE users CHANGE `año_nacimiento` anio_nacimiento INT;
+*/
