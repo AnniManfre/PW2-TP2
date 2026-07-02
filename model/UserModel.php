@@ -105,18 +105,24 @@ class UserModel
         $sql = "UPDATE users SET cuenta_validada = 1, token = NULL WHERE email = ?";
         return $this->database->execute($sql, [$email]);
     }
-    public function obtenerPartidasRecientes($usuario_id)
+    public function obtenerPartidasRecientes($usuario_id, $limite = null)
     {
-        $sql = "SELECT p.id, 
-                       p.puntaje, 
+        $sql = "SELECT p.id,
+                       p.puntaje,
                        DATE_FORMAT(p.fecha, '%d/%m/%Y %H:%i') AS fecha_formateada,
                        c.nombre AS categoria_nombre,
                        c.color AS categoria_color
-                FROM partidas p 
+                FROM partidas p
                 LEFT JOIN categorias c ON p.categoria_id = c.id
-                WHERE p.usuario_id = ? 
+                WHERE p.usuario_id = ?
                 ORDER BY p.fecha DESC";
-                
+
+        // El límite se castea a int y se concatena directo: query() bindea los
+        // parámetros como string y "LIMIT ?" con string rompe en MySQL.
+        if ($limite !== null) {
+            $sql .= " LIMIT " . (int)$limite;
+        }
+
         return $this->database->query($sql, [$usuario_id]);
     }
 

@@ -1,0 +1,59 @@
+{{>header}}
+
+<link rel="stylesheet" href="/public/styles/lobby.css">
+
+<main class="lobby-main">
+    <section class="recent-section">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="material-symbols-outlined">history</span>
+                Historial de Partidas
+            </h2>
+            <a href="/user/lobby" class="view-all">← Volver al lobby</a>
+        </div>
+
+        <div class="games-table">
+            <table class="games-list">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Categoría</th>
+                        <th>Oponente</th>
+                        <th class="text-right">Resultado</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{#ranking}}
+                    <tr class="game-row">
+                        <td class="date-cell">{{fecha_formateada}}</td>
+
+                        <td>
+                            <span class="category-badge" style="background-color: {{categoria_color}}; color: white;">
+                                {{#categoria_nombre}}{{categoria_nombre}}{{/categoria_nombre}}
+                                {{^categoria_nombre}}Mixta{{/categoria_nombre}}
+                            </span>
+                        </td>
+
+                        <td class="opponent-cell">@{{usuario}}</td>
+                        <td class="result-cell">
+                            <span class="result-points">+{{puntaje}} Tkn</span>
+                            <span class="result-icon">✓</span>
+                        </td>
+                    </tr>
+                    {{/ranking}}
+
+                    {{^ranking}}
+                    <tr>
+                        <td colspan="4" style="text-align: center; padding: calc(var(--unit) * 3); color: var(--on-surface-variant);">
+                            Aún no has jugado ninguna partida. ¡Crea una y comienza!
+                        </td>
+                    </tr>
+                    {{/ranking}}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+{{>footer}}

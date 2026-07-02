@@ -370,7 +370,8 @@ public function validarCuenta() {
 
         $datosVista['user'] = $datosVista;
 
-        $datosVista['ranking'] = $this->model->obtenerPartidasRecientes($_SESSION['user_id']);
+        // Solo las últimas 5 en el lobby; el resto se ve en /user/historial.
+        $datosVista['ranking'] = $this->model->obtenerPartidasRecientes($_SESSION['user_id'], 5);
 
         $datosVista['banner'] = true;
 
@@ -381,6 +382,27 @@ public function validarCuenta() {
         }
 
         $this->renderer->render("lobbyView", $datosVista);
+    }
+
+    // Historial completo de partidas del usuario (la página del "Ver todo" del lobby).
+    public function historial()
+    {
+        Log::info("UserController::historial");
+
+        if (!isset($_SESSION['user_id'])) {
+            Redirect::to('/user/login');
+            return;
+        }
+
+        $usuarioActual = $this->model->obtenerPorId($_SESSION['user_id']);
+
+        $this->renderer->render("historialView", [
+            // Misma clave 'ranking' para reutilizar la tabla del lobby.
+            'ranking'     => $this->model->obtenerPartidasRecientes($_SESSION['user_id']),
+            'usuario'     => $usuarioActual['usuario'],
+            'foto_perfil' => $usuarioActual['foto_perfil'] ?? null,
+            'page_title'  => 'Historial de Partidas',
+        ]);
     }
 
     // Genera y devuelve la imagen QR (PNG) que apunta a la vista pública del usuario
