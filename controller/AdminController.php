@@ -22,6 +22,8 @@ class AdminController
         $stats = $this->model->obtenerEstadisticas();
         // 'staff' (no 'usuario') para no disparar el link de perfil de jugador del header.
         $stats['staff'] = $_SESSION['usuario'] ?? '';
+        // Sin page_title: el hero del panel ya muestra el título; así la banda
+        // superior no lo repite.
         $this->renderer->render("admin/dashboard", $stats);
     }
 
@@ -33,6 +35,7 @@ class AdminController
         $this->renderer->render("admin/adminPreguntas", [
             'preguntas' => $preguntas,
             'base' => 'admin',
+            'page_title' => 'Administrar Preguntas',
         ]);
     }
 
@@ -46,6 +49,7 @@ class AdminController
             'titulo_accion' => 'Agregar Pregunta',
             'action_url' => '/admin/procesarAgregarPregunta',
             'base' => 'admin',
+            'page_title' => 'Agregar Pregunta',
         ]);
     }
 
@@ -127,6 +131,7 @@ class AdminController
             'action_url' => '/admin/procesarEditarPregunta',
             'is_edit' => true,
             'base' => 'admin',
+            'page_title' => 'Editar Pregunta',
         ]);
     }
 
@@ -201,6 +206,7 @@ class AdminController
         $this->renderer->render("admin/adminSugeridas", [
             'preguntas' => $preguntas,
             'base' => 'admin',
+            'page_title' => 'Preguntas Sugeridas',
         ]);
     }
 
@@ -225,6 +231,7 @@ class AdminController
         $this->renderer->render("admin/adminReportadas", [
             'preguntas' => $preguntas,
             'base' => 'admin',
+            'page_title' => 'Preguntas Reportadas',
         ]);
     }
 
@@ -252,7 +259,10 @@ class AdminController
         Log::info("AdminController::usuarios");
 
         $usuarios = $this->model->obtenerTodosUsuarios();
-        $this->renderer->render("admin/adminUsuarios", ['usuarios' => $usuarios]);
+        $this->renderer->render("admin/adminUsuarios", [
+            'usuarios' => $usuarios,
+            'page_title' => 'Administrar Usuarios',
+        ]);
     }
 
     public function eliminarUsuario()
@@ -276,6 +286,7 @@ class AdminController
         $data['sexo_json'] = json_encode($this->paraGrafico($data['usuarios_por_sexo'], 'sexo', 'cantidad'));
         $data['categoria_json'] = json_encode($this->paraGrafico($data['preguntas_por_categoria'], 'categoria', 'cantidad'));
         $data['pais_json'] = json_encode($this->paraGrafico($data['usuarios_por_pais'], 'pais', 'cantidad'));
+        $data['page_title'] = 'Reportes y Estadísticas';
 
         $this->renderer->render("admin/adminReportes", $data);
     }
@@ -285,15 +296,30 @@ class AdminController
     {
         Log::info("AdminController::reportesPdf");
 
+        ini_set('display_errors', '0');
+
         require_once __DIR__ . '/../vendor/autoload.php';
 
         $data = $this->datosReportes();
         $html = $this->renderer->fetch("admin/reportesPdf", $data);
 
-        $dompdf = new \Dompdf\Dompdf();
+        // Usamos temp del sistema (escribible por Apache) y fuentes core del PDF
+        // (Helvetica, definida en el template): así dompdf no intenta embeber ningún
+        // .ttf dentro de htdocs/vendor, que el usuario de Apache no puede escribir.
+        $options = new \Dompdf\Options();
+        $options->set('tempDir', sys_get_temp_dir());
+        $options->set('isRemoteEnabled', false);
+
+        $dompdf = new \Dompdf\Dompdf($options);
         $dompdf->loadHtml($html, 'UTF-8');
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
+
+        // Descartar cualquier salida previa (avisos, espacios) para no corromper el PDF.
+        while (ob_get_level() > 0) {
+            ob_end_clean();
+        }
+
         $dompdf->stream("estadisticas-trivia-clash.pdf", ['Attachment' => true]);
         exit;
     }

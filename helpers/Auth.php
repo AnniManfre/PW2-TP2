@@ -12,6 +12,7 @@ class Auth
             'validarCuenta', 'procesarValidacion',
             'publico', 'qr', 'logout',
         ],
+        'partida' => ['abandonar'],
     ];
 
     // Panel al que va cada rol de staff.

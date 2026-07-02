@@ -1,66 +1,130 @@
-.dashboard{
-    max-width:1200px;
-    margin:auto;
-    padding:40px 20px;
+.dashboard {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: calc(var(--unit) * 4) var(--gutter) calc(var(--unit) * 6);
 }
 
-.dashboard h1{
-    margin-bottom:5px;
+/* Hero superior del panel (igual estilo que el hero del lobby). */
+.panel-hero {
+    background: linear-gradient(135deg, var(--primary) 0%, #2817a3 100%);
+    color: white;
+    border-radius: var(--radius-md);
+    padding: calc(var(--unit) * 4) calc(var(--unit) * 4.5);
+    margin-bottom: calc(var(--unit) * 4);
+    box-shadow: 0 12px 32px rgba(53, 37, 205, 0.20);
 }
 
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:20px;
-    margin:40px 0;
+.panel-hero h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.card{
-    background:white;
-    border-radius:15px;
-    padding:25px;
-    text-align:center;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
+.panel-hero p {
+    margin-top: 6px;
+    opacity: 0.9;
+    font-weight: 500;
 }
 
-.card h3{
-    margin-bottom:15px;
+.panel-hero a {
+    color: white;
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
-.card span{
-    font-size:40px;
-    font-weight:bold;
+/* Tarjetas de estadística. */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: calc(var(--unit) * 2.5);
+    margin-bottom: calc(var(--unit) * 5);
 }
 
-.menu-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
+.card {
+    background: white;
+    border: 1px solid var(--outline-variant);
+    border-radius: var(--radius);
+    padding: calc(var(--unit) * 3);
+    text-align: center;
+    box-shadow: 0 4px 14px rgba(53, 37, 205, 0.10);
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--transition), box-shadow var(--transition);
 }
 
-.menu-card{
-    background:white;
-    border-radius:15px;
-    padding:30px;
-    text-align:center;
-    text-decoration:none;
-    color:#222;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
-    transition:.2s;
+/* Barra de acento superior con la marca. */
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
 }
 
-.menu-card:hover{
-    transform:translateY(-5px);
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(53, 37, 205, 0.16);
 }
 
-.menu-card span{
-    font-size:50px;
+.card h3 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--on-surface-variant);
+    margin-bottom: 10px;
 }
 
-.menu-card h2{
-    margin:15px 0;
+.card span {
+    font-size: 2.75rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--primary);
 }
 
-.menu-card p{
-    color:#666;
+/* Accesos del panel. */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: calc(var(--unit) * 3);
+}
+
+.menu-card {
+    background: white;
+    border: 1px solid var(--outline-variant);
+    border-radius: var(--radius-md);
+    padding: calc(var(--unit) * 3.5);
+    text-align: center;
+    text-decoration: none;
+    color: var(--on-surface);
+    box-shadow: 0 4px 14px rgba(53, 37, 205, 0.08);
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.menu-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary);
+    box-shadow: 0 12px 32px rgba(53, 37, 205, 0.20);
+}
+
+.menu-card span {
+    font-size: 2.75rem;
+    display: inline-block;
+    margin-bottom: 6px;
+}
+
+.menu-card h2 {
+    margin: 10px 0 6px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.menu-card p {
+    color: var(--on-surface-variant);
+    font-size: 0.92rem;
 }

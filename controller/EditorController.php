@@ -32,6 +32,7 @@ class EditorController
         $this->renderer->render("admin/adminPreguntas", [
             'preguntas' => $preguntas,
             'base' => 'editor',
+            'page_title' => 'Administrar Preguntas',
         ]);
     }
 
@@ -43,6 +44,7 @@ class EditorController
             'titulo_accion' => 'Agregar Pregunta',
             'action_url' => '/editor/procesarAgregarPregunta',
             'base' => 'editor',
+            'page_title' => 'Agregar Pregunta',
         ]);
     }
 
@@ -115,6 +117,7 @@ class EditorController
             'action_url' => '/editor/procesarEditarPregunta',
             'is_edit' => true,
             'base' => 'editor',
+            'page_title' => 'Editar Pregunta',
         ]);
     }
 
@@ -176,6 +179,7 @@ class EditorController
         $this->renderer->render("admin/adminSugeridas", [
             'preguntas' => $preguntas,
             'base' => 'editor',
+            'page_title' => 'Preguntas Sugeridas',
         ]);
     }
 

@@ -4,8 +4,10 @@
 
 <div class="dashboard">
 
-    <h1>Panel de Editor</h1>
-    <p>Bienvenido {{staff}}</p>
+    <div class="panel-hero">
+        <h1><span class="material-symbols-outlined">edit_note</span> Panel de Editor</h1>
+        <p>Bienvenido {{staff}} · <a href="/user/logout">Cerrar sesión</a></p>
+    </div>
 
     <div class="menu-grid">
 
@@ -27,12 +29,6 @@
             <p>Revisar propuestas de usuarios.</p>
         </a>
 
-    </div>
-
-    <div style="margin-top: 30px;">
-        <a href="/user/logout" class="menu-card" style="display:inline-block;">
-            🚪 Cerrar sesión
-        </a>
     </div>
 
 </div>
