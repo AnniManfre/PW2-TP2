@@ -3,10 +3,17 @@
 <link rel="stylesheet" href="/public/styles/perfil.css">
 
 <main class="profile-main">
+    {{#error}}
+        <div class="error" style="max-width: 600px; margin: 0 auto 20px;">{{error}}</div>
+    {{/error}}
+    {{#success}}
+        <div class="success" style="max-width: 600px; margin: 0 auto 20px;">{{success}}</div>
+    {{/success}}
+
     <div class="profile-grid">
         <div class="profile-left">
             <div class="profile-card card-shadow">
-                <div class="profile-avatar-container">
+                <div class="profile-avatar-container" onclick="document.getElementById('input-foto-perfil').click();" style="cursor: pointer;" title="Hacé clic para cambiar tu foto de perfil">
                     {{#foto_perfil}}
                     <img src="{{foto_perfil}}" alt="Foto de perfil" class="profile-avatar">
                     {{/foto_perfil}}
@@ -15,10 +22,22 @@
                         <span class="material-symbols-outlined avatar-placeholder-icon">person</span>
                     </div>
                     {{/foto_perfil}}
+                    <div class="profile-avatar-overlay">
+                        <span class="material-symbols-outlined overlay-icon" title="Subir nueva foto">photo_camera</span>
+                        {{#foto_perfil}}
+                        <a href="/user/eliminarFotoPerfil" onclick="event.stopPropagation();" class="overlay-delete-btn" title="Eliminar foto actual">
+                            <span class="material-symbols-outlined delete-icon">delete</span>
+                        </a>
+                        {{/foto_perfil}}
+                    </div>
                     <div class="profile-badge">
                         <span class="material-symbols-outlined badge-icon">star</span>
                     </div>
                 </div>
+
+                <form method="POST" action="/user/cambiarFotoPerfil" enctype="multipart/form-data" id="form-foto-perfil" style="display: none;">
+                    <input type="file" id="input-foto-perfil" name="foto_perfil" accept="image/*" onchange="document.getElementById('form-foto-perfil').submit();">
+                </form>
 
                 <h1 class="profile-name">{{nombre_completo}}</h1>
                 <p class="profile-subtitle">{{nivel}} · {{categoria}}</p>

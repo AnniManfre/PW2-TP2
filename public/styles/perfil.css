@@ -84,6 +84,51 @@
     border: 4px solid var(--primary-fixed);
 }
 
+.profile-avatar-overlay {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    opacity: 0;
+    transition: opacity var(--transition);
+}
+
+.profile-avatar-container:hover .profile-avatar-overlay {
+    opacity: 1;
+}
+
+.overlay-icon, .overlay-delete-btn {
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none !important;
+}
+
+.overlay-icon:hover {
+    transform: scale(1.15);
+    color: var(--primary-fixed);
+}
+
+.overlay-delete-btn:hover {
+    transform: scale(1.15);
+    color: var(--error);
+}
+
+.overlay-delete-btn .delete-icon {
+    font-size: 24px;
+}
+
 .avatar-placeholder-icon {
     font-size: 48px;
     color: white;

@@ -251,11 +251,13 @@ public function validarCuenta() {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['usuario'] = $user['usuario'];
             $_SESSION['nombre_completo'] = $user['nombre_completo'];
-            // Los usuarios de la BD son siempre jugadores; admin/editor solo
-            // existen vía las credenciales fijas de staff.
-            $_SESSION['rol'] = 'usuario';
+            $_SESSION['rol'] = $user['rol'] ?? 'usuario';
 
-            Redirect::to('/user/lobby');
+            if (in_array($_SESSION['rol'], ['admin', 'editor'], true)) {
+                Redirect::to(Auth::panelDe($_SESSION['rol']));
+            } else {
+                Redirect::to('/user/lobby');
+            }
         } else {
             Log::warning("UserController::procesarLogin - Credenciales inválidas: $usuario");
             $this->renderer->render("loginView", ['error' => 'Usuario o contraseña inválidos']);
@@ -284,6 +286,15 @@ public function validarCuenta() {
         $user['nivel']     = 'Nivel ' . $nivelNum;
         $user['categoria'] = PartidaController::NIVELES[$nivelNum];
         $user['page_title'] = 'Mi Perfil';
+
+        if (isset($_SESSION['error'])) {
+            $user['error'] = $_SESSION['error'];
+            unset($_SESSION['error']);
+        }
+        if (isset($_SESSION['success'])) {
+            $user['success'] = $_SESSION['success'];
+            unset($_SESSION['success']);
+        }
 
         $this->renderer->render("perfilView", $user);
     }
@@ -501,5 +512,149 @@ public function validarCuenta() {
             'foto_perfil' => $usuarioActual['foto_perfil'] ?? null,
             'page_title'  => 'Ranking Global',
         ]);
+    }
+
+    /**
+     * Procesa la subida y cambio de la foto de perfil en el perfil del usuario.
+     * Si la subida es exitosa, reemplaza la foto actual, eliminando el archivo anterior del disco.
+     */
+    public function cambiarFotoPerfil()
+    {
+        Log::info("UserController::cambiarFotoPerfil");
+
+        if (!isset($_SESSION['user_id'])) {
+            Redirect::to('/user/login');
+            return;
+        }
+
+        $id = $_SESSION['user_id'];
+
+        if (isset($_FILES['foto_perfil']) && $_FILES['foto_perfil']['error'] === UPLOAD_ERR_OK) {
+            $uploadResult = $this->procesarSubidaFoto();
+            if (isset($uploadResult['error'])) {
+                $_SESSION['error'] = $uploadResult['error'];
+                Redirect::to('/user/perfil');
+                return;
+            }
+
+            if ($uploadResult['path']) {
+                $usuarioActual = $this->model->obtenerPorId($id);
+                $foto_anterior = $usuarioActual['foto_perfil'];
+
+                // Eliminar foto anterior si existía
+                if ($foto_anterior && strpos($foto_anterior, '/public/uploads/') === 0) {
+                    $oldFilePath = __DIR__ . '/..' . $foto_anterior;
+                    if (file_exists($oldFilePath)) {
+                        @unlink($oldFilePath);
+                    }
+                }
+
+                // Actualizar perfil
+                $this->model->actualizarPerfil(
+                    $id,
+                    $usuarioActual['nombre_completo'],
+                    $usuarioActual['anio_nacimiento'],
+                    $usuarioActual['sexo'],
+                    $usuarioActual['pais'],
+                    $usuarioActual['ciudad'],
+                    $uploadResult['path']
+                );
+
+                $_SESSION['success'] = "¡Foto de perfil actualizada con éxito!";
+            }
+        } else {
+            $_SESSION['error'] = "No se pudo procesar el archivo seleccionado o no seleccionaste ninguna imagen.";
+        }
+
+        Redirect::to('/user/perfil');
+    }
+
+    /**
+     * Elimina la foto de perfil del usuario.
+     * Borra el archivo del disco y setea en la base de datos la foto en NULL.
+     */
+    public function eliminarFotoPerfil()
+    {
+        Log::info("UserController::eliminarFotoPerfil");
+
+        if (!isset($_SESSION['user_id'])) {
+            Redirect::to('/user/login');
+            return;
+        }
+
+        $id = $_SESSION['user_id'];
+        $usuarioActual = $this->model->obtenerPorId($id);
+        $foto_anterior = $usuarioActual['foto_perfil'];
+
+        // Eliminar foto anterior si existía
+        if ($foto_anterior && strpos($foto_anterior, '/public/uploads/') === 0) {
+            $oldFilePath = __DIR__ . '/..' . $foto_anterior;
+            if (file_exists($oldFilePath)) {
+                @unlink($oldFilePath);
+            }
+        }
+
+        // Actualizar base de datos con foto_perfil = null
+        $this->model->actualizarPerfil(
+            $id,
+            $usuarioActual['nombre_completo'],
+            $usuarioActual['anio_nacimiento'],
+            $usuarioActual['sexo'],
+            $usuarioActual['pais'],
+            $usuarioActual['ciudad'],
+            null
+        );
+
+        $_SESSION['success'] = "¡Foto de perfil eliminada con éxito!";
+        Redirect::to('/user/perfil');
+    }
+
+    /**
+     * Valida y procesa físicamente la subida de un archivo de imagen en public/uploads/.
+     * Retorna array con 'error' o 'path' según corresponda.
+     */
+    private function procesarSubidaFoto()
+    {
+        if (isset($_FILES['foto_perfil']) && $_FILES['foto_perfil']['error'] === UPLOAD_ERR_OK) {
+            $fileTmpPath = $_FILES['foto_perfil']['tmp_name'];
+            $fileName = $_FILES['foto_perfil']['name'];
+            
+            // Validar si es una imagen
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $fileType = finfo_file($finfo, $fileTmpPath);
+            finfo_close($finfo);
+            
+            $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+            if (!in_array($fileType, $allowedMimeTypes)) {
+                return ['error' => 'El tipo de archivo no está permitido. Subí una imagen (JPG, PNG, GIF o WEBP).'];
+            }
+
+            // Asegurar directorio public/uploads/
+            $uploadDir = __DIR__ . '/../public/uploads/';
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0777, true);
+            }
+
+            // Nombre de archivo único
+            $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
+            if (empty($fileExtension)) {
+                $extensions = [
+                    'image/jpeg' => 'jpg',
+                    'image/png' => 'png',
+                    'image/gif' => 'gif',
+                    'image/webp' => 'webp'
+                ];
+                $fileExtension = $extensions[$fileType] ?? 'jpg';
+            }
+            $newFileName = uniqid('avatar_', true) . '.' . $fileExtension;
+            $destPath = $uploadDir . $newFileName;
+
+            if (move_uploaded_file($fileTmpPath, $destPath)) {
+                return ['path' => '/public/uploads/' . $newFileName];
+            } else {
+                return ['error' => 'Hubo un error al mover el archivo al directorio de destino.'];
+            }
+        }
+        return ['path' => null];
     }
 }
