@@ -12,6 +12,12 @@ class PartidaModel {
         return !empty($filas) ? (int)$filas[0]['puntaje'] : 0;
     }
 
+    // Obtiene la ruta de la foto de perfil de un usuario para renderizar en la barra de navegación del juego
+    public function obtenerFotoPerfilUsuario($usuario_id) {
+        $filas = $this->database->query("SELECT foto_perfil FROM users WHERE id = ?", [$usuario_id]);
+        return !empty($filas) ? $filas[0]['foto_perfil'] : null;
+    }
+
     public function obtenerCategorias() {
         return $this->database->query("SELECT id, nombre, color FROM categorias ORDER BY id");
     }

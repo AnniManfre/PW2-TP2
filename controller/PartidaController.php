@@ -38,11 +38,13 @@ class PartidaController
         }
 
         $categorias = $this->model->obtenerCategorias();
+        $foto_perfil = $this->model->obtenerFotoPerfilUsuario($_SESSION['user_id']);
 
         $data = [
             "usuario" => $_SESSION['usuario'],
             "categorias" => $categorias,
             "esAdmin" => (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'),
+            "foto_perfil" => $foto_perfil,
         ];
 
         $this->renderer->render("ruletaView", $data);
@@ -193,6 +195,8 @@ class PartidaController
             ];
         }
 
+        $foto_perfil = $this->model->obtenerFotoPerfilUsuario($_SESSION['user_id']);
+
         $data = [
             "usuario" => $_SESSION['usuario'],
             "pregunta" => $pregunta["pregunta"],
@@ -212,6 +216,7 @@ class PartidaController
             "nivel_nombre" => self::NIVELES[$nivel],
             "tiempo_restante" => 30,
             "esAdmin" => (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'),
+            "foto_perfil" => $foto_perfil,
         ];
 
         $this->renderer->render("jugarView", $data);
