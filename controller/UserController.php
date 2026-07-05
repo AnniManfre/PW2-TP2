@@ -255,7 +255,7 @@ public function validarCuenta() {
             // existen vía las credenciales fijas de staff.
             $_SESSION['rol'] = 'usuario';
 
-            Redirect::to('/user/perfil');
+            Redirect::to('/user/lobby');
         } else {
             Log::warning("UserController::procesarLogin - Credenciales inválidas: $usuario");
             $this->renderer->render("loginView", ['error' => 'Usuario o contraseña inválidos']);

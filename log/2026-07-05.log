@@ -322,3 +322,53 @@
 [02:49:54] [INFO] UserController::home
 [02:49:54] [INFO] UserController::lobby
 [02:49:54] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[02:50:49] [INFO] UserController::logout
+[02:50:49] [INFO] UserController::home
+[02:50:49] [INFO] UserController::login (form)
+[02:51:58] [INFO] UserController::qr
+[02:51:58] [INFO] UserController::login (form)
+[02:54:21] [INFO] UserController::login (form)
+[02:54:24] [INFO] UserController::login (form)
+[02:54:28] [INFO] UserController::procesarLogin
+[02:54:28] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucasm]
+[02:54:28] [WARNING] UserController::procesarLogin - Credenciales inválidas: lucasm
+[02:54:28] [INFO] UserController::login (form)
+[02:54:32] [INFO] UserController::procesarLogin
+[02:54:32] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucasm]
+[02:54:32] [INFO] UserController::procesarLogin - Login exitoso: lucasm
+[02:54:32] [INFO] UserController::perfil
+[02:54:32] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[02:54:32] [INFO] SQL: SELECT COUNT(*) AS ganadas FROM partidas WHERE usuario_id = ? AND puntaje = ? [1, 4]
+[02:54:32] [INFO] UserController::qr
+[02:54:33] [INFO] UserController::home
+[02:54:33] [INFO] UserController::lobby
+[02:54:33] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[03:01:06] [INFO] UserController::home
+[03:01:06] [INFO] UserController::lobby
+[03:01:06] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[03:01:06] [INFO] UserController::home
+[03:01:06] [INFO] UserController::lobby
+[03:01:06] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[03:04:04] [INFO] UserController::home
+[03:04:04] [INFO] UserController::lobby
+[03:04:04] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[03:04:04] [INFO] UserController::home
+[03:04:04] [INFO] UserController::lobby
+[03:04:04] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[03:04:08] [INFO] UserController::logout
+[03:04:08] [INFO] UserController::home
+[03:04:08] [INFO] UserController::login (form)
+[03:04:09] [INFO] UserController::login (form)
+[03:04:09] [INFO] UserController::login (form)
+[03:04:10] [INFO] UserController::procesarLogin
+[03:04:10] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucasm]
+[03:04:10] [WARNING] UserController::procesarLogin - Credenciales inválidas: lucasm
+[03:04:10] [INFO] UserController::login (form)
+[03:04:14] [INFO] UserController::procesarLogin
+[03:04:14] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucasm]
+[03:04:14] [INFO] UserController::procesarLogin - Login exitoso: lucasm
+[03:04:14] [INFO] UserController::lobby
+[03:04:14] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[03:04:14] [INFO] UserController::home
+[03:04:14] [INFO] UserController::lobby
+[03:04:14] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
