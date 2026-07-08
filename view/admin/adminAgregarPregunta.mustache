@@ -81,21 +81,6 @@
                 </select>
             </div>
 
-            <div class="form-group">
-                <label for="nivel">Dificultad (Nivel)</label>
-                <select name="nivel" id="nivel" class="form-control" required>
-                    <option value="" disabled {{^pregunta}}selected{{/pregunta}}>Selecciona el nivel</option>
-                    {{#niveles}}
-                        <option value="{{valor}}" {{#selected}}selected{{/selected}}>{{nombre}}</option>
-                    {{/niveles}}
-                    {{^niveles}}
-                        <option value="1">Fácil (Principiante)</option>
-                        <option value="2">Medio (Intermedio)</option>
-                        <option value="3">Difícil (Avanzado)</option>
-                    {{/niveles}}
-                </select>
-            </div>
-
             <div class="form-actions">
                 <a href="/{{base}}/preguntas" class="btn-admin btn-admin-secondary">Cancelar</a>
                 <button type="submit" class="btn-admin btn-admin-primary">Guardar Pregunta</button>

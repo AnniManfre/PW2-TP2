@@ -201,4 +201,18 @@ class AdminModel
         );
     
 }
+public function obtenerRatioPregunta($pregunta_id)
+{
+    $filas = $this->database->query(
+        "SELECT COUNT(*) AS total, SUM(correcta) AS correctas
+         FROM respuestas WHERE pregunta_id = ?",
+        [$pregunta_id]
+    );
+
+    if (empty($filas) || (int)$filas[0]['total'] === 0) {
+        return null; // Sin historial
+    }
+
+    return (int)$filas[0]['correctas'] / (int)$filas[0]['total'];
+}
 }

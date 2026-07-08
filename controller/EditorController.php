@@ -29,6 +29,22 @@ class EditorController
     {
         Log::info("EditorController::preguntas");
         $preguntas = $this->model->obtenerPreguntasPorEstado('activa');
+        foreach ($preguntas as &$p) {
+    $ratio = $this->model->obtenerRatioPregunta($p['id']);
+    if ($ratio === null) {
+        $p['nivel']       = 'Sin datos';
+        $p['nivel_color'] = '#999999';
+    } elseif ($ratio > 0.70) {
+        $p['nivel']       = 'Fácil';
+        $p['nivel_color'] = '#2e7d32'; // verde
+    } elseif ($ratio < 0.30) {
+        $p['nivel']       = 'Difícil';
+        $p['nivel_color'] = '#ba1a1a'; // rojo
+    } else {
+        $p['nivel']       = 'Intermedio';
+        $p['nivel_color'] = '#e65100'; // naranja
+    }
+}
         $this->renderer->render("admin/adminPreguntas", [
             'preguntas' => $preguntas,
             'base' => 'editor',
@@ -59,9 +75,9 @@ class EditorController
         $opcion_d = $this->request->post('opcion_d');
         $respuesta_correcta = $this->request->post('respuesta_correcta');
         $categoria_id = (int)$this->request->post('categoria_id');
-        $nivel = (int)$this->request->post('nivel');
+       
 
-        if (empty($pregunta) || empty($opcion_a) || empty($opcion_b) || empty($opcion_c) || empty($opcion_d) || empty($respuesta_correcta) || empty($categoria_id) || empty($nivel)) {
+        if (empty($pregunta) || empty($opcion_a) || empty($opcion_b) || empty($opcion_c) || empty($opcion_d) || empty($respuesta_correcta) || empty($categoria_id) ) {
             $this->renderer->render("admin/adminAgregarPregunta", [
                 'error' => 'Todos los campos son obligatorios',
                 'categorias' => $this->model->obtenerCategorias(),
@@ -72,7 +88,7 @@ class EditorController
             return;
         }
 
-        $this->model->insertarPregunta($pregunta, $opcion_a, $opcion_b, $opcion_c, $opcion_d, $respuesta_correcta, $categoria_id, $nivel, 'activa');
+        $this->model->insertarPregunta($pregunta, $opcion_a, $opcion_b, $opcion_c, $opcion_d, $respuesta_correcta, $categoria_id, 'activa');
 
         $_SESSION['mensaje'] = "Pregunta creada exitosamente.";
         $_SESSION['mensaje_tipo'] = "success";
@@ -95,11 +111,7 @@ class EditorController
             $cat['selected'] = ($cat['id'] == $pregunta['categoria_id']);
         }
 
-        $niveles = [
-            ['valor' => 1, 'nombre' => 'Fácil (Principiante)', 'selected' => ($pregunta['nivel'] == 1)],
-            ['valor' => 2, 'nombre' => 'Medio (Intermedio)', 'selected' => ($pregunta['nivel'] == 2)],
-            ['valor' => 3, 'nombre' => 'Difícil (Avanzado)', 'selected' => ($pregunta['nivel'] == 3)]
-        ];
+
 
         $respuestas = [
             ['valor' => 'a', 'selected' => (strtolower($pregunta['respuesta_correcta']) == 'a')],
@@ -111,7 +123,6 @@ class EditorController
         $this->renderer->render("admin/adminAgregarPregunta", [
             'pregunta' => $pregunta,
             'categorias' => $categorias,
-            'niveles' => $niveles,
             'respuestas' => $respuestas,
             'titulo_accion' => 'Editar Pregunta',
             'action_url' => '/editor/procesarEditarPregunta',
@@ -133,10 +144,10 @@ class EditorController
         $opcion_d = $this->request->post('opcion_d');
         $respuesta_correcta = $this->request->post('respuesta_correcta');
         $categoria_id = (int)$this->request->post('categoria_id');
-        $nivel = (int)$this->request->post('nivel');
+        
         $estado = $this->request->post('estado') ?? 'activa';
 
-        if (empty($pregunta) || empty($opcion_a) || empty($opcion_b) || empty($opcion_c) || empty($opcion_d) || empty($respuesta_correcta) || empty($categoria_id) || empty($nivel)) {
+        if (empty($pregunta) || empty($opcion_a) || empty($opcion_b) || empty($opcion_c) || empty($opcion_d) || empty($respuesta_correcta) || empty($categoria_id) ) {
             $this->renderer->render("admin/adminAgregarPregunta", [
                 'error' => 'Todos los campos son obligatorios',
                 'pregunta' => ['id' => $id, 'pregunta' => $pregunta, 'opcion_a' => $opcion_a, 'opcion_b' => $opcion_b, 'opcion_c' => $opcion_c, 'opcion_d' => $opcion_d],
@@ -149,7 +160,7 @@ class EditorController
             return;
         }
 
-        $this->model->actualizarPregunta($id, $pregunta, $opcion_a, $opcion_b, $opcion_c, $opcion_d, $respuesta_correcta, $categoria_id, $nivel, $estado);
+        $this->model->actualizarPregunta($id, $pregunta, $opcion_a, $opcion_b, $opcion_c, $opcion_d, $respuesta_correcta, $categoria_id, $estado);
 
         $_SESSION['mensaje'] = "Pregunta actualizada correctamente.";
         $_SESSION['mensaje_tipo'] = "success";

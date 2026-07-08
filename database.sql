@@ -140,3 +140,15 @@ ALTER TABLE partidas ADD COLUMN categoria_id INTEGER NULL;
 ALTER TABLE partidas ADD FOREIGN KEY (categoria_id) REFERENCES categorias(id);
 /*ALTER TABLE users CHANGE `año_nacimiento` anio_nacimiento INT;
 */
+
+CREATE TABLE respuestas (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INTEGER NOT NULL,
+    pregunta_id INTEGER NOT NULL,
+    correcta BOOLEAN NOT NULL,
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES users(id),
+    FOREIGN KEY (pregunta_id) REFERENCES preguntas(id)
+);
+-- 2. Eliminar la columna nivel de preguntas (ya no se usa)
+ALTER TABLE preguntas DROP COLUMN nivel;
