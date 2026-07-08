@@ -151,8 +151,54 @@ class AdminModel
         return $this->database->query($sql);
     }
 
+    //Categorias ABM
+
     public function obtenerCategorias()
     {
         return $this->database->query("SELECT * FROM categorias ORDER BY nombre");
     }
+
+     public function obtenerTodasCategorias()
+    {
+        return $this->database->query("SELECT * FROM categorias ORDER BY nombre");
+    }
+ 
+    public function obtenerCategoriaPorId($id)
+    {
+        $res = $this->database->query("SELECT * FROM categorias WHERE id = ?", [$id]);
+        return !empty($res) ? $res[0] : null;
+    }
+ 
+    public function insertarCategoria($nombre, $color)
+    {
+        return $this->database->execute(
+            "INSERT INTO categorias (nombre, color) VALUES (?, ?)",
+            [$nombre, $color]
+        );
+    }
+ 
+    public function actualizarCategoria($id, $nombre, $color)
+    {
+        return $this->database->execute(
+            "UPDATE categorias SET nombre = ?, color = ? WHERE id = ?",
+            [$nombre, $color, $id]
+        );
+    }
+ 
+    public function eliminarCategoria($id)
+    {
+        // Verificar que no tenga preguntas asociadas antes de eliminar
+        $preguntas = $this->database->query(
+            "SELECT COUNT(*) AS total FROM preguntas WHERE categoria_id = ?",
+            [$id]
+        );
+        if ($preguntas[0]['total'] > 0) {
+            return false; // No se puede eliminar, tiene preguntas asociadas
+        }
+        return $this->database->execute(
+            "DELETE FROM categorias WHERE id = ?",
+            [$id]
+        );
+    
+}
 }

@@ -46,6 +46,11 @@ class PartidaController
             "esAdmin" => (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'),
             "foto_perfil" => $foto_perfil,
         ];
+        if (isset($_SESSION['mensaje'])) {
+        $data['mensaje']       = $_SESSION['mensaje'];
+        $data['mensaje_clase'] = ($_SESSION['mensaje_tipo'] ?? 'info') === 'error' ? 'error' : 'success';
+        unset($_SESSION['mensaje'], $_SESSION['mensaje_tipo']);
+    }
 
         $this->renderer->render("ruletaView", $data);
     }
@@ -61,6 +66,21 @@ class PartidaController
         $ids = array_column($this->model->obtenerCategorias(), "id");
 
         if (!in_array((int)$catId, array_map('intval', $ids), true)) {
+            header("Location: /partida/ruleta");
+            exit;
+        }
+           // Calcular el nivel del usuario para validar preguntas disponibles
+        $puntajeAcumulado = $this->model->obtenerPuntajeUsuario($_SESSION['user_id']);
+        $nivel = $this->calcularNivel($puntajeAcumulado);
+ 
+        // Verificar que haya al menos 4 preguntas activas para este nivel y categoría
+        $disponibles = $this->model->contarPreguntasDisponibles((int)$catId, $nivel);
+ 
+        if ($disponibles < self::TOTAL_PREGUNTAS) {
+            $_SESSION['mensaje'] = "La categoría elegida no tiene suficientes preguntas para tu nivel. 
+                                    Se necesitan al menos " . self::TOTAL_PREGUNTAS . " y hay $disponibles. 
+                                    Elegí otra categoría.";
+            $_SESSION['mensaje_tipo'] = 'error';
             header("Location: /partida/ruleta");
             exit;
         }

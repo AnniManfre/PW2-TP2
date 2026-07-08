@@ -76,6 +76,18 @@ class PartidaModel {
             [$pregunta, $opcion_a, $opcion_b, $opcion_c, $opcion_d, $respuesta_correcta, $categoria_id, $nivel]
         );
     }
+      // Cuenta cuántas preguntas activas hay para un nivel y categoría específicos
+    public function contarPreguntasDisponibles($categoria_id, $nivel) {
+        $filas = $this->database->query(
+            "SELECT COUNT(*) AS total 
+             FROM preguntas 
+             WHERE categoria_id = ? 
+             AND nivel = ? 
+             AND estado = 'activa'",
+            [$categoria_id, $nivel]
+        );
+        return !empty($filas) ? (int)$filas[0]['total'] : 0;
+    }
 
 }
 

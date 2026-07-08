@@ -195,4 +195,131 @@ class EditorController
 
         Redirect::to('/editor/sugeridas');
     }
+
+    // ─── CATEGORÍAS ───────────────────────────────────────────────────────────
+
+    public function categorias()
+    {
+        Log::info("EditorController::categorias");
+
+        $categorias = $this->model->obtenerTodasCategorias();
+
+        $data = [
+            'categorias' => $categorias,
+            'base'       => 'editor',
+            'page_title' => 'Administrar Categorías',
+        ];
+
+        if (isset($_SESSION['mensaje'])) {
+            $data['mensaje']       = $_SESSION['mensaje'];
+            $data['mensaje_clase'] = ($_SESSION['mensaje_tipo'] ?? 'info') === 'error' ? 'error' : 'success';
+            unset($_SESSION['mensaje'], $_SESSION['mensaje_tipo']);
+        }
+
+        $this->renderer->render("admin/adminCategorias", $data);
+    }
+
+    public function agregarCategoria()
+    {
+        Log::info("EditorController::agregarCategoria");
+
+        $this->renderer->render("admin/adminAgregarCategoria", [
+            'titulo_accion' => 'Agregar Categoría',
+            'action_url'    => '/editor/procesarAgregarCategoria',
+            'base'          => 'editor',
+            'page_title'    => 'Agregar Categoría',
+        ]);
+    }
+
+    public function procesarAgregarCategoria()
+    {
+        Log::info("EditorController::procesarAgregarCategoria");
+
+        $nombre = trim($this->request->post('nombre') ?? '');
+        $color  = trim($this->request->post('color') ?? '');
+
+        if (empty($nombre) || empty($color)) {
+            $this->renderer->render("admin/adminAgregarCategoria", [
+                'error'         => 'El nombre y el color son obligatorios.',
+                'titulo_accion' => 'Agregar Categoría',
+                'action_url'    => '/editor/procesarAgregarCategoria',
+                'base'          => 'editor',
+            ]);
+            return;
+        }
+
+        $this->model->insertarCategoria($nombre, $color);
+
+        $_SESSION['mensaje']      = "Categoría '$nombre' creada exitosamente.";
+        $_SESSION['mensaje_tipo'] = 'success';
+
+        Redirect::to('/editor/categorias');
+    }
+
+    public function editarCategoria()
+    {
+        $id = (int)$this->request->get('id');
+        Log::info("EditorController::editarCategoria - ID: $id");
+
+        $categoria = $this->model->obtenerCategoriaPorId($id);
+        if (!$categoria) {
+            Redirect::to('/editor/categorias');
+            return;
+        }
+
+        $this->renderer->render("admin/adminAgregarCategoria", [
+            'categoria'     => $categoria,
+            'titulo_accion' => 'Editar Categoría',
+            'action_url'    => '/editor/procesarEditarCategoria',
+            'is_edit'       => true,
+            'base'          => 'editor',
+            'page_title'    => 'Editar Categoría',
+        ]);
+    }
+
+    public function procesarEditarCategoria()
+    {
+        $id     = (int)$this->request->post('id');
+        $nombre = trim($this->request->post('nombre') ?? '');
+        $color  = trim($this->request->post('color') ?? '');
+        Log::info("EditorController::procesarEditarCategoria - ID: $id");
+
+        if (empty($nombre) || empty($color)) {
+            $categoria = $this->model->obtenerCategoriaPorId($id);
+            $this->renderer->render("admin/adminAgregarCategoria", [
+                'error'         => 'El nombre y el color son obligatorios.',
+                'categoria'     => $categoria,
+                'titulo_accion' => 'Editar Categoría',
+                'action_url'    => '/editor/procesarEditarCategoria',
+                'is_edit'       => true,
+                'base'          => 'editor',
+            ]);
+            return;
+        }
+
+        $this->model->actualizarCategoria($id, $nombre, $color);
+
+        $_SESSION['mensaje']      = "Categoría actualizada correctamente.";
+        $_SESSION['mensaje_tipo'] = 'success';
+
+        Redirect::to('/editor/categorias');
+    }
+
+    public function eliminarCategoria()
+    {
+        $id = (int)$this->request->get('id');
+        Log::info("EditorController::eliminarCategoria - ID: $id");
+
+        $resultado = $this->model->eliminarCategoria($id);
+
+        if ($resultado === false) {
+            $_SESSION['mensaje']      = "No se puede eliminar la categoría porque tiene preguntas asociadas.";
+            $_SESSION['mensaje_tipo'] = 'error';
+        } else {
+            $_SESSION['mensaje']      = "Categoría eliminada exitosamente.";
+            $_SESSION['mensaje_tipo'] = 'info';
+        }
+
+        Redirect::to('/editor/categorias');
+    }
 }

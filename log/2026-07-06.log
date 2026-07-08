@@ -1,0 +1,36 @@
+[01:56:38] [INFO] UserController::home
+[01:56:38] [INFO] UserController::lobby
+[01:56:38] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[01:56:39] [INFO] UserController::home
+[01:56:39] [INFO] UserController::lobby
+[01:56:39] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[01:56:49] [INFO] UserController::logout
+[01:56:49] [INFO] UserController::home
+[01:56:49] [INFO] UserController::login (form)
+[01:56:51] [INFO] UserController::login (form)
+[01:56:51] [INFO] UserController::login (form)
+[01:57:32] [INFO] UserController::procesarLogin
+[01:57:32] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucasm]
+[01:57:32] [WARNING] UserController::procesarLogin - Credenciales inválidas: lucasm
+[01:57:32] [INFO] UserController::login (form)
+[01:57:39] [INFO] UserController::procesarLogin
+[01:57:39] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [lucasm]
+[01:57:39] [INFO] UserController::procesarLogin - Login exitoso: lucasm
+[01:57:39] [INFO] UserController::lobby
+[01:57:39] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[01:57:39] [INFO] UserController::home
+[01:57:39] [INFO] UserController::lobby
+[01:57:39] [INFO] SQL: SELECT * FROM users WHERE id = ? [1]
+[07:01:18] [INFO] UserController::logout
+[07:01:18] [INFO] UserController::home
+[07:01:18] [INFO] UserController::login (form)
+[07:01:19] [INFO] UserController::login (form)
+[07:01:19] [INFO] UserController::login (form)
+[07:01:26] [INFO] UserController::procesarLogin
+[07:01:26] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [admin]
+[07:01:26] [WARNING] UserController::procesarLogin - Credenciales inválidas: admin
+[07:01:26] [INFO] UserController::login (form)
+[07:01:36] [INFO] UserController::procesarLogin
+[07:01:36] [INFO] UserController::procesarLogin - Login de staff: admin
+[07:01:36] [INFO] AdminController::dashboard
+[07:01:36] [INFO] AdminController::dashboard

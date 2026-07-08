@@ -1,0 +1,61 @@
+{{>header}}
+
+<link rel="stylesheet" href="/public/styles/admin.css">
+
+<div class="admin-section">
+    <div class="admin-header">
+        <div>
+            <h1>{{titulo_accion}}</h1>
+            <p>Formulario de carga y modificación de categorías</p>
+        </div>
+        <div>
+            <a href="/{{base}}/categorias" class="btn-admin btn-admin-secondary">
+                <span class="material-symbols-outlined">arrow_back</span>
+                Volver a Categorías
+            </a>
+        </div>
+    </div>
+
+    {{#error}}
+        <div class="alert-box alert-error">
+            <span class="material-symbols-outlined">error</span>
+            {{error}}
+        </div>
+    {{/error}}
+
+    <div class="form-container">
+        <form action="{{action_url}}" method="POST">
+            {{#is_edit}}
+                <input type="hidden" name="id" value="{{categoria.id}}">
+            {{/is_edit}}
+
+            <div class="form-group">
+                <label for="nombre">Nombre de la Categoría</label>
+                <input type="text" name="nombre" id="nombre" class="form-control" value="{{categoria.nombre}}" placeholder="Ej: Historia, Ciencia, Deportes..." required>
+            </div>
+
+            <div class="form-group">
+                <label for="color">Color (código HEX)</label>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <input type="color" name="color" id="color" value="{{categoria.color}}" style="width: 60px; height: 40px; padding: 2px; border-radius: 6px; cursor: pointer;">
+                    <input type="text" id="color_texto" class="form-control" value="{{categoria.color}}" placeholder="#FF5733" style="flex: 1;" oninput="document.getElementById('color').value = this.value">
+                </div>
+                <small style="color: var(--on-surface-variant);">Este color se usa para identificar visualmente la categoría en el juego.</small>
+            </div>
+
+            <div class="form-actions">
+                <a href="/{{base}}/categorias" class="btn-admin btn-admin-secondary">Cancelar</a>
+                <button type="submit" class="btn-admin btn-admin-primary">Guardar Categoría</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Sincroniza el input de color con el texto
+    document.getElementById('color').addEventListener('input', function() {
+        document.getElementById('color_texto').value = this.value;
+    });
+</script>
+
+{{>footer}}
