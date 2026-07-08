@@ -891,3 +891,53 @@
 [03:12:23] [INFO] AdminController::dashboard
 [03:12:24] [INFO] AdminController::preguntas
 [03:12:24] [INFO] AdminController::dashboard
+[03:13:08] [INFO] AdminController::preguntas
+[03:13:08] [INFO] AdminController::dashboard
+[03:13:13] [INFO] UserController::home
+[03:13:13] [INFO] AdminController::dashboard
+[03:13:13] [INFO] AdminController::dashboard
+[03:13:16] [INFO] AdminController::categorias
+[03:13:16] [INFO] AdminController::dashboard
+[03:13:20] [INFO] AdminController::eliminarCategoria - ID: 4
+[03:13:20] [INFO] AdminController::categorias
+[03:13:20] [INFO] AdminController::dashboard
+[03:13:24] [INFO] AdminController::dashboard
+[03:13:24] [INFO] AdminController::dashboard
+[03:13:25] [INFO] AdminController::preguntas
+[03:13:25] [INFO] AdminController::dashboard
+[03:13:30] [INFO] AdminController::eliminarPregunta - ID: 42
+[03:13:30] [INFO] AdminController::preguntas
+[03:13:30] [INFO] AdminController::dashboard
+[03:13:32] [INFO] AdminController::eliminarPregunta - ID: 41
+[03:13:32] [INFO] AdminController::preguntas
+[03:13:32] [INFO] AdminController::dashboard
+[03:13:33] [INFO] AdminController::eliminarPregunta - ID: 40
+[03:13:33] [INFO] AdminController::preguntas
+[03:13:33] [INFO] AdminController::dashboard
+[03:13:34] [INFO] AdminController::dashboard
+[03:13:34] [INFO] AdminController::dashboard
+[03:13:37] [INFO] AdminController::categorias
+[03:13:37] [INFO] AdminController::dashboard
+[03:13:39] [INFO] AdminController::eliminarCategoria - ID: 4
+[03:13:39] [INFO] AdminController::dashboard
+[03:17:32] [INFO] AdminController::eliminarCategoria - ID: 4
+[03:17:33] [INFO] AdminController::dashboard
+[03:17:33] [INFO] AdminController::eliminarCategoria - ID: 4
+[03:17:33] [INFO] AdminController::dashboard
+[03:17:34] [INFO] AdminController::categorias
+[03:17:34] [INFO] AdminController::dashboard
+[03:17:34] [INFO] AdminController::categorias
+[03:17:35] [INFO] AdminController::dashboard
+[03:17:35] [INFO] AdminController::categorias
+[03:17:35] [INFO] AdminController::dashboard
+[03:17:35] [INFO] AdminController::categorias
+[03:17:35] [INFO] AdminController::dashboard
+[03:17:37] [INFO] AdminController::eliminarCategoria - ID: 4
+[03:17:37] [INFO] AdminController::dashboard
+[03:17:39] [INFO] AdminController::categorias
+[03:17:39] [INFO] AdminController::dashboard
+[03:18:07] [INFO] AdminController::categorias
+[03:18:07] [INFO] AdminController::dashboard
+[03:18:09] [INFO] AdminController::eliminarCategoria - ID: 4
+[03:18:09] [INFO] AdminController::categorias
+[03:18:09] [INFO] AdminController::dashboard

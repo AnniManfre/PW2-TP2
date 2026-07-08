@@ -185,21 +185,28 @@ class AdminModel
         );
     }
  
-    public function eliminarCategoria($id)
-    {
-        // Verificar que no tenga preguntas asociadas antes de eliminar
-        $preguntas = $this->database->query(
-            "SELECT COUNT(*) AS total FROM preguntas WHERE categoria_id = ?",
-            [$id]
-        );
-        if ($preguntas[0]['total'] > 0) {
-            return false; // No se puede eliminar, tiene preguntas asociadas
-        }
-        return $this->database->execute(
-            "DELETE FROM categorias WHERE id = ?",
-            [$id]
-        );
-    
+ public function eliminarCategoria($id)
+{
+    // Verificar que no tenga preguntas asociadas
+    $preguntas = $this->database->query(
+        "SELECT COUNT(*) AS total FROM preguntas WHERE categoria_id = ?",
+        [$id]
+    );
+    if ($preguntas[0]['total'] > 0) {
+        return 'tiene_preguntas';
+    }
+
+    // Eliminar partidas asociadas a esta categoría
+    $this->database->execute(
+        "DELETE FROM partidas WHERE categoria_id = ?",
+        [$id]
+    );
+
+    // Ahora sí eliminar la categoría
+    return $this->database->execute(
+        "DELETE FROM categorias WHERE id = ?",
+        [$id]
+    );
 }
 public function obtenerRatioPregunta($pregunta_id)
 {
