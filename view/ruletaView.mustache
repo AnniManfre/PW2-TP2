@@ -3,6 +3,11 @@
 <link rel="stylesheet" href="/public/styles/ruleta.css">
 
 <main class="ruleta-main">
+
+    {{#mensaje}}
+    <div class="{{mensaje_clase}}">{{mensaje}}</div>
+    {{/mensaje}}
+
     <h1 class="ruleta-titulo">¡Gira la ruleta!</h1>
     <p class="ruleta-subtitulo">La categoría que salga será la de tu partida.</p>
 
