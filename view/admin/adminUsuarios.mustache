@@ -34,6 +34,7 @@
                     <th>Usuario</th>
                     <th>Email</th>
                     <th>Estado Cuenta</th>
+                    <th>Rol</th>
                     <th>Puntaje</th>
                     <th>Acciones</th>
                 </tr>
@@ -52,6 +53,19 @@
                         {{^cuenta_validada}}
                             <span class="badge badge-reported">Sin Validar</span>
                         {{/cuenta_validada}}
+                    </td>
+                    <td>
+                        <form method="POST" action="/admin/cambiarRolUsuario" style="display:flex; gap:6px; align-items:center;">
+                            <input type="hidden" name="id" value="{{id}}">
+                            <select name="rol" style="min-width: 120px; padding: 6px 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.9rem;">
+                                <option value="usuario" {{#rol_es_usuario}}selected{{/rol_es_usuario}}>Usuario</option>
+                                <option value="admin"   {{#rol_es_admin}}selected{{/rol_es_admin}}>Admin</option>
+                                <option value="editor"  {{#rol_es_editor}}selected{{/rol_es_editor}}>Editor</option>
+                            </select>
+                            <button type="submit" class="btn-admin btn-admin-secondary" style="padding: 5px 10px;" title="Guardar rol">
+                                <span class="material-symbols-outlined" style="font-size: 18px;">save</span>
+                            </button>
+                        </form>
                     </td>
                     <td><strong>{{puntaje}} Tkn</strong></td>
                     <td>

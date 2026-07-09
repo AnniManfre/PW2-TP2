@@ -267,10 +267,26 @@ class AdminController
         Log::info("AdminController::usuarios");
 
         $usuarios = $this->model->obtenerTodosUsuarios();
-        $this->renderer->render("admin/adminUsuarios", [
+        // Flags para marcar la opción seleccionada del selector de rol (mustache no compara).
+        foreach ($usuarios as &$u) {
+            $u['rol_es_usuario'] = ($u['rol'] === 'usuario');
+            $u['rol_es_admin']   = ($u['rol'] === 'admin');
+            $u['rol_es_editor']  = ($u['rol'] === 'editor');
+        }
+        unset($u);
+
+        $data = [
             'usuarios' => $usuarios,
             'page_title' => 'Administrar Usuarios',
-        ]);
+        ];
+        // Mensaje flash (éxito del borrado o del cambio de rol).
+        if (isset($_SESSION['mensaje'])) {
+            $data['mensaje'] = $_SESSION['mensaje'];
+            $data['mensaje_clase'] = ($_SESSION['mensaje_tipo'] ?? 'info') === 'error' ? 'error' : 'success';
+            unset($_SESSION['mensaje'], $_SESSION['mensaje_tipo']);
+        }
+
+        $this->renderer->render("admin/adminUsuarios", $data);
     }
 
     public function eliminarUsuario()
@@ -281,6 +297,27 @@ class AdminController
         $this->model->eliminarUsuario($id);
         $_SESSION['mensaje'] = "El usuario y todas sus partidas asociadas han sido eliminados.";
         $_SESSION['mensaje_tipo'] = "info";
+
+        Redirect::to('/admin/usuarios');
+    }
+
+    public function cambiarRolUsuario()
+    {
+        $id  = (int)$this->request->post('id');
+        $rol = $this->request->post('rol');
+        Log::info("AdminController::cambiarRolUsuario - ID: $id, Rol: $rol");
+
+        // Solo roles válidos; cualquier otro valor se rechaza sin tocar la BD.
+        if (!in_array($rol, ['usuario', 'admin', 'editor'], true)) {
+            $_SESSION['mensaje'] = "Rol inválido.";
+            $_SESSION['mensaje_tipo'] = "error";
+            Redirect::to('/admin/usuarios');
+            return;
+        }
+
+        $this->model->actualizarRolUsuario($id, $rol);
+        $_SESSION['mensaje'] = "Rol actualizado correctamente.";
+        $_SESSION['mensaje_tipo'] = "success";
 
         Redirect::to('/admin/usuarios');
     }
