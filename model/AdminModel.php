@@ -55,25 +55,25 @@ class AdminModel
         return !empty($res) ? $res[0] : null;
     }
 
-    public function insertarPregunta($pregunta, $opcion_a, $opcion_b, $opcion_c, $opcion_d, $respuesta_correcta, $categoria_id, $nivel, $estado = 'activa')
+    public function insertarPregunta($pregunta, $opcion_a, $opcion_b, $opcion_c, $opcion_d, $respuesta_correcta, $categoria_id, $estado = 'activa')
     {
-        $sql = "INSERT INTO preguntas (pregunta, opcion_a, opcion_b, opcion_c, opcion_d, respuesta_correcta, categoria_id, nivel, estado) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO preguntas (pregunta, opcion_a, opcion_b, opcion_c, opcion_d, respuesta_correcta, categoria_id, estado)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         return $this->database->execute($sql, [
-            $pregunta, $opcion_a, $opcion_b, $opcion_c, $opcion_d, 
-            $respuesta_correcta, $categoria_id, $nivel, $estado
+            $pregunta, $opcion_a, $opcion_b, $opcion_c, $opcion_d,
+            $respuesta_correcta, $categoria_id, $estado
         ]);
     }
 
-    public function actualizarPregunta($id, $pregunta, $opcion_a, $opcion_b, $opcion_c, $opcion_d, $respuesta_correcta, $categoria_id, $nivel, $estado)
+    public function actualizarPregunta($id, $pregunta, $opcion_a, $opcion_b, $opcion_c, $opcion_d, $respuesta_correcta, $categoria_id, $estado)
     {
-        $sql = "UPDATE preguntas 
-                SET pregunta = ?, opcion_a = ?, opcion_b = ?, opcion_c = ?, opcion_d = ?, 
-                    respuesta_correcta = ?, categoria_id = ?, nivel = ?, estado = ? 
+        $sql = "UPDATE preguntas
+                SET pregunta = ?, opcion_a = ?, opcion_b = ?, opcion_c = ?, opcion_d = ?,
+                    respuesta_correcta = ?, categoria_id = ?, estado = ?
                 WHERE id = ?";
         return $this->database->execute($sql, [
-            $pregunta, $opcion_a, $opcion_b, $opcion_c, $opcion_d, 
-            $respuesta_correcta, $categoria_id, $nivel, $estado, $id
+            $pregunta, $opcion_a, $opcion_b, $opcion_c, $opcion_d,
+            $respuesta_correcta, $categoria_id, $estado, $id
         ]);
     }
 
