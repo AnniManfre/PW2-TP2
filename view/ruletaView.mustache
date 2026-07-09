@@ -11,6 +11,7 @@
     <h1 class="ruleta-titulo">¡Gira la ruleta!</h1>
     <p class="ruleta-subtitulo">La categoría que salga será la de tu partida.</p>
 
+    {{#hay_categorias}}
     <ul id="categorias-data" hidden>
         {{#categorias}}
         <li data-id="{{id}}" data-nombre="{{nombre}}" data-color="{{color}}"></li>
@@ -36,8 +37,14 @@
             Comenzar
         </button>
     </form>
+    {{/hay_categorias}}
+
+    {{^hay_categorias}}
+    <p class="ruleta-subtitulo">Todavía no hay categorías con preguntas suficientes para jugar. Volvé más tarde.</p>
+    {{/hay_categorias}}
 </main>
 
+{{#hay_categorias}}
 <script type="module">
     import {Wheel} from 'https://cdn.jsdelivr.net/npm/spin-wheel@5.0.2/dist/spin-wheel-esm.js';
 
@@ -79,5 +86,6 @@
         form.hidden = false;
     };
 </script>
+{{/hay_categorias}}
 
 {{>footer}}

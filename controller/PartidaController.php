@@ -37,12 +37,15 @@ class PartidaController
             return;
         }
 
-        $categorias = $this->model->obtenerCategorias();
+        // Sólo las categorías con suficientes preguntas activas entran a la ruleta,
+        // así el sorteo nunca cae en una categoría injugable.
+        $categorias = $this->model->obtenerCategoriasJugables(self::TOTAL_PREGUNTAS);
         $foto_perfil = $this->model->obtenerFotoPerfilUsuario($_SESSION['user_id']);
 
         $data = [
             "usuario" => $_SESSION['usuario'],
             "categorias" => $categorias,
+            "hay_categorias" => count($categorias) > 0,
             "esAdmin" => (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'),
             "foto_perfil" => $foto_perfil,
         ];
@@ -402,18 +405,17 @@ class PartidaController
         $d            = trim($this->request->post('opcion_d') ?? '');
         $correcta     = $this->request->post('respuesta_correcta');
         $categoria_id = $this->request->post('categoria_id');
-        $nivel        = $this->request->post('nivel');
 
         // Validación básica
         if ($pregunta === '' || $a === '' || $b === '' || $c === '' || $d === ''
             || !in_array($correcta, ['a', 'b', 'c', 'd'], true)
-            || empty($categoria_id) || empty($nivel)) {
+            || empty($categoria_id)) {
             $_SESSION["error_sugerir"] = "Completá todos los campos y marcá cuál es la respuesta correcta.";
             Redirect::to('/partida/sugerir');
             return;
         }
 
-        $this->model->sugerirPregunta($pregunta, $a, $b, $c, $d, $correcta, $categoria_id, $nivel);
+        $this->model->sugerirPregunta($pregunta, $a, $b, $c, $d, $correcta, $categoria_id);
 
         $_SESSION["mensaje"] = "¡Gracias! Tu pregunta fue enviada y un administrador la revisará.";
         $_SESSION["mensaje_tipo"] = "success";

@@ -21,6 +21,18 @@ class PartidaModel {
     public function obtenerCategorias() {
         return $this->database->query("SELECT id, nombre, color FROM categorias ORDER BY id");
     }
+
+    public function obtenerCategoriasJugables($minPreguntas) {
+        return $this->database->query(
+            "SELECT c.id, c.nombre, c.color
+             FROM categorias c
+             JOIN preguntas p ON p.categoria_id = c.id AND p.estado = 'activa'
+             GROUP BY c.id, c.nombre, c.color
+             HAVING COUNT(p.id) >= ?
+             ORDER BY c.id",
+            [$minPreguntas]
+        );
+    }
      /**
      * Calcula el nivel de una pregunta:
      * - Sin respuestas → nivel 2 (intermedio, por defecto)
@@ -101,18 +113,16 @@ class PartidaModel {
      * Usa el nivel dinámico calculado desde respuestas.
      */
     public function contarPreguntasDisponibles($categoria_id, $nivelUsuario) {
-        $sql = "SELECT id FROM preguntas WHERE categoria_id = ? AND estado = 'activa'";
-        $preguntas = $this->database->query($sql, [$categoria_id]);
- 
-        $count = 0;
-        foreach ($preguntas as $p) {
-            if ($this->calcularNivelPregunta($p['id']) === $nivelUsuario) {
-                $count++;
-            }
-        }
- 
-        // Si no hay ninguna del nivel exacto, contar todas 
-        return $count > 0 ? $count : count($preguntas);
+        // Las preguntas nuevas no tienen respuestas, así que su nivel dinámico
+        // arranca en 1. Filtrar el conteo por el nivel exacto del usuario bloquea
+        // categorías que en realidad tienen preguntas de sobra. Al jugar,
+        // obtenerPreguntaRandom prioriza el nivel del usuario pero completa con
+        // otras preguntas si no alcanza, por lo que el gate real es el total
+        // de preguntas activas de la categoría.
+        $sql = "SELECT COUNT(*) AS total FROM preguntas WHERE categoria_id = ? AND estado = 'activa'";
+        $filas = $this->database->query($sql, [$categoria_id]);
+
+        return (int)($filas[0]['total'] ?? 0);
     }
     public function guardarPartida($usuario_id, $puntaje,$categoria_id) {
         $this->database->execute(
