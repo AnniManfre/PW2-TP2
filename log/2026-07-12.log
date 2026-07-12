@@ -1,0 +1,10 @@
+[21:56:20] [INFO] UserController::login (form)
+[21:56:20] [INFO] UserController::login (form)
+[21:56:28] [INFO] UserController::procesarLogin
+[21:56:28] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [admin]
+[21:56:28] [WARNING] UserController::procesarLogin - Credenciales inválidas: admin
+[21:56:28] [INFO] UserController::login (form)
+[21:56:35] [INFO] UserController::procesarLogin
+[21:56:35] [INFO] SQL: SELECT * FROM users WHERE usuario = ? [admin]
+[21:56:35] [WARNING] UserController::procesarLogin - Credenciales inválidas: admin
+[21:56:35] [INFO] UserController::login (form)
