@@ -84,10 +84,18 @@ class AdminModel
     }
 
     public function eliminarPregunta($id)
-    {
-        $sql = "DELETE FROM preguntas WHERE id = ?";
-        return $this->database->execute($sql, [$id]);
-    }
+{
+    
+    $this->database->execute(
+        "DELETE FROM respuestas WHERE pregunta_id = ?",
+        [$id]
+    );
+
+    return $this->database->execute(
+        "DELETE FROM preguntas WHERE id = ?",
+        [$id]
+    );
+}
 
     public function obtenerTodosUsuarios()
     {
